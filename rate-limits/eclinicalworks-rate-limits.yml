@@ -1,0 +1,49 @@
+name: eClinicalWorks API Rate Limits
+description: eClinicalWorks does not publish specific numeric rate limit thresholds
+  in public documentation. Rate limiting is applied at the per-practice level in the
+  multi-tenant FHIR API architecture. Integrators should design for throttling as a
+  normal operational state, implementing client-side backoff with work queues. FHIR
+  pagination via link headers and the _count parameter are recommended to avoid
+  triggering limits on bulk queries.
+url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+created: '2026-06-13'
+modified: '2026-06-13'
+rateLimits:
+  - name: Per-Practice Throttling
+    description: Rate limits are applied on a per-practice basis rather than globally
+      per developer account. Each healthcare organization (practice) that has enabled
+      FHIR API access has its own throttle boundary. Integrators connecting to multiple
+      practices must account for independent throttling per tenant.
+    scope: per-practice
+    documented: false
+    notes: Official numeric thresholds are not publicly documented. Contact eClinicalWorks
+      developer support at devsupport@healow.com (healow portal) or via the eClinicalWorks
+      FHIR developer portal for practice-specific limits.
+  - name: Bulk Data / Backend Services
+    description: Bulk FHIR export operations (e.g., Patient/$export) used for population
+      health are subject to asynchronous processing constraints. Clients should use
+      the $export async pattern and poll for completion rather than expecting synchronous
+      responses.
+    scope: per-request
+    documented: false
+    notes: Use FHIR _count parameter to request smaller page sizes and follow returned
+      link headers for pagination to avoid timeouts or throttling on large datasets.
+  - name: OAuth2 Token Limits
+    description: Access tokens issued via OAuth 2.0 (both SMART on FHIR and Backend
+      Services Private Key JWT flows) have expiration intervals. Clients must handle
+      token refresh without storing long-lived credentials in browsers or insecure
+      environments.
+    scope: per-token
+    documented: false
+    notes: Validate launch context server-side. Integration gateways should be the
+      only component communicating directly with eClinicalWorks endpoints.
+recommendations:
+  - Implement client-side and server-side backoff with work queues for all API calls.
+  - Use FHIR _count parameter to request smaller batch sizes.
+  - Follow returned FHIR link headers for paginated result sets.
+  - Design multi-tenant integrations with per-practice operational ownership.
+  - Cache OAuth2 tokens and refresh proactively before expiry.
+  - Contact developer support for production rate limit agreements before launch.
+contact:
+  healowDeveloperSupport: devsupport@healow.com
+  ecwDeveloperPortal: https://fhir.eclinicalworks.com/ecwopendev/

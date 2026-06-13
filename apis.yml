@@ -1,0 +1,99 @@
+aid: eclinicalworks
+name: eClinicalWorks
+description: eClinicalWorks is a cloud-based EHR and practice management platform
+  serving more than 180,000 physicians and 850,000 medical professionals. It provides
+  REST and FHIR-compliant APIs for accessing patient data, appointments, clinical
+  notes, billing, and health information exchange. Third-party developers can build
+  patient-facing apps via the healow developer portal and provider-facing or backend
+  service apps via the eClinicalWorks FHIR developer portal, using SMART on FHIR
+  and OAuth 2.0 authentication.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/eclinicalworks/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
+tags:
+  - EHR
+  - FHIR
+  - Healthcare
+  - Electronic Health Records
+  - Practice Management
+  - Clinical Data
+  - Health Information Exchange
+  - Patient Data
+  - Appointments
+  - Billing
+  - SMART on FHIR
+apis:
+  - aid: eclinicalworks:eclinicalworks-fhir-api
+    name: eClinicalWorks FHIR API
+    description: Provider-centric and backend/bulk FHIR APIs for integrating with
+      eClinicalWorks EHR. Supports SMART on FHIR EHR Launch, Standalone Launch, Backend
+      Services, and CDS Hooks. Enables access to clinical data, scheduling, patient
+      demographics, results, and bulk data export for population health workflows.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://fhir.eclinicalworks.com/ecwopendev/
+    baseURL: https://fhir.eclinicalworks.com
+    tags:
+      - FHIR
+      - EHR
+      - Clinical Data
+      - Scheduling
+      - Bulk Data
+      - Provider
+      - Backend Services
+    properties:
+      - type: Documentation
+        url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+      - type: Authentication
+        url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+  - aid: eclinicalworks:healow-fhir-api
+    name: healow Patient-Centric FHIR API
+    description: Patient-facing FHIR APIs accessible via the healow developer portal.
+      Enables third-party applications to connect with the healow network for clinical
+      data, scheduling, and remote patient monitoring integrations. Supports Clinical
+      API, Scheduling API, and RPM Vendor API.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://connect4.healow.com/apps/jsp/dev/signIn.jsp
+    baseURL: https://connect4.healow.com
+    tags:
+      - FHIR
+      - Patient
+      - Scheduling
+      - Clinical
+      - Remote Patient Monitoring
+      - healow
+    properties:
+      - type: Documentation
+        url: https://connect4.healow.com/apps/jsp/dev/signIn.jsp
+      - type: Contact
+        url: mailto:devsupport@healow.com
+common:
+  - type: Website
+    url: https://www.eclinicalworks.com
+  - type: Documentation
+    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+  - type: GitHubOrg
+    url: https://github.com/eclinicalworks
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/eclinicalworks
+  - type: Blog
+    url: https://blog.eclinicalworks.com
+  - type: BlogTopic
+    url: https://blog.eclinicalworks.com/topic/apis
+  - type: Pricing
+    url: https://www.eclinicalworks.com/products-services/pricing/
+  - type: StatusPage
+    url: https://instatus.com/now/en/eclinicalworks.com
+  - type: X
+    url: https://x.com/eClinicalWorks
+  - type: Plans
+    url: plans/eclinicalworks-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/eclinicalworks-rate-limits.yml
+  - type: FinOps
+    url: finops/eclinicalworks-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,106 @@
+name: eClinicalWorks FinOps
+description: Financial operations guidance for budgeting and managing costs associated
+  with eClinicalWorks EHR subscriptions and API integrations. API access itself is
+  currently free for certified third-party developers. Practice costs are subscription-based
+  per provider per month. Revenue cycle management is available as a percentage-of-collections
+  service.
+url: https://www.eclinicalworks.com/products-services/pricing/
+created: '2026-06-13'
+modified: '2026-06-13'
+costDrivers:
+  - name: EHR Subscription Fee
+    description: Per-provider monthly subscription for EHR or EHR with Practice Management.
+      Scales linearly with provider headcount. The primary recurring cost for practices.
+    type: subscription
+    unit: per provider/month
+    range:
+      min: 449.00
+      max: 599.00
+    currency: USD
+    predictability: high
+    notes: No startup costs. Training included for small practices (1-9 providers).
+      Larger practices pay additional implementation and training fees.
+  - name: RCM Collections Fee
+    description: Revenue cycle management billed as 2.9% of practice collections.
+      Variable cost tied directly to practice revenue volume.
+    type: variable
+    unit: percent of collections
+    rate: 2.9
+    currency: USD
+    predictability: medium
+    notes: Replaces the per-provider monthly subscription model. Best suited for practices
+      wanting to outsource billing entirely.
+  - name: Per-Patient Statement Fee
+    description: Additional per-transaction charge for patient billing statements.
+      Volume depends on practice patient throughput and billing cycles.
+    type: usage
+    unit: per patient statement
+    documented: false
+    currency: USD
+    predictability: medium
+    notes: Exact per-statement cost not publicly listed. Request current rates from
+      eClinicalWorks sales.
+  - name: eClinicalMessenger Transaction Fee
+    description: Per-transaction fee for automated patient outreach messages sent
+      via eClinicalMessenger (appointment reminders, health campaigns, etc.).
+    type: usage
+    unit: per message
+    documented: false
+    currency: USD
+    predictability: medium
+    notes: Volume scales with patient engagement campaigns and appointment reminder
+      frequency.
+  - name: Large Practice Implementation Fee
+    description: Additional implementation and training fees for practices with 10
+      or more providers. Airfare for on-site training billed separately.
+    type: one-time
+    unit: per engagement
+    documented: false
+    currency: USD
+    predictability: low
+    notes: Contact eClinicalWorks for large-practice implementation pricing. Included
+      at no cost for practices with 1-9 providers.
+  - name: FHIR API Integration Enablement Fee
+    description: Some third-party integration services report an approximately $50/month
+      per-practice fee charged to eClinicalWorks customers who activate FHIR API
+      access for a specific integration. This is a cost borne by the practice, not
+      the developer.
+    type: usage
+    unit: per practice/month
+    amount: 50.00
+    currency: USD
+    predictability: high
+    documented: false
+    notes: Not officially listed in eClinicalWorks public pricing. Reported by third-party
+      integration vendors. Verify current policy with eClinicalWorks directly.
+  - name: Developer API Access
+    description: Third-party developer access to FHIR APIs (provider-centric via
+      fhir.eclinicalworks.com and patient-centric via healow portal) is currently
+      free under ONC FHIR API certification requirements.
+    type: free
+    unit: free at this time
+    amount: 0.00
+    currency: USD
+    predictability: high
+    notes: eClinicalWorks may introduce developer API fees with 30 days advance notice
+      per ONC policy. Monitor official developer portal for any pricing changes.
+budgetingGuidance:
+  - Budget $449-$599 per provider per month as the core EHR platform cost.
+  - For RCM services, model at 2.9% of projected monthly collections.
+  - Account for per-statement and per-message variable costs based on patient volume
+    and engagement strategy.
+  - Large practices (10+ providers) should request implementation fee quotes before
+    committing to a rollout timeline.
+  - Developer API integrations are currently free; build contingency for potential
+    future per-practice API activation fees (~$50/month reported by some integrators).
+  - No usage-based API call costs are documented; cost optimization focuses on EHR
+    subscription and transaction volume.
+resources:
+  - type: Pricing Page
+    url: https://www.eclinicalworks.com/products-services/pricing/
+  - type: Developer Portal
+    url: https://fhir.eclinicalworks.com/ecwopendev/
+  - type: Interoperability Overview
+    url: https://www.eclinicalworks.com/products-services/interoperability/
+  - type: Certified EHR Technology
+    url: https://www.eclinicalworks.com/resources/certified-ehr-technology/

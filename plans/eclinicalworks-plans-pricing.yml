@@ -1,0 +1,98 @@
+name: eClinicalWorks Plans and Pricing
+description: eClinicalWorks offers subscription-based EHR and practice management
+  plans priced per provider per month. FHIR API access is currently available at no
+  additional cost to certified third-party developers, though eClinicalWorks reserves
+  the right to introduce fees with 30 days advance notice per ONC requirements.
+url: https://www.eclinicalworks.com/products-services/pricing/
+created: '2026-06-13'
+modified: '2026-06-13'
+plans:
+  - name: EHR Only
+    description: Cloud-based EHR platform for ambulatory practices. Includes EMR,
+      mobile app, patient portal, messaging, document management, referral management,
+      dashboards, ePrescribing, 24x7 support, cloud hosting, and disaster recovery.
+    url: https://www.eclinicalworks.com/products-services/pricing/
+    price: 449.00
+    unit: per provider/month
+    currency: USD
+    billingCycle: monthly
+    startupCost: 0.00
+    features:
+      - EMR / EHR
+      - eClinicalMobile app
+      - P2P messaging
+      - Patient portal
+      - eClinicalMessenger
+      - Document management
+      - Referral management
+      - Dashboards and reporting
+      - ePrescribing
+      - 24x7 support
+      - Cloud hosting
+      - Disaster recovery
+      - Unlimited webinars
+    notes: Initial training included for practices with 1-9 providers. Larger practices
+      incur additional implementation fees. Extra charges apply per patient statement
+      and eClinicalMessenger transaction.
+  - name: EHR with Practice Management
+    description: Combines the full EHR platform with comprehensive practice management
+      capabilities including billing workflows and implementation services.
+    url: https://www.eclinicalworks.com/products-services/pricing/
+    price: 599.00
+    unit: per provider/month
+    currency: USD
+    billingCycle: monthly
+    startupCost: 0.00
+    features:
+      - All EHR Only features
+      - Practice management
+      - Billing implementation services
+      - Claims processing
+      - Revenue cycle tools
+    notes: Airfare for training billed separately for large practices.
+  - name: RCM as a Service
+    description: Revenue cycle management as a fully managed service. Covers claim
+      processing, denial/rejection management, appeals, preventative edits, and full
+      accounts receivable visibility.
+    url: https://www.eclinicalworks.com/products-services/pricing/
+    price: 2.9
+    unit: percent of practice collections
+    currency: USD
+    billingCycle: monthly
+    startupCost: 0.00
+    features:
+      - Claim processing
+      - Denial and rejection management
+      - Appeals management
+      - Preventative edits
+      - Accounts receivable visibility
+      - Billing rules engine
+      - Messaging
+      - Document management
+      - Referral management
+      - Reporting
+      - 24x7 support
+      - Cloud hosting
+      - Disaster recovery
+  - name: FHIR API Access (Developer)
+    description: Certified FHIR API access for third-party application developers
+      under ONC Health IT Certification Program requirements. Enables integration with
+      eClinicalWorks EHR via SMART on FHIR, Backend Services, CDS Hooks, and Patient
+      Access APIs.
+    url: https://fhir.eclinicalworks.com/ecwopendev/
+    price: 0.00
+    unit: free at this time
+    currency: USD
+    billingCycle: none
+    features:
+      - SMART on FHIR EHR Launch
+      - SMART on FHIR Standalone Launch
+      - Backend Services (bulk/population health)
+      - CDS Hooks
+      - Patient Access APIs (via healow)
+      - Sandbox environment
+      - Self-service registration
+    notes: eClinicalWorks reserves the right to introduce pricing with 30 days advance
+      notice per ONC requirements. Some integrators report a $50/month per-practice
+      integration enablement fee charged to eClinicalWorks customers who activate
+      FHIR API access.

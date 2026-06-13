@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "fhir": "http://hl7.org/fhir/",
+    "ecw": "https://www.eclinicalworks.com/",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "image": "schema:image",
+
+    "Patient": "fhir:Patient",
+    "Practitioner": "fhir:Practitioner",
+    "Organization": "fhir:Organization",
+    "Appointment": "fhir:Appointment",
+    "Encounter": "fhir:Encounter",
+    "Observation": "fhir:Observation",
+    "Condition": "fhir:Condition",
+    "MedicationRequest": "fhir:MedicationRequest",
+    "DiagnosticReport": "fhir:DiagnosticReport",
+    "AllergyIntolerance": "fhir:AllergyIntolerance",
+    "Immunization": "fhir:Immunization",
+    "DocumentReference": "fhir:DocumentReference",
+    "Coverage": "fhir:Coverage",
+    "Claim": "fhir:Claim",
+    "ExplanationOfBenefit": "fhir:ExplanationOfBenefit",
+    "Bundle": "fhir:Bundle",
+    "CapabilityStatement": "fhir:CapabilityStatement",
+
+    "EHR": {
+      "@id": "ecw:ehr",
+      "@type": "schema:SoftwareApplication"
+    },
+    "practiceManagement": {
+      "@id": "ecw:practice-management",
+      "@type": "schema:SoftwareApplication"
+    },
+    "healow": {
+      "@id": "ecw:healow",
+      "@type": "schema:MobileApplication"
+    },
+
+    "fhirVersion": {
+      "@id": "fhir:fhirVersion",
+      "@type": "xsd:string"
+    },
+    "smartOnFhir": {
+      "@id": "ecw:smart-on-fhir",
+      "@type": "xsd:boolean"
+    },
+    "bulkData": {
+      "@id": "ecw:bulk-data",
+      "@type": "xsd:boolean"
+    },
+    "cdsHooks": {
+      "@id": "ecw:cds-hooks",
+      "@type": "xsd:boolean"
+    },
+    "oauth2": {
+      "@id": "schema:actionAccessibilityRequirement",
+      "@type": "schema:EntryPoint"
+    }
+  }
+}

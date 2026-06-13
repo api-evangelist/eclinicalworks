@@ -1,0 +1,42 @@
+{
+  "provider": "eclinicalworks",
+  "blogUrl": "https://www.eclinicalworks.com/blog/",
+  "fetched": "2026-06-13",
+  "posts": [
+    {
+      "title": "7 Ways to Cloud EHR Excellence in the 21st Century",
+      "url": "https://www.eclinicalworks.com/blog/7-ways-to-cloud-ehr-excellence-in-the-21st-century/",
+      "date": "2026-06-12"
+    },
+    {
+      "title": "Your Independence Has a New Ally: 6 Benefits of CMS Advanced Primary Care Management",
+      "url": "https://www.eclinicalworks.com/blog/6-benefits-of-cms-advanced-primary-care-management/",
+      "date": "2026-06-05"
+    },
+    {
+      "title": "Better Technical Means Better Behavioral Healthcare Delivery",
+      "url": "https://www.eclinicalworks.com/blog/better-behavioral-healthcare-delivery/",
+      "date": "2026-05-29"
+    },
+    {
+      "title": "Modernizing Healthcare with AI-Powered Ambient Listening",
+      "url": "https://www.eclinicalworks.com/blog/modernizing-healthcare-with-ai-powered-ambient-listening/",
+      "date": "2026-05-21"
+    },
+    {
+      "title": "The Search for Better: Must-Haves for Medical Practice Management Software",
+      "url": "https://www.eclinicalworks.com/blog/must-haves-for-medical-practice-management-software/",
+      "date": "2026-05-15"
+    },
+    {
+      "title": "Certified Community Behavioral Health Clinics: Supporting Success End to End",
+      "url": "https://www.eclinicalworks.com/blog/certified-community-behavioral-health-clinics/",
+      "date": "2026-05-08"
+    },
+    {
+      "title": "Spring Cleaning Your Practice: How Image AI is Modernizing Cloud Electronic Health Records",
+      "url": "https://www.eclinicalworks.com/blog/image-ai-is-modernizing-cloud-electronic-health-records/",
+      "date": "2026-05-01"
+    }
+  ]
+}

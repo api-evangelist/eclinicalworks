@@ -1,7 +1,7 @@
 {
   "provider": "eclinicalworks",
   "blogUrl": "https://www.eclinicalworks.com/blog/",
-  "fetched": "2026-06-13",
+  "fetched": "2026-06-14T20:42:17Z",
   "posts": [
     {
       "title": "7 Ways to Cloud EHR Excellence in the 21st Century",
@@ -38,5 +38,23 @@
       "url": "https://www.eclinicalworks.com/blog/image-ai-is-modernizing-cloud-electronic-health-records/",
       "date": "2026-05-01"
     }
-  ]
+  ],
+  "repo": "eclinicalworks",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/company/eclinicalworks",
+      "feed_url": "https://www.linkedin.com/company/eclinicalworks",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://blog.eclinicalworks.com",
+      "feed_url": "https://www.eclinicalworks.com/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 1
 }

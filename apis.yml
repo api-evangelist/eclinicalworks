@@ -7,7 +7,7 @@ description: eClinicalWorks is a cloud-based EHR and practice management platfor
   patient-facing apps via the healow developer portal and provider-facing or backend
   service apps via the eClinicalWorks FHIR developer portal, using SMART on FHIR
   and OAuth 2.0 authentication.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/eclinicalworks/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -32,7 +32,7 @@ apis:
       eClinicalWorks EHR. Supports SMART on FHIR EHR Launch, Standalone Launch, Backend
       Services, and CDS Hooks. Enables access to clinical data, scheduling, patient
       demographics, results, and bulk data export for population health workflows.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://fhir.eclinicalworks.com/ecwopendev/
     baseURL: https://fhir.eclinicalworks.com
     tags:
@@ -54,7 +54,7 @@ apis:
       Enables third-party applications to connect with the healow network for clinical
       data, scheduling, and remote patient monitoring integrations. Supports Clinical
       API, Scheduling API, and RPM Vendor API.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://connect4.healow.com/apps/jsp/dev/signIn.jsp
     baseURL: https://connect4.healow.com
     tags:

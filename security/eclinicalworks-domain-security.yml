@@ -1,0 +1,34 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.eclinicalworks.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 26 16:36:44 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: fhir.eclinicalworks.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 23 23:59:59 2026 GMT
+  hsts: false
+- host: connect4.healow.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 20 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: eclinicalworks.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: healow.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

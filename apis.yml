@@ -70,6 +70,8 @@ apis:
       - type: Contact
         url: mailto:devsupport@healow.com
 common:
+  - type: DomainSecurity
+    url: security/eclinicalworks-domain-security.yml
   - type: Website
     url: https://www.eclinicalworks.com
   - type: Documentation

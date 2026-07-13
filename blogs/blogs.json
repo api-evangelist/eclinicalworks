@@ -5,12 +5,15 @@
       "source": "https://www.eclinicalworks.com/feed/",
       "feed_url": "https://www.eclinicalworks.com/feed/",
       "title": "",
-      "saved": 3,
+      "saved": 0,
       "method": "feed"
     },
     {
       "source": "https://www.linkedin.com/company/eclinicalworks",
-      "error": "HTTPError"
+      "feed_url": "https://www.linkedin.com/company/eclinicalworks",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     },
     {
       "source": "https://blog.eclinicalworks.com",
@@ -20,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-27T12:03:07Z",
-  "post_count": 5
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 11
 }

@@ -1,0 +1,121 @@
+generated: '2026-08-14'
+method: searched
+source: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started + https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+  + https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}/metadata
+note: Cross-cutting semantics for the eClinicalWorks / healow FHIR APIs. These are FHIR R4 + SMART App Launch conventions
+  as eClinicalWorks implements them, not a bespoke REST style.
+base_url:
+  shape: https://{facade_host}/fhir/r4/{practice_code}
+  hosts:
+    provider_facing: https://fhir4.eclinicalworks.com
+    patient_facing_healow: https://fhir4.healow.com
+  note: Every base URL is tenant-scoped by a six-character practice code. There is no single global base URL; resolve the
+    tenant base from the published endpoint directory before calling.
+authentication:
+  style: OAuth 2.0 bearer token (SMART on FHIR)
+  header: 'Authorization: Bearer <access_token>'
+  artifact: authentication/eclinicalworks-authentication.yml
+content_types:
+  request:
+  - application/fhir+json
+  response:
+  - application/fhir+json
+  - application/fhir+xml
+  - application/json+fhir
+  - application/xml+fhir
+  bulk_output: application/fhir+ndjson
+pagination:
+  style: FHIR Bundle link relations
+  params:
+  - _count
+  response_fields:
+  - Bundle.total
+  - Bundle.link[relation=self|next|previous]
+  note: Follow Bundle.link entries rather than constructing offsets. _count requests a smaller page size.
+search:
+  style: FHIR R4 search parameters, declared per resource in the CapabilityStatement
+  prefixes: FHIR date prefixes are used, e.g. date=ge2020-10-16 in the healow Scheduling API.
+  parameter_counts:
+    AllergyIntolerance: 4
+    Basic: 3
+    CarePlan: 4
+    CareTeam: 3
+    ChargeItem: 2
+    Condition: 6
+    Coverage: 2
+    Device: 4
+    DiagnosticReport: 8
+    DocumentReference: 8
+    Encounter: 6
+    FamilyMemberHistory: 2
+    Goal: 3
+    Group: 1
+    Immunization: 6
+    Location: 4
+    Media: 1
+    Medication: 1
+    MedicationAdministration: 4
+    MedicationDispense: 2
+    MedicationRequest: 8
+    Observation: 10
+    Organization: 8
+    Patient: 9
+    Practitioner: 4
+    PractitionerRole: 7
+    Procedure: 7
+    Provenance: 1
+    Questionnaire: 2
+    QuestionnaireResponse: 4
+    RelatedPerson: 1
+    ServiceRequest: 8
+    Specimen: 2
+idempotency:
+  supported: false
+  header: null
+  note: 'No idempotency key is documented on any surface. The nearest published guarantee is narrow and operation-specific:
+    "Identical bulk operation requests received will be rejected if one is already in progress" (Bulk Patient Access Specification),
+    and writeback error 202 INVALID_PATIENT_ALREADY_EXIST instructs clients not to retry a patient create. Retries of create
+    writebacks are otherwise not deduplicated, so no Idempotency pointer is emitted for this provider.'
+async_operations:
+  pattern: FHIR Bulk Data kick-off / poll / download
+  kickoff: 'GET {base}/Group/{group_id}/$export with Prefer: respond-async and Accept: application/fhir+json'
+  kickoff_response: '202 Accepted with content-location: {base}/$export-poll-location?job_id={id} and retry-after (example
+    120)'
+  poll: GET {base}/$export-poll-location?job_id={id} — 202 with x-progress while running, 200 with the manifest when complete
+  cancel: DELETE {base}/$export-poll-location?job_id={id}
+  output: 'NDJSON files listed in output[]; requiresAccessToken: true'
+  params:
+  - _type
+  - _since
+  - _outputFormat
+error_envelope:
+  read_search: FHIR OperationOutcome (application/fhir+json)
+  writeback: Numeric error code in `status` plus an error key — see errors/eclinicalworks-error-codes.yml
+  oauth: 'OAuth 2.0 error JSON: {"error": "...", "error_description": "..."}'
+  rfc9457: false
+rate_limit_signalling:
+  limit: 250 requests per minute per practice-code base URL
+  status_on_exhaustion: 429
+  headers: null
+  note: No rate-limit response headers and no Retry-After are documented. See rate-limits/eclinicalworks-rate-limits.yml.
+request_tracing:
+  header: null
+  note: No request-id/correlation header is documented for the FHIR surface. The healow RPM Tracker surface does define an
+    identifier system https://healow.com/fhir/tracker/request-id carried inside the FHIR payload.
+versioning:
+  artifact: lifecycle/eclinicalworks-lifecycle.yml
+  style: FHIR release + tenant EHR build; no API version header or path segment beyond /fhir/r4
+multi_tenancy:
+  note: 'The single most important operational convention: everything is per practice. Rate limits, OAuth authorization, scope
+    enablement, available resource types and even USCDI version support are all resolved per practice code. An integration
+    serving N practices is N independent integrations sharing one client registration.'
+cors:
+  enabled: true
+  source: CapabilityStatement.rest.security.cors = true
+cross_links:
+  errors: errors/eclinicalworks-error-codes.yml
+  authentication: authentication/eclinicalworks-authentication.yml
+  scopes: scopes/eclinicalworks-scopes.yml
+  rate_limits: rate-limits/eclinicalworks-rate-limits.yml
+  lifecycle: lifecycle/eclinicalworks-lifecycle.yml
+  conformance: conformance/eclinicalworks-conformance.yml

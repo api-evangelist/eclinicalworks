@@ -1,0 +1,107 @@
+generated: '2026-08-14'
+method: searched
+source: https://fhir4.eclinicalworks.com/fhir/r4/FEIGCD/.well-known/smart-configuration
+docs: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+note: eClinicalWorks publishes no OpenAPI. The authentication profile below is read from the live SMART
+  on FHIR configuration document and the FHIR CapabilityStatement served by the eCW FHIR Facade, plus
+  the eClinicalWorks Platform for Open Development and healow developer-portal authentication pages. Both
+  the provider-facing (fhir4.eclinicalworks.com) and patient-facing healow (fhir4.healow.com) facades
+  share one authorization server at oauthserver.eclinicalworks.com.
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  - http
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - refreshToken
+  client_authentication:
+  - client_secret_basic
+  - client_secret_post
+  - private_key_jwt
+  - client_secret_jwt
+  pkce: S256 (required for public clients)
+  asymmetric_signing_alg: RS384 only (private_key_jwt / Backend Services)
+  api_key_in: []
+  mutual_tls: false
+schemes:
+- name: smart-on-fhir-ehr-launch
+  type: oauth2
+  flow: authorizationCode
+  description: SMART on FHIR EHR Launch. App launches from inside an eClinicalWorks EHR session and receives
+    launch context (patient, encounter, banner, style).
+  authorizationUrl: https://oauthserver.eclinicalworks.com/oauth/oauth2/authorize
+  tokenUrl: https://oauthserver.eclinicalworks.com/oauth/oauth2/token
+  client_auth:
+  - client_secret_basic (symmetric)
+  - private_key_jwt (asymmetric, RS384)
+  sources:
+  - well-known/eclinicalworks-smart-configuration.json
+  - https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/provider/ehr-launch-asymmetric
+- name: smart-on-fhir-standalone-launch
+  type: oauth2
+  flow: authorizationCode
+  description: SMART on FHIR Standalone Launch. App launches outside the EHR; launch/patient requests
+    patient selection at authorization time.
+  authorizationUrl: https://oauthserver.eclinicalworks.com/oauth/oauth2/authorize
+  tokenUrl: https://oauthserver.eclinicalworks.com/oauth/oauth2/token
+  client_auth:
+  - client_secret_basic (symmetric)
+  - private_key_jwt (asymmetric, RS384)
+  sources:
+  - well-known/eclinicalworks-smart-configuration.json
+  - https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/provider/standalone-symmetric
+- name: smart-backend-services
+  type: oauth2
+  flow: clientCredentials
+  description: SMART Backend Services (system-to-system, no user). App registers a JWKS URL on the eCW
+    Dev Portal, mints a one-time client_assertion JWT signed RS384, and exchanges it at the token endpoint
+    for a system/* scoped bearer token. Used for single-patient backend access and Group/$export bulk
+    data.
+  tokenUrl: https://oauthserver.eclinicalworks.com/oauth/oauth2/token
+  client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+  signing_alg: RS384
+  jwks: Registered by the developer on the eCW Dev Portal; must be reachable and allow-listed by eClinicalWorks.
+  notes: system/Group.read must be included in every bulk (Group) token request and must NOT be included
+    for the Backend Single Patient API.
+  sources:
+  - https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/backend/authentication
+- name: openid-connect
+  type: openIdConnect
+  description: SSO via OpenID Connect; sso-openid-connect is advertised in the SMART capabilities. openid
+    + fhirUser (or openid + profile) identify the logged-in user.
+  jwks_uri: https://oauthserver.eclinicalworks.com/oauth/oauth2/jwks
+  sources:
+  - well-known/eclinicalworks-smart-configuration.json
+- name: token-introspection
+  type: oauth2-introspection
+  description: RFC 7662 style token introspection per SMART App Launch STU2. HTTP POST with application/x-www-form-urlencoded;
+    confidential clients authenticate with HTTP Basic (base64 client_id:client_secret). Response carries
+    active, scope, client_id, exp.
+  sources:
+  - https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/token-introspection
+- name: healow-tracker-backend-services
+  type: oauth2
+  flow: clientCredentials
+  description: Separate authorization surface for the healow RPM Vendor (Tracker) API. Asymmetric client
+    credentials issued per app by the healow Dev Portal; client_assertion signed RS384; tokens are scoped
+    system/Observation.create system/Device.create.
+  tokenUrl: https://connect4.healow.com/apps/api/v1/fhir/tracker/oauth/token
+  sources:
+  - https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
+- name: healow-tracker-callback-signing
+  type: http
+  scheme: hmac
+  description: 'Outbound calls healow makes to an RPM vendor are authenticated with X-Client-Id plus X-Server-Signature:
+    Base64(HMAC_SHA256(<request-body>, <vendor-client-secret>)). For DELETE the signature is computed
+    over an empty body.'
+  sources:
+  - https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
+bearer_token:
+  header: 'Authorization: Bearer <access_token>'
+  token_type: Bearer
+  access_token_lifetime_seconds_example: 300
+  note: 'Documented token response example shows expires_in: 300 for the eCW Backend Services flow and
+    expires_in: 30000 for the healow Tracker flow.'
+scopes_artifact: scopes/eclinicalworks-scopes.yml

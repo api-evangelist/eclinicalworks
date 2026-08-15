@@ -1,49 +1,59 @@
-name: eClinicalWorks API Rate Limits
-description: eClinicalWorks does not publish specific numeric rate limit thresholds
-  in public documentation. Rate limiting is applied at the per-practice level in the
-  multi-tenant FHIR API architecture. Integrators should design for throttling as a
-  normal operational state, implementing client-side backoff with work queues. FHIR
-  pagination via link headers and the _count parameter are recommended to avoid
-  triggering limits on bulk queries.
-url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+generated: '2026-08-14'
+method: searched
+source: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+name: eClinicalWorks / healow FHIR API Rate Limits
+description: 'eClinicalWorks publishes one numeric FHIR rate limit, in the "FHIR Rate Limiting" section of the healow Clinical
+  API documentation: 250 calls per minute per base URL, effective 7 October 2025. "Per base URL" means the counter is scoped
+  to each practice code, so an integrator working across N customers gets N independent 250/minute buckets. Exhaustion returns
+  HTTP 429 and blocks every request from that application for the remainder of the minute; the bucket resets at the top of
+  each minute. No RateLimit-* or Retry-After response headers are documented for the FHIR surface.'
+url: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+limit_count: 1
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-14'
 rateLimits:
-  - name: Per-Practice Throttling
-    description: Rate limits are applied on a per-practice basis rather than globally
-      per developer account. Each healthcare organization (practice) that has enabled
-      FHIR API access has its own throttle boundary. Integrators connecting to multiple
-      practices must account for independent throttling per tenant.
-    scope: per-practice
+- name: FHIR API calls per base URL
+  scope: per-base-url (per practice code)
+  window: 60 seconds
+  limit: 250
+  unit: requests
+  burst: null
+  documented: true
+  effective: '2025-10-07'
+  applies_to:
+  - /fhir/r4/{practice_code}/* (FHIR resource API requests)
+  - /authorize (authorization code requests)
+  - /token (access token requests)
+  exhaustion:
+    status: 429
+    behaviour: All requests from the application are blocked for the remainder of the minute. The limit resets at the beginning
+      of every minute.
+  response_headers:
     documented: false
-    notes: Official numeric thresholds are not publicly documented. Contact eClinicalWorks
-      developer support at devsupport@healow.com (healow portal) or via the eClinicalWorks
-      FHIR developer portal for practice-specific limits.
-  - name: Bulk Data / Backend Services
-    description: Bulk FHIR export operations (e.g., Patient/$export) used for population
-      health are subject to asynchronous processing constraints. Clients should use
-      the $export async pattern and poll for completion rather than expecting synchronous
-      responses.
-    scope: per-request
-    documented: false
-    notes: Use FHIR _count parameter to request smaller page sizes and follow returned
-      link headers for pagination to avoid timeouts or throttling on large datasets.
-  - name: OAuth2 Token Limits
-    description: Access tokens issued via OAuth 2.0 (both SMART on FHIR and Backend
-      Services Private Key JWT flows) have expiration intervals. Clients must handle
-      token refresh without storing long-lived credentials in browsers or insecure
-      environments.
-    scope: per-token
-    documented: false
-    notes: Validate launch context server-side. Integration gateways should be the
-      only component communicating directly with eClinicalWorks endpoints.
+    note: Neither X-RateLimit-*, RateLimit-* (RFC 9331 draft) nor Retry-After is documented for the 429. An agent cannot read
+      remaining quota from the response and must count locally against a wall-clock minute.
+  aggregation_note: 'Counters are not shared across practice codes: 5 customers = 1,250 req/min total, 20 customers = 5,000
+    req/min total.'
+  source: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+undocumented_surfaces:
+- name: Bulk Data / Backend Services $export
+  note: No numeric limit published. The Bulk Patient Access Specification states that identical bulk operation requests are
+    rejected while one is already in progress, and returns 202 with content-location + retry-after (documented example 120
+    seconds) and x-progress on poll. Use the async pattern rather than expecting synchronous responses.
+  source: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/backend/patient-access
+- name: healow RPM Vendor (Tracker) ingestion
+  note: No published limit for POST /apps/api/v1/fhir/tracker/Observation.
+  source: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
 recommendations:
-  - Implement client-side and server-side backoff with work queues for all API calls.
-  - Use FHIR _count parameter to request smaller batch sizes.
-  - Follow returned FHIR link headers for paginated result sets.
-  - Design multi-tenant integrations with per-practice operational ownership.
-  - Cache OAuth2 tokens and refresh proactively before expiry.
-  - Contact developer support for production rate limit agreements before launch.
+- Budget 250 requests per practice code per calendar minute and reset the local counter on the minute boundary, not on a rolling
+  window.
+- Count /authorize and /token calls against the same 250/minute bucket as FHIR resource reads.
+- Because no Retry-After is returned, back off to the next minute boundary on a 429 rather than retrying immediately.
+- Use the FHIR _count parameter and follow returned Bundle link relations to page large result sets.
+- Cache and reuse access tokens; do not mint a token per FHIR call, since token requests consume the same quota.
+- 'Use Group/{id}/$export with Prefer: respond-async for population-scale reads instead of fanning out per-patient reads.'
 contact:
-  healowDeveloperSupport: devsupport@healow.com
-  ecwDeveloperPortal: https://fhir.eclinicalworks.com/ecwopendev/
+  healow_developer_support: devsupport@healow.com
+  ecw_fhir_support: fhirfighters@eclinicalworks.com
+  interoperability: interop@eclinicalworks.com
+  developer_portal: https://fhir.eclinicalworks.com/ecwopendev/

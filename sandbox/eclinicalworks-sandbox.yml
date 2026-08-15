@@ -1,0 +1,64 @@
+generated: '2026-08-14'
+method: searched
+source: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/guidelines/sandbox-testing + https://connect4.healow.com/apps/jsp/dev/r4/fhirSchedulingDocumentation.jsp
+note: 'eClinicalWorks runs a gated sandbox: there is no anonymous test tenant and no self-serve test credentials. A developer
+  registers on the portal, and the eCW Dev Portal Team provisions provider, staff and patient profiles plus a test practice.
+  The values below are the ones eClinicalWorks itself publishes in its documentation — recorded verbatim, not invented.'
+environments:
+- name: eCW provider sandbox
+  host: https://fhir.eclinicalworks.com/ecwopendev/
+  access: portal-gated
+  launch: Click Launch on the registered app tile under the Published App tab, then pick a provider/staff profile and a patient
+    record.
+  coverage: EMR (EHR) launch apps only. Standalone provider launch is tested with Postman; Backend apps must be tested from
+    a server or the app itself.
+  data: Provider, staff and patient profiles are created by the eCW Dev Portal Team; patient profiles carry different demographics
+    and clinical data to fit various use cases.
+  source: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/guidelines/sandbox-testing
+- name: healow scheduling pre-production
+  host: https://azuhealow-preprod.healow.com
+  access: portal-gated + eCW enablement
+  signup: https://azuhealow-preprod.healow.com/apps/jsp/dev/signin.jsp — register a Scheduling App, then notify eCW to complete
+    the connection.
+  api_base: https://azuhealow-preprod.healow.com/apps/api/v1/fhir/{practice_code}/fhir
+  source: https://connect4.healow.com/apps/jsp/dev/r4/fhirSchedulingDocumentation.jsp
+published_test_values:
+- name: Scheduling test practice code
+  value: IFDECD
+  context: healow FHIR Scheduling API test practice supplied to registered scheduling apps.
+- name: Scheduling test APU
+  value: '324358'
+  context: Test practice details provided by eCW alongside the scheduling token.
+- name: Scheduling test provider NPI (actor)
+  value: '2002001562'
+  context: Actor value for the Schedule request in the documented test flow.
+- name: Scheduling test actor.location (facility id)
+  value: '2'
+  context: Facility identifier for the documented Schedule request.
+- name: Scheduling test date format
+  value: geYYYY-MM-DD (example ge2020-10-16)
+  context: FHIR date prefix expected on the Schedule request.
+- name: Documentation sample practice code
+  value: AJIBBD
+  context: Practice code used throughout the published Schedule/Slot sample responses. It is a documentation example, not
+    an assigned test tenant.
+unsupported_parameters:
+- name: type
+  note: Not supported currently on the Schedule request — leave value as none.
+- name: identifier
+  note: Not supported currently on the Schedule request — leave value as none.
+test_vs_live:
+  key_prefixes: null
+  note: 'There is no test-mode key prefix or dual-key model. Separation is by environment and by tenant: a sandbox practice
+    provisioned by the Dev Portal Team versus a production practice that has enabled FHIR access. Promotion is a manual "Publish
+    App to Production" step followed by per-customer enablement.'
+  promotion_docs:
+  - https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/guidelines/publish-app
+  - https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/guidelines/enable-ecw-cust
+verification_loop: For scheduling, the developer tells eCW the patient name, date and time and eCW confirms the appointment
+  landed. There is no self-service assertion endpoint.
+gaps:
+- 'No anonymous sandbox: nothing can be exercised without portal registration and eCW-side provisioning.'
+- No test clocks / time simulation.
+- No fixture or trigger tooling.
+- No published synthetic patient dataset (unlike the Synthea-style datasets other EHR vendors ship).

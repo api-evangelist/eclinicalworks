@@ -1,0 +1,35 @@
+generated: '2026-08-14'
+method: generated
+source: Grounded in the live FHIR R4 CapabilityStatement (conformance/eclinicalworks-fhir-capabilitystatement.json), the SMART
+  configuration (well-known/eclinicalworks-smart-configuration.json), and the eClinicalWorks + healow developer portals. eClinicalWorks
+  publishes no OpenAPI and no provider-authored agent skills or AGENTS.md, so these are generated; every resource, interaction,
+  search parameter, scope, endpoint and error code cited is verbatim from those sources.
+skills:
+- file: eclinicalworks-smart-standalone-patient-read.md
+  name: eClinicalWorks SMART standalone patient read
+  api: conformance/eclinicalworks-fhir-capabilitystatement.json
+  operations:
+  - Patient.read
+  - Patient.search-type
+  - Condition.search-type
+  - AllergyIntolerance.search-type
+  - MedicationRequest.search-type
+  - Observation.search-type
+  - Immunization.search-type
+  - DocumentReference.search-type
+  - Binary.read
+- file: eclinicalworks-bulk-group-export.md
+  name: eClinicalWorks bulk Group $export
+  api: conformance/eclinicalworks-fhir-capabilitystatement.json
+  operations:
+  - export
+  - Group.search-type
+- file: eclinicalworks-healow-rpm-vendor-integration.md
+  name: healow RPM vendor integration
+  api: asyncapi/eclinicalworks-healow-rpm-webhooks.yml
+  operations:
+  - order.create
+  - order.cancel
+  - order.notification
+  - observation.ingest
+  - observation.ingest.cgm

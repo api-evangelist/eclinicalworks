@@ -1,0 +1,146 @@
+generated: '2026-08-14'
+method: probed
+source: live probes of every apis.yml baseURL host, the FHIR facade hosts named in the published endpoint bundles,
+  and the docs/marketing host
+hosts:
+- host: https://fhir4.eclinicalworks.com
+  note: 'Provider-facing FHIR R4 facade. Discovery documents are tenant-scoped: /fhir/r4/{practice_code}/.well-known/...'
+  documents:
+  - path: /fhir/r4/{practice_code}/.well-known/smart-configuration
+    status: 200
+    content_type: application/json
+    file: eclinicalworks-smart-configuration.json
+    probed_with: FEIGCD
+    note: SMART App Launch 2.0 configuration; 486 scopes_supported.
+  - path: /fhir/r4/{practice_code}/metadata
+    status: 200
+    content_type: application/fhir+json
+    file: ../conformance/eclinicalworks-fhir-capabilitystatement.json
+    probed_with: FEIGCD
+    note: FHIR R4 CapabilityStatement (not a /.well-known path; recorded here as the machine-readable conformance
+      surface).
+  - path: /.well-known/smart-configuration
+    status: 400
+    note: Host root rejects; discovery is tenant-scoped only.
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+  - path: /.well-known/openid-configuration
+    status: 400
+  - path: /.well-known/security.txt
+    status: 400
+  - path: /.well-known/agent-card.json
+    status: 400
+  - path: /.well-known/agent.json
+    status: 400
+- host: https://fhir4.healow.com
+  note: Patient-facing healow FHIR R4 facade. Same eCW FHIR Facade 1.6 software, same authorization server.
+  documents:
+  - path: /fhir/r4/{practice_code}/.well-known/smart-configuration
+    status: 200
+    content_type: application/json
+    file: eclinicalworks-healow-smart-configuration.json
+    probed_with: AACJCD
+  - path: /fhir/r4/{practice_code}/metadata
+    status: 200
+    content_type: application/fhir+json
+    file: ../conformance/eclinicalworks-healow-fhir-capabilitystatement.json
+    probed_with: AACJCD
+- host: https://www.eclinicalworks.com
+  note: Marketing site (WordPress). It answers HTTP 200 with the full homepage HTML for almost every unknown path,
+    so a 200 alone is NOT evidence of a document here — only the two application/json responses below are real documents.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: eclinicalworks-oauth-authorization-server.json
+    note: 'RFC 8414 metadata for an MCP-scoped authorization server (scopes_supported: [mcp]).'
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: eclinicalworks-oauth-protected-resource.json
+    note: RFC 9728 metadata naming an MCP resource at /wp-json/mcp/mcp-oauth-server.
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — returns the homepage HTML, not an RFC 9116 document. Treated as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — homepage HTML. Treated as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — homepage HTML. Treated as a miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — homepage HTML. Treated as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — homepage HTML. NOT an agent card.
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — homepage HTML. NOT an agent card.
+  - path: /llms.txt
+    status: 200
+    content_type: text/html
+    note: SOFT 404 — homepage HTML. Treated as a miss.
+- host: https://oauthserver.eclinicalworks.com
+  documents:
+  - path: /oauth/oauth2/jwks
+    status: 200
+    content_type: application/json
+    note: 'Live JWKS for the FHIR authorization server. Not saved verbatim: key material rotates and is fetched
+      at runtime.'
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://connect4.healow.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 400
+  - path: /.well-known/agent.json
+    status: 400
+- host: https://fhir.eclinicalworks.com
+  note: Developer portal host (AngularJS SPA).
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/smart-configuration
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /ecwopendev/llms.txt
+    status: 200
+    content_type: text/html
+    note: SPA shell, not an llms.txt. Treated as a miss.
+- host: https://healow.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 400
+  - path: /.well-known/agent.json
+    status: 400
+findings:
+  security_txt: Not served on any host. eClinicalWorks does publish a Responsible Disclosure Policy as an HTML page
+    — see security/eclinicalworks-vulnerability-disclosure.yml — but no RFC 9116 security.txt exists, so no SecurityTxt
+    pointer is emitted.
+  agent_card: No A2A agent card on any host. Every /.well-known/agent-card.json and /.well-known/agent.json probe
+    returned 404, 400, or a soft-200 HTML shell. No a2a/ artifact was written.
+  real_documents: 4

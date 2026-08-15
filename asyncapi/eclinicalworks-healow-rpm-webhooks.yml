@@ -1,0 +1,111 @@
+generated: '2026-08-14'
+method: searched
+source: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
+spec_type: Webhooks
+asyncapi: null
+note: 'eClinicalWorks publishes no AsyncAPI document and no event stream over the clinical FHIR APIs. It does publish a real,
+  fully specified bidirectional callback contract on the healow RPM (Remote Patient Monitoring) Vendor API: healow calls endpoints
+  the VENDOR hosts to place and cancel device orders, and the vendor calls healow back with order lifecycle notifications
+  and device readings. Payloads are FHIR R4 resources. Captured here as a webhook catalog rather than an AsyncAPI spec because
+  no AsyncAPI document exists — none was fabricated.'
+transport:
+  protocol: https
+  content_type: application/fhir+json
+  style: request/response callbacks (not a pub/sub broker)
+security:
+  inbound_to_vendor:
+    headers:
+    - 'X-Client-Id: <vendorClientId>'
+    - 'X-Server-Signature: Base64(HMAC_SHA256(<request-body>, <vendor-client-secret>))'
+    note: For DELETE (cancel), the signature is computed over an empty request body.
+  outbound_to_healow:
+    scheme: OAuth 2.0 client_credentials with private_key_jwt (RS384)
+    token_endpoint: https://connect4.healow.com/apps/api/v1/fhir/tracker/oauth/token
+    scopes:
+    - system/Observation.create
+    - system/Device.create
+    token_lifetime_seconds: 30000
+  vendor_registration:
+    jwks_endpoint: Vendor-hosted public JWKS URL registered on the healow Dev Portal
+    data_pull_endpoint: Vendor-hosted HTTPS endpoint healow calls to retrieve RPM data
+    nda_required: true
+events:
+- name: order.create
+  direction: healow -> vendor
+  method: POST
+  endpoint: '{orderApiUrl}'
+  payload: 'FHIR Bundle (type: collection) containing Patient and DeviceRequest entries'
+  key_fields:
+  - Bundle.identifier[system=https://healow.com/fhir/tracker/vendor]
+  - DeviceRequest.status = active
+  - DeviceRequest.intent = order
+  - DeviceRequest.identifier[system=https://healow.com/fhir/tracker/order].value (order number)
+  - DeviceRequest.codeCodeableConcept (system https://healow.com/fhir/tracker/device_name)
+  - DeviceRequest.reading_type
+  expected_response: FHIR Parameters with order_number, status (received) and message. Also accepts DeviceRequest, a Bundle
+    containing one, or scalar JSON order fields.
+  failure_semantics: healow treats status values failed, error, rejected and exception as unsuccessful and stores the vendor
+    message for troubleshooting.
+- name: order.cancel
+  direction: healow -> vendor
+  method: DELETE
+  endpoint: '{orderApiUrl}/{orderNumber}'
+  payload: null
+  constraints:
+  - Practice can cancel only within 60 minutes of order creation.
+  - If already cancelled or outside the window, healow does not call the vendor cancel endpoint.
+  expected_response: FHIR Parameters with order_number, status (cancelled) and message. Return 200 on success, 4xx when cancellation
+    is not allowed (e.g. already shipped), 5xx for transient errors.
+  example_error_code: order_already_shipped
+- name: order.notification
+  direction: vendor -> healow
+  method: POST
+  endpoint: https://connect4.healow.com/apps/api/v1/fhir/tracker/order/notifications
+  payload: FHIR payload carrying the order number and a lifecycle status
+  lifecycle_states:
+  - received
+  - pending
+  - shipped
+  - delivered
+  - exception
+  headers:
+  - 'Content-Type: application/fhir+json'
+  - 'Accept: application/fhir+json'
+  - 'Authorization: Bearer <access_token>'
+- name: observation.ingest
+  direction: vendor -> healow
+  method: POST
+  endpoint: https://connect4.healow.com/apps/api/v1/fhir/tracker/Observation
+  payload: FHIR R4 Bundle (type collection or transaction) of Observation resources, optionally with embedded Device resources;
+    single Observations without a Bundle also supported
+  routing: Bundle.identifier must carry the healow-issued vendor client ID under system https://healow.com/fhir/tracker/vendor
+  response: OperationOutcome
+  reading_types:
+  - blood_pressure
+  - blood_glucose
+  - weight_bmi
+  - pulse_oximetry
+  - temperature
+  - heart_rate
+  - steps
+  - distance
+  - calories
+  - sleep
+  - cgm
+- name: observation.ingest.cgm
+  direction: vendor -> healow
+  method: POST
+  endpoint: https://connect4.healow.com/apps/api/v1/fhir/tracker/Observation/cgm
+  payload: Continuous glucose monitoring summary report payload
+identifier_systems:
+- https://healow.com/fhir/tracker/vendor
+- https://healow.com/fhir/tracker/vendor-account
+- https://healow.com/fhir/tracker/patient
+- https://healow.com/fhir/tracker/order
+- https://healow.com/fhir/tracker/device-id
+- https://healow.com/fhir/tracker/device_name
+- https://healow.com/fhir/tracker/request-id
+- https://healow.com/fhir/CodeSystem/tracker
+not_events:
+- No webhooks over the clinical FHIR read APIs — clinical data is poll-only via FHIR search or Group/$export.
+- 'No subscription resource: the FHIR CapabilityStatement declares no Subscription support.'

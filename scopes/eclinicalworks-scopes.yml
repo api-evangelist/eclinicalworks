@@ -1,0 +1,1445 @@
+generated: '2026-08-14'
+method: probed
+source: https://fhir4.eclinicalworks.com/fhir/r4/FEIGCD/.well-known/smart-configuration
+docs: https://fhir.eclinicalworks.com/ecwopendev/documentation
+note: SMART on FHIR scope set read verbatim from the SMART configuration document served by the eClinicalWorks
+  FHIR Facade. The identical 486-scope set is served on the healow patient-facing facade (https://fhir4.healow.com/fhir/r4/{practice_code}/.well-known/smart-configuration).
+  Scope descriptions for the patient/user/system resource scopes are derived mechanically from the SMART
+  v1/v2 scope grammar; the identity and launch-context descriptions are taken from the eClinicalWorks
+  "Scopes Supported by eClinicalWorks" documentation page. Both SMART v1 (.read/.write) and SMART v2 (.rs/.c/.u/.d/.cruds)
+  forms are advertised (capabilities include permission-v1 and permission-v2).
+authorization_servers:
+- name: eClinicalWorks FHIR Authorization Server
+  issuer: https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}
+  authorization_endpoint: https://oauthserver.eclinicalworks.com/oauth/oauth2/authorize
+  token_endpoint: https://oauthserver.eclinicalworks.com/oauth/oauth2/token
+  jwks_uri: https://oauthserver.eclinicalworks.com/oauth/oauth2/jwks
+  grant_types_supported:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  - private_key_jwt
+  - client_secret_jwt
+  code_challenge_methods_supported:
+  - S256
+  smart_capabilities:
+  - launch-ehr
+  - launch-standalone
+  - client-public
+  - client-confidential-symmetric
+  - context-passthrough-banner
+  - context-passthrough-style
+  - context-ehr-patient
+  - context-ehr-encounter
+  - context-standalone-patient
+  - context-standalone-encounter
+  - permission-offline
+  - permission-patient
+  - permission-user
+  - sso-openid-connect
+  - context-banner
+  - context-style
+  - permission-v2
+  - client-confidential-asymmetric
+  - permission-v1
+  - authorize-post
+summary:
+  scope_count: 486
+  by_category:
+    identity: 4
+    patient: 159
+    user: 156
+    launch-context: 2
+    system: 165
+scopes:
+- scope: openid
+  category: identity
+  description: OpenID Connect authentication of the launching user.
+- scope: profile
+  category: identity
+  description: Retrieve profile information about the current logged-in user.
+- scope: fhirUser
+  category: identity
+  description: Retrieve the FHIR resource representing the current logged-in user.
+- scope: patient/*.*
+  category: patient
+  description: All operations access to all FHIR resource types for the patient in context.
+- scope: user/*.*
+  category: user
+  description: All operations access to all FHIR resource types for the authorized user.
+- scope: offline_access
+  category: identity
+  description: Request a refresh_token usable after the end user is no longer online (background refresh).
+- scope: launch
+  category: launch-context
+  description: Obtain launch context when the app is launched from within the EHR (EHR Launch).
+- scope: launch/patient
+  category: launch-context
+  description: Request that a patient be selected at launch time (Standalone Launch).
+- scope: patient/Medication.read
+  category: patient
+  description: Read and search (SMART v1) access to Medication resources for the patient in context.
+- scope: patient/Medication.rs
+  category: patient
+  description: Read + search (SMART v2) access to Medication resources for the patient in context.
+- scope: patient/Medication.c
+  category: patient
+  description: Create access to Medication resources for the patient in context.
+- scope: patient/Medication.u
+  category: patient
+  description: Update access to Medication resources for the patient in context.
+- scope: patient/AllergyIntolerance.read
+  category: patient
+  description: Read and search (SMART v1) access to AllergyIntolerance resources for the patient in context.
+- scope: patient/AllergyIntolerance.rs
+  category: patient
+  description: Read + search (SMART v2) access to AllergyIntolerance resources for the patient in context.
+- scope: patient/AllergyIntolerance.c
+  category: patient
+  description: Create access to AllergyIntolerance resources for the patient in context.
+- scope: patient/AllergyIntolerance.u
+  category: patient
+  description: Update access to AllergyIntolerance resources for the patient in context.
+- scope: patient/CarePlan.read
+  category: patient
+  description: Read and search (SMART v1) access to CarePlan resources for the patient in context.
+- scope: patient/CarePlan.rs
+  category: patient
+  description: Read + search (SMART v2) access to CarePlan resources for the patient in context.
+- scope: patient/CarePlan.c
+  category: patient
+  description: Create access to CarePlan resources for the patient in context.
+- scope: patient/CarePlan.u
+  category: patient
+  description: Update access to CarePlan resources for the patient in context.
+- scope: patient/CareTeam.read
+  category: patient
+  description: Read and search (SMART v1) access to CareTeam resources for the patient in context.
+- scope: patient/CareTeam.rs
+  category: patient
+  description: Read + search (SMART v2) access to CareTeam resources for the patient in context.
+- scope: patient/CareTeam.c
+  category: patient
+  description: Create access to CareTeam resources for the patient in context.
+- scope: patient/CareTeam.u
+  category: patient
+  description: Update access to CareTeam resources for the patient in context.
+- scope: patient/Condition.read
+  category: patient
+  description: Read and search (SMART v1) access to Condition resources for the patient in context.
+- scope: patient/Condition.rs
+  category: patient
+  description: Read + search (SMART v2) access to Condition resources for the patient in context.
+- scope: patient/Condition.c
+  category: patient
+  description: Create access to Condition resources for the patient in context.
+- scope: patient/Condition.u
+  category: patient
+  description: Update access to Condition resources for the patient in context.
+- scope: patient/Device.read
+  category: patient
+  description: Read and search (SMART v1) access to Device resources for the patient in context.
+- scope: patient/Device.rs
+  category: patient
+  description: Read + search (SMART v2) access to Device resources for the patient in context.
+- scope: patient/Device.c
+  category: patient
+  description: Create access to Device resources for the patient in context.
+- scope: patient/Device.u
+  category: patient
+  description: Update access to Device resources for the patient in context.
+- scope: patient/DiagnosticReport.read
+  category: patient
+  description: Read and search (SMART v1) access to DiagnosticReport resources for the patient in context.
+- scope: patient/DiagnosticReport.rs
+  category: patient
+  description: Read + search (SMART v2) access to DiagnosticReport resources for the patient in context.
+- scope: patient/DiagnosticReport.c
+  category: patient
+  description: Create access to DiagnosticReport resources for the patient in context.
+- scope: patient/DiagnosticReport.u
+  category: patient
+  description: Update access to DiagnosticReport resources for the patient in context.
+- scope: patient/DocumentReference.read
+  category: patient
+  description: Read and search (SMART v1) access to DocumentReference resources for the patient in context.
+- scope: patient/DocumentReference.rs
+  category: patient
+  description: Read + search (SMART v2) access to DocumentReference resources for the patient in context.
+- scope: patient/DocumentReference.c
+  category: patient
+  description: Create access to DocumentReference resources for the patient in context.
+- scope: patient/DocumentReference.u
+  category: patient
+  description: Update access to DocumentReference resources for the patient in context.
+- scope: patient/Encounter.read
+  category: patient
+  description: Read and search (SMART v1) access to Encounter resources for the patient in context.
+- scope: patient/Encounter.rs
+  category: patient
+  description: Read + search (SMART v2) access to Encounter resources for the patient in context.
+- scope: patient/Encounter.c
+  category: patient
+  description: Create access to Encounter resources for the patient in context.
+- scope: patient/Encounter.u
+  category: patient
+  description: Update access to Encounter resources for the patient in context.
+- scope: patient/Goal.read
+  category: patient
+  description: Read and search (SMART v1) access to Goal resources for the patient in context.
+- scope: patient/Goal.rs
+  category: patient
+  description: Read + search (SMART v2) access to Goal resources for the patient in context.
+- scope: patient/Goal.c
+  category: patient
+  description: Create access to Goal resources for the patient in context.
+- scope: patient/Goal.u
+  category: patient
+  description: Update access to Goal resources for the patient in context.
+- scope: patient/Immunization.read
+  category: patient
+  description: Read and search (SMART v1) access to Immunization resources for the patient in context.
+- scope: patient/Immunization.rs
+  category: patient
+  description: Read + search (SMART v2) access to Immunization resources for the patient in context.
+- scope: patient/Immunization.c
+  category: patient
+  description: Create access to Immunization resources for the patient in context.
+- scope: patient/Immunization.u
+  category: patient
+  description: Update access to Immunization resources for the patient in context.
+- scope: patient/Location.read
+  category: patient
+  description: Read and search (SMART v1) access to Location resources for the patient in context.
+- scope: patient/Location.rs
+  category: patient
+  description: Read + search (SMART v2) access to Location resources for the patient in context.
+- scope: patient/Location.c
+  category: patient
+  description: Create access to Location resources for the patient in context.
+- scope: patient/Location.u
+  category: patient
+  description: Update access to Location resources for the patient in context.
+- scope: patient/MedicationRequest.read
+  category: patient
+  description: Read and search (SMART v1) access to MedicationRequest resources for the patient in context.
+- scope: patient/MedicationRequest.rs
+  category: patient
+  description: Read + search (SMART v2) access to MedicationRequest resources for the patient in context.
+- scope: patient/MedicationRequest.c
+  category: patient
+  description: Create access to MedicationRequest resources for the patient in context.
+- scope: patient/MedicationRequest.u
+  category: patient
+  description: Update access to MedicationRequest resources for the patient in context.
+- scope: patient/MedicationAdministration.read
+  category: patient
+  description: Read and search (SMART v1) access to MedicationAdministration resources for the patient
+    in context.
+- scope: patient/MedicationAdministration.rs
+  category: patient
+  description: Read + search (SMART v2) access to MedicationAdministration resources for the patient in
+    context.
+- scope: patient/MedicationAdministration.c
+  category: patient
+  description: Create access to MedicationAdministration resources for the patient in context.
+- scope: patient/MedicationAdministration.u
+  category: patient
+  description: Update access to MedicationAdministration resources for the patient in context.
+- scope: patient/Observation.read
+  category: patient
+  description: Read and search (SMART v1) access to Observation resources for the patient in context.
+- scope: patient/Observation.rs
+  category: patient
+  description: Read + search (SMART v2) access to Observation resources for the patient in context.
+- scope: patient/Observation.c
+  category: patient
+  description: Create access to Observation resources for the patient in context.
+- scope: patient/Observation.u
+  category: patient
+  description: Update access to Observation resources for the patient in context.
+- scope: patient/Organization.read
+  category: patient
+  description: Read and search (SMART v1) access to Organization resources for the patient in context.
+- scope: patient/Organization.rs
+  category: patient
+  description: Read + search (SMART v2) access to Organization resources for the patient in context.
+- scope: patient/Organization.c
+  category: patient
+  description: Create access to Organization resources for the patient in context.
+- scope: patient/Organization.u
+  category: patient
+  description: Update access to Organization resources for the patient in context.
+- scope: patient/Patient.read
+  category: patient
+  description: Read and search (SMART v1) access to Patient resources for the patient in context.
+- scope: patient/Patient.rs
+  category: patient
+  description: Read + search (SMART v2) access to Patient resources for the patient in context.
+- scope: patient/Patient.c
+  category: patient
+  description: Create access to Patient resources for the patient in context.
+- scope: patient/Patient.u
+  category: patient
+  description: Update access to Patient resources for the patient in context.
+- scope: patient/Practitioner.read
+  category: patient
+  description: Read and search (SMART v1) access to Practitioner resources for the patient in context.
+- scope: patient/Practitioner.rs
+  category: patient
+  description: Read + search (SMART v2) access to Practitioner resources for the patient in context.
+- scope: patient/Practitioner.c
+  category: patient
+  description: Create access to Practitioner resources for the patient in context.
+- scope: patient/Practitioner.u
+  category: patient
+  description: Update access to Practitioner resources for the patient in context.
+- scope: patient/PractitionerRole.read
+  category: patient
+  description: Read and search (SMART v1) access to PractitionerRole resources for the patient in context.
+- scope: patient/PractitionerRole.rs
+  category: patient
+  description: Read + search (SMART v2) access to PractitionerRole resources for the patient in context.
+- scope: patient/PractitionerRole.c
+  category: patient
+  description: Create access to PractitionerRole resources for the patient in context.
+- scope: patient/PractitionerRole.u
+  category: patient
+  description: Update access to PractitionerRole resources for the patient in context.
+- scope: patient/Procedure.read
+  category: patient
+  description: Read and search (SMART v1) access to Procedure resources for the patient in context.
+- scope: patient/Procedure.rs
+  category: patient
+  description: Read + search (SMART v2) access to Procedure resources for the patient in context.
+- scope: patient/Procedure.c
+  category: patient
+  description: Create access to Procedure resources for the patient in context.
+- scope: patient/Procedure.u
+  category: patient
+  description: Update access to Procedure resources for the patient in context.
+- scope: patient/Provenance.read
+  category: patient
+  description: Read and search (SMART v1) access to Provenance resources for the patient in context.
+- scope: patient/Provenance.rs
+  category: patient
+  description: Read + search (SMART v2) access to Provenance resources for the patient in context.
+- scope: patient/Provenance.c
+  category: patient
+  description: Create access to Provenance resources for the patient in context.
+- scope: patient/Provenance.u
+  category: patient
+  description: Update access to Provenance resources for the patient in context.
+- scope: user/Medication.read
+  category: user
+  description: Read and search (SMART v1) access to Medication resources for the authorized user.
+- scope: user/Medication.rs
+  category: user
+  description: Read + search (SMART v2) access to Medication resources for the authorized user.
+- scope: user/Medication.c
+  category: user
+  description: Create access to Medication resources for the authorized user.
+- scope: user/Medication.u
+  category: user
+  description: Update access to Medication resources for the authorized user.
+- scope: user/AllergyIntolerance.read
+  category: user
+  description: Read and search (SMART v1) access to AllergyIntolerance resources for the authorized user.
+- scope: user/AllergyIntolerance.rs
+  category: user
+  description: Read + search (SMART v2) access to AllergyIntolerance resources for the authorized user.
+- scope: user/AllergyIntolerance.c
+  category: user
+  description: Create access to AllergyIntolerance resources for the authorized user.
+- scope: user/AllergyIntolerance.u
+  category: user
+  description: Update access to AllergyIntolerance resources for the authorized user.
+- scope: user/CarePlan.read
+  category: user
+  description: Read and search (SMART v1) access to CarePlan resources for the authorized user.
+- scope: user/CarePlan.rs
+  category: user
+  description: Read + search (SMART v2) access to CarePlan resources for the authorized user.
+- scope: user/CarePlan.c
+  category: user
+  description: Create access to CarePlan resources for the authorized user.
+- scope: user/CarePlan.u
+  category: user
+  description: Update access to CarePlan resources for the authorized user.
+- scope: user/CareTeam.read
+  category: user
+  description: Read and search (SMART v1) access to CareTeam resources for the authorized user.
+- scope: user/CareTeam.rs
+  category: user
+  description: Read + search (SMART v2) access to CareTeam resources for the authorized user.
+- scope: user/CareTeam.c
+  category: user
+  description: Create access to CareTeam resources for the authorized user.
+- scope: user/CareTeam.u
+  category: user
+  description: Update access to CareTeam resources for the authorized user.
+- scope: user/Condition.read
+  category: user
+  description: Read and search (SMART v1) access to Condition resources for the authorized user.
+- scope: user/Condition.rs
+  category: user
+  description: Read + search (SMART v2) access to Condition resources for the authorized user.
+- scope: user/Condition.c
+  category: user
+  description: Create access to Condition resources for the authorized user.
+- scope: user/Condition.u
+  category: user
+  description: Update access to Condition resources for the authorized user.
+- scope: user/Device.read
+  category: user
+  description: Read and search (SMART v1) access to Device resources for the authorized user.
+- scope: user/Device.rs
+  category: user
+  description: Read + search (SMART v2) access to Device resources for the authorized user.
+- scope: user/Device.c
+  category: user
+  description: Create access to Device resources for the authorized user.
+- scope: user/Device.u
+  category: user
+  description: Update access to Device resources for the authorized user.
+- scope: user/DiagnosticReport.read
+  category: user
+  description: Read and search (SMART v1) access to DiagnosticReport resources for the authorized user.
+- scope: user/DiagnosticReport.rs
+  category: user
+  description: Read + search (SMART v2) access to DiagnosticReport resources for the authorized user.
+- scope: user/DiagnosticReport.c
+  category: user
+  description: Create access to DiagnosticReport resources for the authorized user.
+- scope: user/DiagnosticReport.u
+  category: user
+  description: Update access to DiagnosticReport resources for the authorized user.
+- scope: user/DocumentReference.read
+  category: user
+  description: Read and search (SMART v1) access to DocumentReference resources for the authorized user.
+- scope: user/DocumentReference.rs
+  category: user
+  description: Read + search (SMART v2) access to DocumentReference resources for the authorized user.
+- scope: user/DocumentReference.c
+  category: user
+  description: Create access to DocumentReference resources for the authorized user.
+- scope: user/DocumentReference.u
+  category: user
+  description: Update access to DocumentReference resources for the authorized user.
+- scope: user/Encounter.read
+  category: user
+  description: Read and search (SMART v1) access to Encounter resources for the authorized user.
+- scope: user/Encounter.rs
+  category: user
+  description: Read + search (SMART v2) access to Encounter resources for the authorized user.
+- scope: user/Encounter.c
+  category: user
+  description: Create access to Encounter resources for the authorized user.
+- scope: user/Encounter.u
+  category: user
+  description: Update access to Encounter resources for the authorized user.
+- scope: user/Goal.read
+  category: user
+  description: Read and search (SMART v1) access to Goal resources for the authorized user.
+- scope: user/Goal.rs
+  category: user
+  description: Read + search (SMART v2) access to Goal resources for the authorized user.
+- scope: user/Goal.c
+  category: user
+  description: Create access to Goal resources for the authorized user.
+- scope: user/Goal.u
+  category: user
+  description: Update access to Goal resources for the authorized user.
+- scope: user/Immunization.read
+  category: user
+  description: Read and search (SMART v1) access to Immunization resources for the authorized user.
+- scope: user/Immunization.rs
+  category: user
+  description: Read + search (SMART v2) access to Immunization resources for the authorized user.
+- scope: user/Immunization.c
+  category: user
+  description: Create access to Immunization resources for the authorized user.
+- scope: user/Immunization.u
+  category: user
+  description: Update access to Immunization resources for the authorized user.
+- scope: user/Location.read
+  category: user
+  description: Read and search (SMART v1) access to Location resources for the authorized user.
+- scope: user/Location.rs
+  category: user
+  description: Read + search (SMART v2) access to Location resources for the authorized user.
+- scope: user/Location.c
+  category: user
+  description: Create access to Location resources for the authorized user.
+- scope: user/Location.u
+  category: user
+  description: Update access to Location resources for the authorized user.
+- scope: user/MedicationRequest.read
+  category: user
+  description: Read and search (SMART v1) access to MedicationRequest resources for the authorized user.
+- scope: user/MedicationRequest.rs
+  category: user
+  description: Read + search (SMART v2) access to MedicationRequest resources for the authorized user.
+- scope: user/MedicationRequest.c
+  category: user
+  description: Create access to MedicationRequest resources for the authorized user.
+- scope: user/MedicationRequest.u
+  category: user
+  description: Update access to MedicationRequest resources for the authorized user.
+- scope: user/MedicationAdministration.read
+  category: user
+  description: Read and search (SMART v1) access to MedicationAdministration resources for the authorized
+    user.
+- scope: user/MedicationAdministration.rs
+  category: user
+  description: Read + search (SMART v2) access to MedicationAdministration resources for the authorized
+    user.
+- scope: user/MedicationAdministration.c
+  category: user
+  description: Create access to MedicationAdministration resources for the authorized user.
+- scope: user/MedicationAdministration.u
+  category: user
+  description: Update access to MedicationAdministration resources for the authorized user.
+- scope: user/Observation.read
+  category: user
+  description: Read and search (SMART v1) access to Observation resources for the authorized user.
+- scope: user/Observation.rs
+  category: user
+  description: Read + search (SMART v2) access to Observation resources for the authorized user.
+- scope: user/Observation.c
+  category: user
+  description: Create access to Observation resources for the authorized user.
+- scope: user/Observation.u
+  category: user
+  description: Update access to Observation resources for the authorized user.
+- scope: user/Organization.read
+  category: user
+  description: Read and search (SMART v1) access to Organization resources for the authorized user.
+- scope: user/Organization.rs
+  category: user
+  description: Read + search (SMART v2) access to Organization resources for the authorized user.
+- scope: user/Organization.c
+  category: user
+  description: Create access to Organization resources for the authorized user.
+- scope: user/Organization.u
+  category: user
+  description: Update access to Organization resources for the authorized user.
+- scope: user/Patient.read
+  category: user
+  description: Read and search (SMART v1) access to Patient resources for the authorized user.
+- scope: user/Patient.rs
+  category: user
+  description: Read + search (SMART v2) access to Patient resources for the authorized user.
+- scope: user/Patient.c
+  category: user
+  description: Create access to Patient resources for the authorized user.
+- scope: user/Patient.u
+  category: user
+  description: Update access to Patient resources for the authorized user.
+- scope: user/Practitioner.read
+  category: user
+  description: Read and search (SMART v1) access to Practitioner resources for the authorized user.
+- scope: user/Practitioner.rs
+  category: user
+  description: Read + search (SMART v2) access to Practitioner resources for the authorized user.
+- scope: user/Practitioner.c
+  category: user
+  description: Create access to Practitioner resources for the authorized user.
+- scope: user/Practitioner.u
+  category: user
+  description: Update access to Practitioner resources for the authorized user.
+- scope: user/PractitionerRole.read
+  category: user
+  description: Read and search (SMART v1) access to PractitionerRole resources for the authorized user.
+- scope: user/PractitionerRole.rs
+  category: user
+  description: Read + search (SMART v2) access to PractitionerRole resources for the authorized user.
+- scope: user/PractitionerRole.c
+  category: user
+  description: Create access to PractitionerRole resources for the authorized user.
+- scope: user/PractitionerRole.u
+  category: user
+  description: Update access to PractitionerRole resources for the authorized user.
+- scope: user/Procedure.read
+  category: user
+  description: Read and search (SMART v1) access to Procedure resources for the authorized user.
+- scope: user/Procedure.rs
+  category: user
+  description: Read + search (SMART v2) access to Procedure resources for the authorized user.
+- scope: user/Procedure.c
+  category: user
+  description: Create access to Procedure resources for the authorized user.
+- scope: user/Procedure.u
+  category: user
+  description: Update access to Procedure resources for the authorized user.
+- scope: user/Provenance.read
+  category: user
+  description: Read and search (SMART v1) access to Provenance resources for the authorized user.
+- scope: user/Provenance.rs
+  category: user
+  description: Read + search (SMART v2) access to Provenance resources for the authorized user.
+- scope: user/Provenance.c
+  category: user
+  description: Create access to Provenance resources for the authorized user.
+- scope: user/Provenance.u
+  category: user
+  description: Update access to Provenance resources for the authorized user.
+- scope: system/Medication.read
+  category: system
+  description: Read and search (SMART v1) access to Medication resources for the backend system (no user).
+- scope: system/Medication.rs
+  category: system
+  description: Read + search (SMART v2) access to Medication resources for the backend system (no user).
+- scope: system/Medication.c
+  category: system
+  description: Create access to Medication resources for the backend system (no user).
+- scope: system/Medication.u
+  category: system
+  description: Update access to Medication resources for the backend system (no user).
+- scope: system/AllergyIntolerance.read
+  category: system
+  description: Read and search (SMART v1) access to AllergyIntolerance resources for the backend system
+    (no user).
+- scope: system/AllergyIntolerance.rs
+  category: system
+  description: Read + search (SMART v2) access to AllergyIntolerance resources for the backend system
+    (no user).
+- scope: system/AllergyIntolerance.c
+  category: system
+  description: Create access to AllergyIntolerance resources for the backend system (no user).
+- scope: system/AllergyIntolerance.u
+  category: system
+  description: Update access to AllergyIntolerance resources for the backend system (no user).
+- scope: system/CarePlan.read
+  category: system
+  description: Read and search (SMART v1) access to CarePlan resources for the backend system (no user).
+- scope: system/CarePlan.rs
+  category: system
+  description: Read + search (SMART v2) access to CarePlan resources for the backend system (no user).
+- scope: system/CarePlan.c
+  category: system
+  description: Create access to CarePlan resources for the backend system (no user).
+- scope: system/CarePlan.u
+  category: system
+  description: Update access to CarePlan resources for the backend system (no user).
+- scope: system/CareTeam.read
+  category: system
+  description: Read and search (SMART v1) access to CareTeam resources for the backend system (no user).
+- scope: system/CareTeam.rs
+  category: system
+  description: Read + search (SMART v2) access to CareTeam resources for the backend system (no user).
+- scope: system/CareTeam.c
+  category: system
+  description: Create access to CareTeam resources for the backend system (no user).
+- scope: system/CareTeam.u
+  category: system
+  description: Update access to CareTeam resources for the backend system (no user).
+- scope: system/Condition.read
+  category: system
+  description: Read and search (SMART v1) access to Condition resources for the backend system (no user).
+- scope: system/Condition.rs
+  category: system
+  description: Read + search (SMART v2) access to Condition resources for the backend system (no user).
+- scope: system/Condition.c
+  category: system
+  description: Create access to Condition resources for the backend system (no user).
+- scope: system/Condition.u
+  category: system
+  description: Update access to Condition resources for the backend system (no user).
+- scope: system/Device.read
+  category: system
+  description: Read and search (SMART v1) access to Device resources for the backend system (no user).
+- scope: system/Device.rs
+  category: system
+  description: Read + search (SMART v2) access to Device resources for the backend system (no user).
+- scope: system/Device.c
+  category: system
+  description: Create access to Device resources for the backend system (no user).
+- scope: system/Device.u
+  category: system
+  description: Update access to Device resources for the backend system (no user).
+- scope: system/DiagnosticReport.read
+  category: system
+  description: Read and search (SMART v1) access to DiagnosticReport resources for the backend system
+    (no user).
+- scope: system/DiagnosticReport.rs
+  category: system
+  description: Read + search (SMART v2) access to DiagnosticReport resources for the backend system (no
+    user).
+- scope: system/DiagnosticReport.c
+  category: system
+  description: Create access to DiagnosticReport resources for the backend system (no user).
+- scope: system/DiagnosticReport.u
+  category: system
+  description: Update access to DiagnosticReport resources for the backend system (no user).
+- scope: system/DocumentReference.read
+  category: system
+  description: Read and search (SMART v1) access to DocumentReference resources for the backend system
+    (no user).
+- scope: system/DocumentReference.rs
+  category: system
+  description: Read + search (SMART v2) access to DocumentReference resources for the backend system (no
+    user).
+- scope: system/DocumentReference.c
+  category: system
+  description: Create access to DocumentReference resources for the backend system (no user).
+- scope: system/DocumentReference.u
+  category: system
+  description: Update access to DocumentReference resources for the backend system (no user).
+- scope: system/Encounter.read
+  category: system
+  description: Read and search (SMART v1) access to Encounter resources for the backend system (no user).
+- scope: system/Encounter.rs
+  category: system
+  description: Read + search (SMART v2) access to Encounter resources for the backend system (no user).
+- scope: system/Encounter.c
+  category: system
+  description: Create access to Encounter resources for the backend system (no user).
+- scope: system/Encounter.u
+  category: system
+  description: Update access to Encounter resources for the backend system (no user).
+- scope: system/Goal.read
+  category: system
+  description: Read and search (SMART v1) access to Goal resources for the backend system (no user).
+- scope: system/Goal.rs
+  category: system
+  description: Read + search (SMART v2) access to Goal resources for the backend system (no user).
+- scope: system/Goal.c
+  category: system
+  description: Create access to Goal resources for the backend system (no user).
+- scope: system/Goal.u
+  category: system
+  description: Update access to Goal resources for the backend system (no user).
+- scope: system/Immunization.read
+  category: system
+  description: Read and search (SMART v1) access to Immunization resources for the backend system (no
+    user).
+- scope: system/Immunization.rs
+  category: system
+  description: Read + search (SMART v2) access to Immunization resources for the backend system (no user).
+- scope: system/Immunization.c
+  category: system
+  description: Create access to Immunization resources for the backend system (no user).
+- scope: system/Immunization.u
+  category: system
+  description: Update access to Immunization resources for the backend system (no user).
+- scope: system/Location.read
+  category: system
+  description: Read and search (SMART v1) access to Location resources for the backend system (no user).
+- scope: system/Location.rs
+  category: system
+  description: Read + search (SMART v2) access to Location resources for the backend system (no user).
+- scope: system/Location.c
+  category: system
+  description: Create access to Location resources for the backend system (no user).
+- scope: system/Location.u
+  category: system
+  description: Update access to Location resources for the backend system (no user).
+- scope: system/MedicationRequest.read
+  category: system
+  description: Read and search (SMART v1) access to MedicationRequest resources for the backend system
+    (no user).
+- scope: system/MedicationRequest.rs
+  category: system
+  description: Read + search (SMART v2) access to MedicationRequest resources for the backend system (no
+    user).
+- scope: system/MedicationRequest.c
+  category: system
+  description: Create access to MedicationRequest resources for the backend system (no user).
+- scope: system/MedicationRequest.u
+  category: system
+  description: Update access to MedicationRequest resources for the backend system (no user).
+- scope: system/MedicationAdministration.read
+  category: system
+  description: Read and search (SMART v1) access to MedicationAdministration resources for the backend
+    system (no user).
+- scope: system/MedicationAdministration.rs
+  category: system
+  description: Read + search (SMART v2) access to MedicationAdministration resources for the backend system
+    (no user).
+- scope: system/MedicationAdministration.c
+  category: system
+  description: Create access to MedicationAdministration resources for the backend system (no user).
+- scope: system/MedicationAdministration.u
+  category: system
+  description: Update access to MedicationAdministration resources for the backend system (no user).
+- scope: system/Observation.read
+  category: system
+  description: Read and search (SMART v1) access to Observation resources for the backend system (no user).
+- scope: system/Observation.rs
+  category: system
+  description: Read + search (SMART v2) access to Observation resources for the backend system (no user).
+- scope: system/Observation.c
+  category: system
+  description: Create access to Observation resources for the backend system (no user).
+- scope: system/Observation.u
+  category: system
+  description: Update access to Observation resources for the backend system (no user).
+- scope: system/Organization.read
+  category: system
+  description: Read and search (SMART v1) access to Organization resources for the backend system (no
+    user).
+- scope: system/Organization.rs
+  category: system
+  description: Read + search (SMART v2) access to Organization resources for the backend system (no user).
+- scope: system/Organization.c
+  category: system
+  description: Create access to Organization resources for the backend system (no user).
+- scope: system/Organization.u
+  category: system
+  description: Update access to Organization resources for the backend system (no user).
+- scope: system/Patient.read
+  category: system
+  description: Read and search (SMART v1) access to Patient resources for the backend system (no user).
+- scope: system/Patient.rs
+  category: system
+  description: Read + search (SMART v2) access to Patient resources for the backend system (no user).
+- scope: system/Patient.c
+  category: system
+  description: Create access to Patient resources for the backend system (no user).
+- scope: system/Patient.u
+  category: system
+  description: Update access to Patient resources for the backend system (no user).
+- scope: system/Practitioner.read
+  category: system
+  description: Read and search (SMART v1) access to Practitioner resources for the backend system (no
+    user).
+- scope: system/Practitioner.rs
+  category: system
+  description: Read + search (SMART v2) access to Practitioner resources for the backend system (no user).
+- scope: system/Practitioner.c
+  category: system
+  description: Create access to Practitioner resources for the backend system (no user).
+- scope: system/Practitioner.u
+  category: system
+  description: Update access to Practitioner resources for the backend system (no user).
+- scope: system/PractitionerRole.read
+  category: system
+  description: Read and search (SMART v1) access to PractitionerRole resources for the backend system
+    (no user).
+- scope: system/PractitionerRole.rs
+  category: system
+  description: Read + search (SMART v2) access to PractitionerRole resources for the backend system (no
+    user).
+- scope: system/PractitionerRole.c
+  category: system
+  description: Create access to PractitionerRole resources for the backend system (no user).
+- scope: system/PractitionerRole.u
+  category: system
+  description: Update access to PractitionerRole resources for the backend system (no user).
+- scope: system/Procedure.read
+  category: system
+  description: Read and search (SMART v1) access to Procedure resources for the backend system (no user).
+- scope: system/Procedure.rs
+  category: system
+  description: Read + search (SMART v2) access to Procedure resources for the backend system (no user).
+- scope: system/Procedure.c
+  category: system
+  description: Create access to Procedure resources for the backend system (no user).
+- scope: system/Procedure.u
+  category: system
+  description: Update access to Procedure resources for the backend system (no user).
+- scope: system/Provenance.read
+  category: system
+  description: Read and search (SMART v1) access to Provenance resources for the backend system (no user).
+- scope: system/Provenance.rs
+  category: system
+  description: Read + search (SMART v2) access to Provenance resources for the backend system (no user).
+- scope: system/Provenance.c
+  category: system
+  description: Create access to Provenance resources for the backend system (no user).
+- scope: system/Provenance.u
+  category: system
+  description: Update access to Provenance resources for the backend system (no user).
+- scope: system/Group.read
+  category: system
+  description: Read and search (SMART v1) access to Group resources for the backend system (no user).
+- scope: system/Group.rs
+  category: system
+  description: Read + search (SMART v2) access to Group resources for the backend system (no user).
+- scope: system/Group.c
+  category: system
+  description: Create access to Group resources for the backend system (no user).
+- scope: system/Group.u
+  category: system
+  description: Update access to Group resources for the backend system (no user).
+- scope: patient/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: patient
+- scope: user/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: user
+- scope: system/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: system
+- scope: patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: patient
+- scope: user/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: user
+- scope: system/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: system
+- scope: patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: patient
+- scope: user/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: user
+- scope: system/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: system
+- scope: patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: patient
+- scope: user/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: user
+- scope: system/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: system
+- scope: patient/Observation.rs?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: patient
+- scope: user/Observation.rs?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: user
+- scope: system/Observation.rs?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: system
+- scope: patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: patient
+- scope: user/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: user
+- scope: system/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: system
+- scope: patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: patient
+- scope: user/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: user
+- scope: system/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: system
+- scope: patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: patient
+- scope: user/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: user
+- scope: system/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: system
+- scope: patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: patient
+- scope: user/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: user
+- scope: system/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: system
+- scope: patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: patient
+- scope: user/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: user
+- scope: system/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: system
+- scope: patient/Patient.r
+  category: patient
+  description: r access to Patient resources for the patient in context.
+- scope: user/Patient.r
+  category: user
+  description: r access to Patient resources for the authorized user.
+- scope: system/Patient.r
+  category: system
+  description: r access to Patient resources for the backend system (no user).
+- scope: patient/AllergyIntolerance.r
+  category: patient
+  description: r access to AllergyIntolerance resources for the patient in context.
+- scope: user/AllergyIntolerance.r
+  category: user
+  description: r access to AllergyIntolerance resources for the authorized user.
+- scope: system/AllergyIntolerance.r
+  category: system
+  description: r access to AllergyIntolerance resources for the backend system (no user).
+- scope: patient/CarePlan.r
+  category: patient
+  description: r access to CarePlan resources for the patient in context.
+- scope: user/CarePlan.r
+  category: user
+  description: r access to CarePlan resources for the authorized user.
+- scope: system/CarePlan.r
+  category: system
+  description: r access to CarePlan resources for the backend system (no user).
+- scope: patient/CareTeam.r
+  category: patient
+  description: r access to CareTeam resources for the patient in context.
+- scope: user/CareTeam.r
+  category: user
+  description: r access to CareTeam resources for the authorized user.
+- scope: system/CareTeam.r
+  category: system
+  description: r access to CareTeam resources for the backend system (no user).
+- scope: patient/Media.r
+  category: patient
+  description: r access to Media resources for the patient in context.
+- scope: user/Media.r
+  category: user
+  description: r access to Media resources for the authorized user.
+- scope: system/Media.r
+  category: system
+  description: r access to Media resources for the backend system (no user).
+- scope: patient/MedicationDispense.r
+  category: patient
+  description: r access to MedicationDispense resources for the patient in context.
+- scope: user/MedicationDispense.r
+  category: user
+  description: r access to MedicationDispense resources for the authorized user.
+- scope: system/MedicationDispense.r
+  category: system
+  description: r access to MedicationDispense resources for the backend system (no user).
+- scope: patient/Specimen.r
+  category: patient
+  description: r access to Specimen resources for the patient in context.
+- scope: user/Specimen.r
+  category: user
+  description: r access to Specimen resources for the authorized user.
+- scope: system/Specimen.r
+  category: system
+  description: r access to Specimen resources for the backend system (no user).
+- scope: patient/Condition.r
+  category: patient
+  description: r access to Condition resources for the patient in context.
+- scope: user/Condition.r
+  category: user
+  description: r access to Condition resources for the authorized user.
+- scope: system/Condition.r
+  category: system
+  description: r access to Condition resources for the backend system (no user).
+- scope: patient/Device.r
+  category: patient
+  description: r access to Device resources for the patient in context.
+- scope: user/Device.r
+  category: user
+  description: r access to Device resources for the authorized user.
+- scope: system/Device.r
+  category: system
+  description: r access to Device resources for the backend system (no user).
+- scope: patient/DiagnosticReport.r
+  category: patient
+  description: r access to DiagnosticReport resources for the patient in context.
+- scope: user/DiagnosticReport.r
+  category: user
+  description: r access to DiagnosticReport resources for the authorized user.
+- scope: system/DiagnosticReport.r
+  category: system
+  description: r access to DiagnosticReport resources for the backend system (no user).
+- scope: patient/DocumentReference.r
+  category: patient
+  description: r access to DocumentReference resources for the patient in context.
+- scope: user/DocumentReference.r
+  category: user
+  description: r access to DocumentReference resources for the authorized user.
+- scope: system/DocumentReference.r
+  category: system
+  description: r access to DocumentReference resources for the backend system (no user).
+- scope: patient/Encounter.r
+  category: patient
+  description: r access to Encounter resources for the patient in context.
+- scope: user/Encounter.r
+  category: user
+  description: r access to Encounter resources for the authorized user.
+- scope: system/Encounter.r
+  category: system
+  description: r access to Encounter resources for the backend system (no user).
+- scope: patient/Goal.r
+  category: patient
+  description: r access to Goal resources for the patient in context.
+- scope: user/Goal.r
+  category: user
+  description: r access to Goal resources for the authorized user.
+- scope: system/Goal.r
+  category: system
+  description: r access to Goal resources for the backend system (no user).
+- scope: patient/Immunization.r
+  category: patient
+  description: r access to Immunization resources for the patient in context.
+- scope: user/Immunization.r
+  category: user
+  description: r access to Immunization resources for the authorized user.
+- scope: system/Immunization.r
+  category: system
+  description: r access to Immunization resources for the backend system (no user).
+- scope: patient/Location.r
+  category: patient
+  description: r access to Location resources for the patient in context.
+- scope: user/Location.r
+  category: user
+  description: r access to Location resources for the authorized user.
+- scope: system/Location.r
+  category: system
+  description: r access to Location resources for the backend system (no user).
+- scope: patient/Medication.r
+  category: patient
+  description: r access to Medication resources for the patient in context.
+- scope: user/Medication.r
+  category: user
+  description: r access to Medication resources for the authorized user.
+- scope: system/Medication.r
+  category: system
+  description: r access to Medication resources for the backend system (no user).
+- scope: patient/MedicationRequest.r
+  category: patient
+  description: r access to MedicationRequest resources for the patient in context.
+- scope: user/MedicationRequest.r
+  category: user
+  description: r access to MedicationRequest resources for the authorized user.
+- scope: system/MedicationRequest.r
+  category: system
+  description: r access to MedicationRequest resources for the backend system (no user).
+- scope: patient/Observation.r
+  category: patient
+  description: r access to Observation resources for the patient in context.
+- scope: user/Observation.r
+  category: user
+  description: r access to Observation resources for the authorized user.
+- scope: system/Observation.r
+  category: system
+  description: r access to Observation resources for the backend system (no user).
+- scope: system/Organization.r
+  category: system
+  description: r access to Organization resources for the backend system (no user).
+- scope: user/Organization.r
+  category: user
+  description: r access to Organization resources for the authorized user.
+- scope: patient/Organization.r
+  category: patient
+  description: r access to Organization resources for the patient in context.
+- scope: patient/Practitioner.r
+  category: patient
+  description: r access to Practitioner resources for the patient in context.
+- scope: user/Practitioner.r
+  category: user
+  description: r access to Practitioner resources for the authorized user.
+- scope: system/Practitioner.r
+  category: system
+  description: r access to Practitioner resources for the backend system (no user).
+- scope: patient/PractitionerRole.r
+  category: patient
+  description: r access to PractitionerRole resources for the patient in context.
+- scope: user/PractitionerRole.r
+  category: user
+  description: r access to PractitionerRole resources for the authorized user.
+- scope: system/PractitionerRole.r
+  category: system
+  description: r access to PractitionerRole resources for the backend system (no user).
+- scope: patient/Procedure.r
+  category: patient
+  description: r access to Procedure resources for the patient in context.
+- scope: user/Procedure.r
+  category: user
+  description: r access to Procedure resources for the authorized user.
+- scope: system/Procedure.r
+  category: system
+  description: r access to Procedure resources for the backend system (no user).
+- scope: patient/Coverage.r
+  category: patient
+  description: r access to Coverage resources for the patient in context.
+- scope: user/Coverage.r
+  category: user
+  description: r access to Coverage resources for the authorized user.
+- scope: system/Coverage.r
+  category: system
+  description: r access to Coverage resources for the backend system (no user).
+- scope: patient/Claim.r
+  category: patient
+  description: r access to Claim resources for the patient in context.
+- scope: user/Claim.r
+  category: user
+  description: r access to Claim resources for the authorized user.
+- scope: system/Claim.r
+  category: system
+  description: r access to Claim resources for the backend system (no user).
+- scope: patient/MedicationAdministration.r
+  category: patient
+  description: r access to MedicationAdministration resources for the patient in context.
+- scope: user/MedicationAdministration.r
+  category: user
+  description: r access to MedicationAdministration resources for the authorized user.
+- scope: system/MedicationAdministration.r
+  category: system
+  description: r access to MedicationAdministration resources for the backend system (no user).
+- scope: patient/Provenance.r
+  category: patient
+  description: r access to Provenance resources for the patient in context.
+- scope: user/Provenance.r
+  category: user
+  description: r access to Provenance resources for the authorized user.
+- scope: system/Provenance.r
+  category: system
+  description: r access to Provenance resources for the backend system (no user).
+- scope: patient/RelatedPerson.r
+  category: patient
+  description: r access to RelatedPerson resources for the patient in context.
+- scope: user/RelatedPerson.r
+  category: user
+  description: r access to RelatedPerson resources for the authorized user.
+- scope: system/RelatedPerson.r
+  category: system
+  description: r access to RelatedPerson resources for the backend system (no user).
+- scope: patient/ServiceRequest.r
+  category: patient
+  description: r access to ServiceRequest resources for the patient in context.
+- scope: user/ServiceRequest.r
+  category: user
+  description: r access to ServiceRequest resources for the authorized user.
+- scope: system/ServiceRequest.r
+  category: system
+  description: r access to ServiceRequest resources for the backend system (no user).
+- scope: patient/Endpoint.r
+  category: patient
+  description: r access to Endpoint resources for the patient in context.
+- scope: user/Endpoint.r
+  category: user
+  description: r access to Endpoint resources for the authorized user.
+- scope: patient/Binary.r
+  category: patient
+  description: r access to Binary resources for the patient in context.
+- scope: user/Binary.r
+  category: user
+  description: r access to Binary resources for the authorized user.
+- scope: system/Binary.r
+  category: system
+  description: r access to Binary resources for the backend system (no user).
+- scope: system/Group.r
+  category: system
+  description: r access to Group resources for the backend system (no user).
+- scope: system/*.r
+  category: system
+  description: r access to all FHIR resource types for the backend system (no user).
+- scope: user/*.r
+  category: user
+  description: r access to all FHIR resource types for the authorized user.
+- scope: patient/*.r
+  category: patient
+  description: r access to all FHIR resource types for the patient in context.
+- scope: patient/QuestionnaireResponse.r
+  category: patient
+  description: r access to QuestionnaireResponse resources for the patient in context.
+- scope: user/QuestionnaireResponse.r
+  category: user
+  description: r access to QuestionnaireResponse resources for the authorized user.
+- scope: system/QuestionnaireResponse.r
+  category: system
+  description: r access to QuestionnaireResponse resources for the backend system (no user).
+- scope: patient/Condition.r?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: patient
+- scope: user/Condition.r?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: user
+- scope: system/Condition.r?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: system
+- scope: patient/Condition.read?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: patient
+- scope: user/Condition.read?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: user
+- scope: system/Condition.read?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern
+  category: system
+- scope: patient/Condition.r?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: patient
+- scope: user/Condition.r?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: user
+- scope: system/Condition.r?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: system
+- scope: patient/Condition.read?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: patient
+- scope: user/Condition.read?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: user
+- scope: system/Condition.read?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis
+  category: system
+- scope: patient/Condition.r?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: patient
+- scope: user/Condition.r?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: user
+- scope: system/Condition.r?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: system
+- scope: patient/Condition.read?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: patient
+- scope: user/Condition.read?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: user
+- scope: system/Condition.read?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item
+  category: system
+- scope: patient/Observation.r?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: patient
+- scope: user/Observation.r?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: user
+- scope: system/Observation.r?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: system
+- scope: patient/Observation.r?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: patient
+- scope: user/Observation.r?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: user
+- scope: system/Observation.r?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: system
+- scope: patient/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: patient
+- scope: user/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: user
+- scope: system/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: system
+- scope: patient/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: patient
+- scope: user/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: user
+- scope: system/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: system
+- scope: patient/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: patient
+- scope: user/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: user
+- scope: system/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: system
+- scope: patient/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: patient
+- scope: user/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: user
+- scope: system/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: system
+- scope: patient/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: patient
+- scope: user/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: user
+- scope: system/Observation.r?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: system
+- scope: patient/Observation.read?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: patient
+- scope: user/Observation.read?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: user
+- scope: system/Observation.read?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh
+  category: system
+- scope: patient/Observation.read?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: patient
+- scope: user/Observation.read?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: user
+- scope: system/Observation.read?category=http://terminology.hl7.org//CodeSystem-observation-category|social-history
+  category: system
+- scope: patient/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: patient
+- scope: user/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: user
+- scope: system/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|survey
+  category: system
+- scope: patient/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: patient
+- scope: user/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: user
+- scope: system/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs
+  category: system
+- scope: patient/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: patient
+- scope: user/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: user
+- scope: system/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|exam
+  category: system
+- scope: patient/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: patient
+- scope: user/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: user
+- scope: system/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging
+  category: system
+- scope: patient/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: patient
+- scope: user/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: user
+- scope: system/Observation.read?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory
+  category: system
+- scope: system/Organization.d
+  category: system
+  description: Delete access to Organization resources for the backend system (no user).
+- scope: user/Organization.d
+  category: user
+  description: Delete access to Organization resources for the authorized user.
+- scope: user/Coverage.d
+  category: user
+  description: Delete access to Coverage resources for the authorized user.
+- scope: system/Coverage.d
+  category: system
+  description: Delete access to Coverage resources for the backend system (no user).
+- scope: patient/Questionnaire.r
+  category: patient
+  description: r access to Questionnaire resources for the patient in context.
+- scope: patient/Questionnaire.read
+  category: patient
+  description: Read and search (SMART v1) access to Questionnaire resources for the patient in context.
+- scope: system/Questionnaire.c
+  category: system
+  description: Create access to Questionnaire resources for the backend system (no user).
+- scope: system/Questionnaire.u
+  category: system
+  description: Update access to Questionnaire resources for the backend system (no user).
+- scope: system/Questionnaire.r
+  category: system
+  description: r access to Questionnaire resources for the backend system (no user).
+- scope: user/Questionnaire.r
+  category: user
+  description: r access to Questionnaire resources for the authorized user.
+- scope: system/Questionnaire.read
+  category: system
+  description: Read and search (SMART v1) access to Questionnaire resources for the backend system (no
+    user).
+- scope: user/Questionnaire.read
+  category: user
+  description: Read and search (SMART v1) access to Questionnaire resources for the authorized user.
+- scope: patient/Questionnaire.rs
+  category: patient
+  description: Read + search (SMART v2) access to Questionnaire resources for the patient in context.
+- scope: patient/Basic.read
+  category: patient
+  description: Read and search (SMART v1) access to Basic resources for the patient in context.
+- scope: system/Basic.read
+  category: system
+  description: Read and search (SMART v1) access to Basic resources for the backend system (no user).
+- scope: user/Basic.read
+  category: user
+  description: Read and search (SMART v1) access to Basic resources for the authorized user.
+- scope: patient/Basic.r
+  category: patient
+  description: r access to Basic resources for the patient in context.
+- scope: patient/Basic.read
+  category: patient
+  description: Read and search (SMART v1) access to Basic resources for the patient in context.
+- scope: patient/Basic.rs
+  category: patient
+  description: Read + search (SMART v2) access to Basic resources for the patient in context.
+- scope: patient/FamilyMemberHistory.r
+  category: patient
+  description: r access to FamilyMemberHistory resources for the patient in context.
+- scope: patient/FamilyMemberHistory.read
+  category: patient
+  description: Read and search (SMART v1) access to FamilyMemberHistory resources for the patient in context.
+- scope: patient/FamilyMemberHistory.rs
+  category: patient
+  description: Read + search (SMART v2) access to FamilyMemberHistory resources for the patient in context.
+- scope: system/FamilyMemberHistory.u
+  category: system
+  description: Update access to FamilyMemberHistory resources for the backend system (no user).
+- scope: system/FamilyMemberHistory.c
+  category: system
+  description: Create access to FamilyMemberHistory resources for the backend system (no user).
+- scope: patient/ChargeItem.rs
+  category: patient
+  description: Read + search (SMART v2) access to ChargeItem resources for the patient in context.
+- scope: system/ChargeItem.rs
+  category: system
+  description: Read + search (SMART v2) access to ChargeItem resources for the backend system (no user).
+- scope: patient/ChargeItem.read
+  category: patient
+  description: Read and search (SMART v1) access to ChargeItem resources for the patient in context.
+- scope: system/ChargeItem.read
+  category: system
+  description: Read and search (SMART v1) access to ChargeItem resources for the backend system (no user).
+- scope: system/ChargeItem.create
+  category: system
+  description: create access to ChargeItem resources for the backend system (no user).
+- scope: user/ChargeItem.create
+  category: user
+  description: create access to ChargeItem resources for the authorized user.
+- scope: system/ChargeItem.c
+  category: system
+  description: Create access to ChargeItem resources for the backend system (no user).
+- scope: user/ChargeItem.c
+  category: user
+  description: Create access to ChargeItem resources for the authorized user.
+- scope: user/ChargeItem.u
+  category: user
+  description: Update access to ChargeItem resources for the authorized user.
+- scope: system/ChargeItem.u
+  category: system
+  description: Update access to ChargeItem resources for the backend system (no user).
+- scope: user/ChargeItem.update
+  category: user
+  description: update access to ChargeItem resources for the authorized user.
+- scope: system/ChargeItem.update
+  category: system
+  description: update access to ChargeItem resources for the backend system (no user).

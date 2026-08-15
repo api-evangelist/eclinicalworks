@@ -1,0 +1,59 @@
+generated: '2026-08-14'
+method: searched
+source: https://fhir.eclinicalworks.com/ecwopendev/documentation + https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+  + https://www.eclinicalworks.com/resources/certified-ehr-technology/
+versioning:
+  scheme: fhir-release + tenant EHR build
+  current: FHIR R4 (4.0.1) via eCW FHIR Facade 1.6
+  note: There is no independent API version number. Capability is a function of (a) the FHIR release — R4 only — and (b) the
+    eClinicalWorks EHR build the individual practice is running. USCDI v1 is supported on 11.52.305C, 12.0.1, 12.0.2 and 12.0.3;
+    USCDI v3 requires 12.0.2(04000407) or 12.0.3(04009267) and above; FamilyMemberHistory and Observation (OBGYN) require
+    12.0.3.04009331+; DocumentReference (Progress Note) and Organization (Vaccine Manufacturer) require 12.0.3.04009405+.
+    If the practice has not upgraded, the API returns a response indicating the read/search operation for that scope is not
+    supported.
+  docs: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+  upgrade_path: Customers request a version upgrade by opening a case on the Customer Portal (my.eclinicalworks.com).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: 'No deprecation or sunset policy is published, and no RFC 8594 Sunset/Deprecation header support is documented. The
+    only forward-notice commitment eClinicalWorks publishes is commercial, not technical: "eClinicalWorks will notify customers
+    of any future API licensing or usage fees at least 30 days in advance of such fees taking effect" (ONC Certified EHR Technology
+    page). Version retirement is handled through the EHR build lifecycle rather than an API deprecation schedule.'
+certification_lifecycle:
+  program: ONC Health IT Certification Program
+  criterion: 45 CFR 170.315(g)(10) Standardized API for Patient and Population Services
+  real_world_testing:
+    url: https://www.eclinicalworks.com/resources/certified-ehr-technology/
+    note: Test plans are filed each November for the following calendar year; results are filed each February. 2024, 2025
+      and 2026 plans and 2024/2025 results are published.
+  chpl: https://chpl.healthit.gov/
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime target for the FHIR APIs. Availability commitments sit inside the customer contract.
+status_page: https://instatus.com/now/en/eclinicalworks.com
+change_log:
+  url: null
+  note: No dated API changelog or release-notes feed is published for the FHIR APIs. Change is announced through EHR build
+    notes and the Customer Portal, neither of which is public.
+endpoint_directory:
+  note: Both facades publish an ONC-required service base URL directory as a live FHIR Bundle of Organization + Endpoint resources.
+  provider_facing:
+    url: https://fhir.eclinicalworks.com/ecwopendev/external/practiceList
+    entries: 17229
+    host: fhir4.eclinicalworks.com
+    probed: '2026-08-14'
+    http_status: 200
+    bytes: 15604444
+  patient_facing:
+    url: https://connect4.healow.com/apps/api/v1/fhir/activated_clinical_endpoints
+    entries: 17291
+    host: fhir4.healow.com
+    probed: '2026-08-14'
+    http_status: 200
+    bytes: 15086250
+  not_committed: Both bundles are ~15 MB and change continuously; they are recorded by URL and shape rather than snapshotted
+    into this repo.
+deprecated_operations: []

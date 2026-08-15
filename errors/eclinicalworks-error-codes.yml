@@ -1,0 +1,465 @@
+generated: '2026-08-14'
+method: searched
+source: https://fhir.eclinicalworks.com/ecwopendev/documentation/fhirresources/create/Error%20Code%20Reference%20Guide.pdf
+docs: https://fhir.eclinicalworks.com/ecwopendev/documentation
+format: proprietary-numeric-plus-fhir-operationoutcome
+guide:
+  title: Error Code Reference Guide
+  version: '1.0'
+  last_updated: 2026-07
+  support: fhirfighters@eclinicalworks.com
+  purpose: Maps writeback error codes to a payload correction action for FHIR vendors.
+envelope:
+  field: status
+  note: 'Writeback (create/update/delete) responses carry a numeric error code in `status` plus an error key. Read/search
+    errors are returned as FHIR OperationOutcome (application/fhir+json). OAuth token errors use the OAuth 2.0 error JSON
+    envelope {"error": "...", "error_description": "..."}.'
+response_handling:
+- Treat validation errors as fix-and-resubmit cases.
+- Retry transient/infrastructure errors once (for example unknown module / internal processing failures).
+- Re-submit only corrected resources when possible.
+summary:
+  writeback_code_count: 92
+  hl7_interface_code_count: 8
+  oauth_error_count: 5
+  note: Codes 615 appear twice in the published guide (UPDATE_NOT_SUPPORTED_REFERRAL and INVALID_ORGNIZATION_ID); both are
+    recorded verbatim.
+writeback_errors:
+- code: 1
+  key: SUCCESS
+  action: No action needed.
+  group: general
+- code: 2
+  key: FAILURE
+  action: Verify request composition and required resources for the endpoint.
+  group: general
+- code: 100
+  key: INVALID_PATIENT
+  action: Send a valid patient reference and confirm the patient exists in the system.
+  group: request-validation
+- code: 101
+  key: INVALID_PROVIDER
+  action: Use valid provider references and confirm provider/staff exists in the system.
+  group: request-validation
+- code: 102
+  key: UNSUPPORTED_CODING_SYSTEM
+  action: Use supported coding systems for that resource type.
+  group: request-validation
+- code: 103
+  key: UNKNOWN_MAPPING_ERROR
+  action: Retry once; if repeated, share request details with support.
+  group: request-validation
+- code: 104
+  key: UNKNOWN_TODO_MODULE_ERROR
+  action: Retry once and escalate with request details if persistent.
+  group: request-validation
+- code: 105
+  key: INVALID_CATEGORY_FOR_ASSESSMENT
+  action: Use supported assessment category values.
+  group: request-validation
+- code: 106
+  key: UNSUPPORTED_ENCOUNTER_STATUS
+  action: Send an allowed encounter status.
+  group: request-validation
+- code: 107
+  key: INVALID_FACILITY
+  action: Provide valid Location/{id} and ensure facility is mapped/active.
+  group: request-validation
+- code: 108
+  key: UNSUPPORTED_CHARACTERS
+  action: Remove unsupported special characters from text fields.
+  group: request-validation
+- code: 109
+  key: MAX_SIZE_LIMIT_EXCEEDED
+  action: Reduce field length and resubmit.
+  group: request-validation
+- code: 110
+  key: INVALID_STATUS
+  action: Set status to a supported value for that resource operation.
+  group: request-validation
+- code: 111
+  key: UNSUPPORTED_ACTION_PRIORITY
+  action: Use allowed priority values only.
+  group: request-validation
+- code: 112
+  key: UPLOAD_FTP_FAILED
+  action: Re-submit with valid attachment payload; retry if transient.
+  group: request-validation
+- code: 113
+  key: UNSUPPORTED_TYPE_CODE
+  action: Use supported type coding values for document reference create.
+  group: request-validation
+- code: 114
+  key: UNSUPPORTED_MIME_TYPE_IN_ATTACHMENT
+  action: Use supported MIME types for the document reference create endpoint.
+  group: request-validation
+- code: 115
+  key: INVALID_TODO_ID
+  action: Retry once and escalate if repeated.
+  group: request-validation
+- code: 116
+  key: INVALID_PERIOD_ELEMENT
+  action: Provide valid date/period structure and format.
+  group: request-validation
+- code: 117
+  key: INVALID_PATIENT_GENDER
+  action: Use supported gender values.
+  group: request-validation
+- code: 118
+  key: INVALID_PATIENT_NAME
+  action: Correct name fields (required active/usual name data).
+  group: request-validation
+- code: 119
+  key: INVALID_PATIENT_DOB
+  action: Provide a valid DOB.
+  group: request-validation
+- code: 120
+  key: INVALID_CODING_ELEMENT
+  action: Provide required coding system and code fields.
+  group: request-validation
+- code: 121
+  key: INVALID_INTENT
+  action: Use supported intent value for the endpoint.
+  group: request-validation
+- code: 122
+  key: INVALID_CATEGORY
+  action: Send supported category system/code values.
+  group: request-validation
+- code: 123
+  key: INVALID_ENCOUNTER
+  action: Send a valid encounter reference linked to the same patient.
+  group: request-validation
+- code: 124
+  key: INVALID_PRIMARY_SOURCE
+  action: Provide required primary source/report origin values.
+  group: request-validation
+- code: 132
+  key: NOT_FOUND_OR_INVALID_EXTENSION_IN_PATIENT_RESOURCE
+  action: Add/fix required extension with correct reference and datatype.
+  group: request-validation
+- code: 133
+  key: INVALID_PHARMACY_ID
+  action: Provide valid pharmacy identifier in expected format.
+  group: request-validation
+- code: 134
+  key: PATINET_AND_PHARMACY_NOT_LINKED
+  action: Use a valid patient-pharmacy pair that is currently linked. If the link was already removed, treat the request as
+    already completed.
+  group: request-validation
+- code: 135
+  key: PARAMETER_MAP_IS_EMPTY_ORG
+  action: Send all required request fields for organization delete, including patient and pharmacy identifiers.
+  group: request-validation
+- code: 136
+  key: UNKNOWN_ERROR_ON_ADT_ORG
+  action: Retry once and escalate with request details if repeated.
+  group: request-validation
+- code: 137
+  key: INVALID_REQUEST_TYPE
+  action: Submit organization writeback with delete operation only.
+  group: request-validation
+- code: 138
+  key: INVALID_ENCOUNTER_TYPE
+  action: Use the encounter type required by that operation.
+  group: request-validation
+- code: 139
+  key: ENCOUNTER_IS_LOCKED
+  action: Do not update locked encounter data.
+  group: request-validation
+- code: 141
+  key: INVALID_CODEABLE_CONCEPT
+  action: Provide valid CodeableConcept with required coding entries.
+  group: request-validation
+- code: 142
+  key: INVALID_AUTHORED_ON
+  action: Provide a valid authoredOn value.
+  group: request-validation
+- code: 143
+  key: INVALID_TEXT
+  action: Include valid display/text fields.
+  group: request-validation
+- code: 151
+  key: INVALID_EXTENSION
+  action: Correct extension URL, datatype, and count.
+  group: request-validation
+- code: 152
+  key: INVALID_EXTENSION_VALUE
+  action: Provide an allowed value for the extension.
+  group: request-validation
+- code: 161
+  key: INVALID_COMMUNICATION_PAYLOAD
+  action: Provide at least one valid payload.contentString item.
+  group: request-validation
+- code: 164
+  key: INVALID_PATIENT_REFERENCE_IN_ENCOUNTER
+  action: Make encounter-patient linkage consistent.
+  group: request-validation
+- code: 165
+  key: INVALID_ID
+  action: Send valid id in expected format and context.
+  group: request-validation
+- code: 166
+  key: FAILED_FOR_SERVICE_REQUEST_UPDATE
+  action: Recheck request identifiers and update values, then retry once. Escalate if it continues to fail.
+  group: request-validation
+- code: 167
+  key: FAILURE_WHILE_CREATING_SURGICAL_HISTORY
+  action: Verify encounter, patient, and procedure date/details; then retry once. Escalate with request details if it persists.
+  group: request-validation
+- code: 168
+  key: FAILURE_WHILE_CREATING_MEDICAL_HISTORY
+  action: Verify encounter, patient, and medical history details; then retry once. Escalate with request details if it persists.
+  group: request-validation
+- code: 201
+  key: INVALID_MULTIPLE_PATIENT_FOUND
+  action: Use stronger patient identifiers to disambiguate.
+  group: patient-coverage
+- code: 202
+  key: INVALID_PATIENT_ALREADY_EXIST
+  action: Do not retry as create. Use the existing patient record (or patient-update workflow) instead.
+  group: patient-coverage
+- code: 203
+  key: UNSUPPORTED_PATIENT_DATA
+  action: Use supported datatypes for the resource type.
+  group: patient-coverage
+- code: 204
+  key: INVALID_DATE_FORMAT
+  action: Use supported date/dateTime format for the field.
+  group: patient-coverage
+- code: 205
+  key: INSURANCE_NOT_FOUND
+  action: Send valid payor reference/identifier.
+  group: patient-coverage
+- code: 206
+  key: PATIENT_INSURANCE_MISMATCH
+  action: Correct beneficiary/subscriber/payor associations.
+  group: patient-coverage
+- code: 207
+  key: PATIENT_NOT_FOUND
+  action: Verify patient id/reference and tenant mapping.
+  group: patient-coverage
+- code: 208
+  key: SUBSCRIBER_NOT_FOUND
+  action: Provide valid subscriber reference and relationship mapping.
+  group: patient-coverage
+- code: 301
+  key: STRUCT_DATA_SECTION_ITEMS_MISSING
+  action: Include required section category items.
+  group: structured-data
+- code: 302
+  key: STRUCT_DATA_CATEGORY_ITEMS_MISSING
+  action: Include required question items under category.
+  group: structured-data
+- code: 303
+  key: STRUCT_DATA_UNSUPPORTED_STRUCTURE
+  action: Conform to supported questionnaire hierarchy shape.
+  group: structured-data
+- code: 304
+  key: STRUCT_DATA_NO_ITEMS_MAPPED
+  action: Use supported linkIds/category/item mappings.
+  group: structured-data
+- code: 305
+  key: STRUCT_DATA_NO_VALID_QUESTIONS
+  action: Correct question identifiers/text to supported values.
+  group: structured-data
+- code: 306
+  key: STRUCT_DATA_UPDATE_FAILED
+  action: Retry once; escalate with payload and request details if repeated.
+  group: structured-data
+- code: 307
+  key: STRUCT_DATA_INVALID_VALUE
+  action: Send valid numeric identifiers where required.
+  group: structured-data
+- code: 308
+  key: DEFAULT_WRITEBACK_USER_NOT_CONFIGURED
+  action: Coordinate with platform team to configure a valid writeback user.
+  group: structured-data
+- code: 600
+  key: UNSUPPORTED_REASON_TEXT
+  action: Use supported reason text values.
+  group: clinical-workflow
+- code: 601
+  key: INVALID_ANSWERED_BY_FIELD
+  action: Provide a valid answered-by provider/staff reference.
+  group: clinical-workflow
+- code: 602
+  key: FAILED_TO_CREATE_WEB_ENCOUNTER
+  action: Validate encounter payload fields (patient, provider, facility, timing, reason, priority), retry once, then escalate
+    if needed.
+  group: clinical-workflow
+- code: 603
+  key: INVALID_RX_ORDER_NO
+  action: Include required Rx order identifier system/value.
+  group: clinical-workflow
+- code: 604
+  key: FAILURE_RECEIVED_FOR_ADD_MEDICATION_IN_RENEWAL_INSIGHT
+  action: Verify medication data and renewal encounter context, retry once, then escalate if repeated.
+  group: clinical-workflow
+- code: 605
+  key: INVALID_IDENTIFIER_ELEMENT
+  action: Provide required identifier in expected field/use.
+  group: clinical-workflow
+- code: 606
+  key: INVALID_RENDERING_PROVIDER_EXTENSION
+  action: Correct extension datatype and referenced provider id.
+  group: clinical-workflow
+- code: 607
+  key: INVALID_CODE_ELEMENT
+  action: Populate required code fields with valid values.
+  group: clinical-workflow
+- code: 608
+  key: ID_NOT_MATCH_WITH_PATIENTID
+  action: Ensure id and subject patient refer to same patient context.
+  group: clinical-workflow
+- code: 609
+  key: INVALID_ORGANIZATION_TYPE_CODE
+  action: Provide the supported organization type code required for delete requests before resubmitting.
+  group: clinical-workflow
+- code: 610
+  key: UNKNOWN_REFERRAL_MODULE_ERROR
+  action: Retry once. If still failing, escalate with request/response details.
+  group: clinical-workflow
+- code: 611
+  key: INVALID_UNIT
+  action: Use allowed unit for the specific observation code.
+  group: clinical-workflow
+- code: 612
+  key: INVALID_VITAL_VALUE
+  action: Provide valid observation value.
+  group: clinical-workflow
+- code: 613
+  key: UNSUPPORTED_OBSERVATION
+  action: Use supported observation code values.
+  group: clinical-workflow
+- code: 614
+  key: UNSUPPORTED_CHARACTER_FHIR_BUNDLE
+  action: Remove unsupported characters from submitted values.
+  group: clinical-workflow
+- code: 615
+  key: UPDATE_NOT_SUPPORTED_REFERRAL
+  action: Use create operation for referral workflow.
+  group: clinical-workflow
+- code: 615
+  key: INVALID_ORGNIZATION_ID
+  action: Provide a valid organization reference/id.
+  group: clinical-workflow
+- code: 616
+  key: INVALID_REASON_CODE
+  action: Provide valid non-empty reason code data.
+  group: clinical-workflow
+- code: 617
+  key: INVALID_REFERRAL_PERIOD_ELEMENT
+  action: Provide valid occurrencePeriod.start and occurrencePeriod.end.
+  group: clinical-workflow
+- code: 618
+  key: REASON_CODE_MAPPED_TO_DIFFERENT_PATIENT
+  action: Ensure referenced diagnosis belongs to the same patient.
+  group: clinical-workflow
+- code: 619
+  key: INVALID_AUTH_TYPE_FORMAT
+  action: Send auth type in required format (for example code:name).
+  group: clinical-workflow
+- code: 620
+  key: INVALID_REFERRAL_TYPE
+  action: Use supported referral type values.
+  group: clinical-workflow
+- code: 621
+  key: INVALID_ICD_REASON_CODE
+  action: Send valid ICD reason coding resolvable by backend services.
+  group: clinical-workflow
+- code: 701
+  key: INVALID_CHARGE_ITEM_REFERENCE
+  action: Ensure charge item references align with the correct patient/encounter/resource identifiers before resubmitting.
+  group: charge-processing
+- code: 702
+  key: INVALID_CHARGE_ITEM_DATA
+  action: Correct ChargeItem status/code/ICD extension structure and values.
+  group: charge-processing
+- code: 703
+  key: DFT_PROCESSING_ERROR
+  action: Retry once and escalate with request details if repeated.
+  group: charge-processing
+- code: 2024
+  key: RxNorm Code is mandatory for importing medication data
+  action: Provide a valid RxNorm code in the request.
+  group: medication
+- code: 2025
+  key: One or more Rx Details is empty, RxItemID or RxStrength/Formulation not found
+  action: Retry once and escalate with request details if repeated.
+  group: medication
+- code: 2026
+  key: Med type is unspecified, med type should be reconcile or new order
+  action: Provide valid order type in the request.
+  group: medication
+- code: 2027
+  key: RxNorm and NDC do not belong to the same drug compendia.
+  action: Ensure RxNorm and NDC codes belong to the same medication family.
+  group: medication
+hl7_clinical_note_interface_errors:
+- code: 301
+  key: Message format exception - MSH segment missing in HL7 message
+  action: Add MSH segment in HL7 message and retry once, then escalate if repeated.
+  group: hl7-interface
+- code: 302
+  key: Exception occurred while making entry in content table
+  action: Retry once and escalate with request details if repeated.
+  group: hl7-interface
+- code: 303
+  key: Encounter does not belong to this patient
+  action: Make encounter-patient linkage consistent.
+  group: hl7-interface
+- code: 304
+  key: Encounter not found
+  action: Provide valid Encounter reference in the request.
+  group: hl7-interface
+- code: 305
+  key: Exception occurred during processing
+  action: Retry once and escalate with request details if repeated.
+  group: hl7-interface
+- code: 306
+  key: Missing PROG identifier in HL7 message
+  action: Add PROG segment in HL7 message and retry once, then escalate if repeated.
+  group: hl7-interface
+- code: 307
+  key: Message format exception - OBR segment missing in HL7 message
+  action: Add OBR segment in HL7 message and retry once, then escalate if repeated.
+  group: hl7-interface
+- code: 308
+  key: Exception occurred during interface setup
+  action: Retry once and escalate with request details if repeated.
+  group: hl7-interface
+oauth_errors:
+- error: invalid_client
+  http_status: 401
+  description: No client_id found, client_id mismatch, kid in the JWKS URL does not match the kid in client_assertion, JWKS
+    URL unreachable/malformed, or JWKS URL not allow-listed by eClinicalWorks.
+- error: unsupported_grant_type
+  http_status: 400
+  description: A value other than client_credentials was sent for grant_type.
+- error: invalid_grant
+  http_status: 400
+  description: The requested scope is not supported, invalid, unknown, or malformed (or the client_assertion is expired/malformed).
+- error: invalid_request
+  http_status: 400
+  description: The authorization request is missing a required parameter, includes an unsupported parameter value, or repeats
+    a parameter.
+- error: access_denied
+  http_status: 500
+  description: Any other authorization-server error not covered above.
+bulk_export_statuses:
+- status: 202
+  meaning: 'Export job accepted or in progress. Poll the content-location; honour retry-after (documented example: 120s) and
+    x-progress.'
+- status: 200
+  meaning: Export job complete; body carries transactionTime, request, requiresAccessToken, output[] and error[] NDJSON URLs.
+- status: 401
+  meaning: Access token invalid or expired, OR the group id is invalid/unauthorized.
+- status: 404
+  meaning: JobId is invalid.
+runtime_statuses:
+- status: 401
+  meaning: 'Unauthenticated FHIR resource request. Observed live: GET https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}/Patient
+    without a bearer token returns 401 with an application/fhir+json OperationOutcome.'
+- status: 429
+  meaning: Rate limit exceeded — see rate-limits/eclinicalworks-rate-limits.yml. All requests from the application are blocked
+    for the remainder of the minute.

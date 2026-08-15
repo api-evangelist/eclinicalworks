@@ -1,0 +1,65 @@
+generated: '2026-08-14'
+method: probed
+source: https://www.eclinicalworks.com/.well-known/oauth-protected-resource
+status: advertised
+note: 'eClinicalWorks advertises an MCP server on its own marketing host through RFC 9728 protected-resource metadata and
+  RFC 8414 authorization-server metadata, both served as real application/json documents. The MCP resource itself could NOT
+  be exercised anonymously: every request to the WordPress REST namespace — including the advertised MCP path — is rejected
+  at the edge by a security plugin with HTTP 404 {"code":"nfw_rest_api_access_restricted","message":"Forbidden access"}. That
+  is consistent with an auth-gated MCP server, but it means the tool list and input schemas could not be enumerated. NO tool
+  list is recorded, because none was observed. This is the marketing/content site, not the FHIR API — there is no MCP surface
+  over the clinical APIs.'
+deployment:
+  mode: remote
+  endpoint: https://www.eclinicalworks.com/wp-json/mcp/mcp-oauth-server
+  auth: oauth
+  verified: probed
+oauth:
+  protected_resource_metadata: https://www.eclinicalworks.com/.well-known/oauth-protected-resource
+  authorization_server_metadata: https://www.eclinicalworks.com/.well-known/oauth-authorization-server
+  issuer: https://www.eclinicalworks.com
+  authorization_endpoint: https://www.eclinicalworks.com/oauth/authorize
+  token_endpoint: https://www.eclinicalworks.com/oauth/token
+  revocation_endpoint: https://www.eclinicalworks.com/oauth/revoke
+  scopes_supported:
+  - mcp
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  code_challenge_methods_supported:
+  - S256
+  token_endpoint_auth_methods_supported:
+  - none
+  client_id_metadata_document_supported: true
+  files:
+  - well-known/eclinicalworks-oauth-protected-resource.json
+  - well-known/eclinicalworks-oauth-authorization-server.json
+tools: []
+probes:
+- url: https://www.eclinicalworks.com/.well-known/oauth-protected-resource
+  method: GET
+  http_status: 200
+  content_type: application/json
+  result: RFC 9728 document naming the MCP resource
+- url: https://www.eclinicalworks.com/.well-known/oauth-authorization-server
+  method: GET
+  http_status: 200
+  content_type: application/json
+  result: RFC 8414 document, scopes_supported [mcp]
+- url: https://www.eclinicalworks.com/wp-json/mcp/mcp-oauth-server
+  method: POST tools/list
+  http_status: 404
+  content_type: application/json
+  result: nfw_rest_api_access_restricted — blocked at the edge, tool list not enumerable
+- url: https://www.eclinicalworks.com/wp-json/mcp/mcp-oauth-server
+  method: POST initialize
+  http_status: 404
+  result: nfw_rest_api_access_restricted
+- url: https://www.eclinicalworks.com/wp-json/
+  method: GET
+  http_status: 404
+  result: Whole WordPress REST namespace is blocked, not just the MCP route
+scope:
+  covers: eclinicalworks.com marketing/content site
+  does_not_cover: The FHIR R4 clinical, scheduling, bulk and RPM APIs. No MCP server is published over any eClinicalWorks
+    or healow clinical surface.

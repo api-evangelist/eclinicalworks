@@ -1,0 +1,44 @@
+generated: '2026-08-14'
+method: searched
+source: npm registry search, PyPI, RubyGems, GitHub org/user lookup, and the eClinicalWorks + healow developer portals
+note: eClinicalWorks publishes NO first-party API client library in any public registry, and operates no GitHub organization.
+  github.com/eclinicalworks resolves to a GitHub USER account (id 3478657) with zero public repositories, and api.github.com/orgs/eclinicalworks
+  returns 404. Integrators are expected to use a generic FHIR R4 client (HAPI, fhirclient, firely-net-sdk) against the tenant
+  base URL. The one npm package carrying the eClinicalWorks name is an employee-published Angular design system, not an API
+  SDK.
+official_sdk_count: 0
+packages:
+- language: typescript
+  registry: npm
+  name: '@sharma-divyansh/eclinicalworks'
+  url: https://www.npmjs.com/package/@sharma-divyansh/eclinicalworks
+  install: npm install @sharma-divyansh/eclinicalworks
+  description: eCW Design System — Angular components and CSS tokens
+  version: 1.0.2
+  published: '2026-06-11'
+  official: false
+  note: Published under a personal npm scope by a maintainer with an @eclinicalworks.com address; the repository is a personal
+    GitHub (github.com/divyansh98sharma/design-system), the licence is MIT and there is no eClinicalWorks org ownership. It
+    is a UI design system, not an API client, and is recorded here only so the name is not mistaken for a first-party SDK.
+  registry_metadata: https://registry.npmjs.org/@sharma-divyansh/eclinicalworks
+registries_checked:
+- registry: npm
+  query: eclinicalworks / healow
+  result: one non-official package (above); zero results for healow
+- registry: pypi
+  query: eclinicalworks
+  result: 404 — no package
+- registry: rubygems
+  query: eclinicalworks
+  result: empty result set
+- registry: github
+  query: orgs/eclinicalworks, orgs/healow
+  result: 404 — neither organization exists
+recommended_third_party_clients:
+  note: Not eClinicalWorks packages. Listed because the provider ships none and the API is standards-based, so any conformant
+    FHIR R4 / SMART client works.
+  clients:
+  - HAPI FHIR (Java)
+  - fhirclient (Python, SMART on FHIR)
+  - fhir.js / @types/fhir (JavaScript)
+  - Firely .NET SDK

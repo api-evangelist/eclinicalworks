@@ -1,0 +1,586 @@
+generated: '2026-08-14'
+method: derived
+source: conformance/eclinicalworks-fhir-capabilitystatement.json (https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}/metadata)
+note: Entity graph derived from the live FHIR R4 CapabilityStatement served by the eCW FHIR Facade 1.6, not from an OpenAPI
+  (none exists). Entities are the FHIR resource types the facade declares; relationships are derived only from reference-typed
+  search parameters the facade itself declares, so nothing here is asserted that the CapabilityStatement does not state. The
+  canonical field-level model is FHIR R4 constrained by US Core 3.1.1 (USCDI v1) and US Core 6.1.0 (USCDI v3); the per-resource
+  element mappings are published as PDFs under /ecwopendev/documentation/read-resources and /v3-read-resources.
+root_entity: Patient
+tenancy:
+  key: practice_code
+  note: Every resource id is scoped to one practice code base URL. Ids are not portable across tenants.
+summary:
+  entity_count: 36
+  relationship_count: 37
+  writeable_entities:
+  - QuestionnaireResponse
+  system_operations:
+  - export
+entities:
+- name: AllergyIntolerance
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/AllergyIntolerance
+  search_params:
+  - _id
+  - clinical-status
+  - encounter
+  - patient
+- name: Basic
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Basic
+  search_params:
+  - code
+  - page
+  - patient
+- name: Binary
+  interactions:
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Binary
+- name: CarePlan
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/CarePlan
+  search_params:
+  - _id
+  - category
+  - encounter
+  - patient
+- name: CareTeam
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/CareTeam
+  search_params:
+  - _id
+  - patient
+  - status
+- name: ChargeItem
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/ChargeItem
+  search_params:
+  - context
+  - subject
+- name: Claim
+  interactions:
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Claim
+- name: Condition
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Condition
+  search_params:
+  - _id
+  - category
+  - encounter
+  - onset-date
+  - page
+  - patient
+- name: Coverage
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Coverage
+  search_params:
+  - _id
+  - patient
+- name: Device
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Device
+  search_params:
+  - _id
+  - encounter
+  - patient
+  - type
+- name: DiagnosticReport
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/DiagnosticReport
+  search_params:
+  - _id
+  - category
+  - code
+  - date
+  - encounter
+  - page
+  - patient
+  - status
+- name: DocumentReference
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/DocumentReference
+  search_params:
+  - _id
+  - category
+  - contenttype
+  - date
+  - encounter
+  - page
+  - patient
+  - type
+- name: Encounter
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Encounter
+  search_params:
+  - _id
+  - date
+  - location
+  - page
+  - patient
+  - practitioner
+- name: FamilyMemberHistory
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory
+  search_params:
+  - _id
+  - patient
+- name: Goal
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Goal
+  search_params:
+  - _id
+  - encounter
+  - patient
+- name: Group
+  interactions:
+  - search-type
+  search_params:
+  - page
+- name: Immunization
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Immunization
+  search_params:
+  - _id
+  - date
+  - encounter
+  - page
+  - patient
+  - status
+- name: Location
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Location
+  search_params:
+  - _id
+  - address
+  - name
+  - page
+- name: Media
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Media
+  search_params:
+  - _id
+- name: Medication
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Medication
+  search_params:
+  - _id
+- name: MedicationAdministration
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/MedicationAdministration
+  search_params:
+  - _id
+  - context
+  - patient
+  - status
+- name: MedicationDispense
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/MedicationDispense
+  search_params:
+  - _id
+  - patient
+- name: MedicationRequest
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/MedicationRequest
+  search_params:
+  - _id
+  - authoredon
+  - encounter
+  - intended-dispenser
+  - intent
+  - page
+  - patient
+  - status
+- name: Observation
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Observation
+  search_params:
+  - _id
+  - _since
+  - category
+  - code
+  - date
+  - encounter
+  - identifier
+  - page
+  - patient
+  - status
+- name: OperationDefinition
+  interactions:
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/OperationDefinition
+- name: Organization
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Organization
+  search_params:
+  - _id
+  - address
+  - address-postalcode
+  - name
+  - organization-extension.reference
+  - organization-extension.url
+  - page
+  - type
+- name: Patient
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Patient
+  search_params:
+  - _id
+  - birthdate
+  - family
+  - gender
+  - given
+  - identifier
+  - name
+  - page
+  - phone
+- name: Practitioner
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Practitioner
+  search_params:
+  - _id
+  - identifier
+  - name
+  - page
+- name: PractitionerRole
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  search_params:
+  - _id
+  - location
+  - name
+  - page
+  - practitioner
+  - role
+  - specialty
+- name: Procedure
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Procedure
+  search_params:
+  - _id
+  - code
+  - date
+  - encounter
+  - page
+  - patient
+  - status
+- name: Provenance
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Provenance
+  search_params:
+  - _id
+- name: Questionnaire
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Questionnaire
+  search_params:
+  - _id
+  - code
+- name: QuestionnaireResponse
+  interactions:
+  - search-type
+  - read
+  - create
+  profile: http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  search_params:
+  - _id
+  - authored
+  - patient
+  - status
+- name: RelatedPerson
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  search_params:
+  - _id
+- name: ServiceRequest
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/ServiceRequest
+  search_params:
+  - _id
+  - authored
+  - category
+  - code
+  - occurrence
+  - page
+  - patient
+  - status
+- name: Specimen
+  interactions:
+  - search-type
+  - read
+  profile: http://hl7.org/fhir/StructureDefinition/Specimen
+  search_params:
+  - _id
+  - patient
+relationships:
+- from: AllergyIntolerance
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on AllergyIntolerance
+- from: AllergyIntolerance
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on AllergyIntolerance
+- from: Basic
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Basic
+- from: CarePlan
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on CarePlan
+- from: CarePlan
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on CarePlan
+- from: CareTeam
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on CareTeam
+- from: ChargeItem
+  to: Patient
+  type: belongs_to
+  via: subject
+  evidence: CapabilityStatement search parameter 'subject' on ChargeItem
+- from: Condition
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on Condition
+- from: Condition
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Condition
+- from: Coverage
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Coverage
+- from: Device
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on Device
+- from: Device
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Device
+- from: DiagnosticReport
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on DiagnosticReport
+- from: DiagnosticReport
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on DiagnosticReport
+- from: DocumentReference
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on DocumentReference
+- from: DocumentReference
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on DocumentReference
+- from: Encounter
+  to: Location
+  type: belongs_to
+  via: location
+  evidence: CapabilityStatement search parameter 'location' on Encounter
+- from: Encounter
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Encounter
+- from: Encounter
+  to: Practitioner
+  type: belongs_to
+  via: practitioner
+  evidence: CapabilityStatement search parameter 'practitioner' on Encounter
+- from: FamilyMemberHistory
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on FamilyMemberHistory
+- from: Goal
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on Goal
+- from: Goal
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Goal
+- from: Immunization
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on Immunization
+- from: Immunization
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Immunization
+- from: MedicationAdministration
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on MedicationAdministration
+- from: MedicationDispense
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on MedicationDispense
+- from: MedicationRequest
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on MedicationRequest
+- from: MedicationRequest
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on MedicationRequest
+- from: Observation
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on Observation
+- from: Observation
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Observation
+- from: PractitionerRole
+  to: Location
+  type: belongs_to
+  via: location
+  evidence: CapabilityStatement search parameter 'location' on PractitionerRole
+- from: PractitionerRole
+  to: Practitioner
+  type: belongs_to
+  via: practitioner
+  evidence: CapabilityStatement search parameter 'practitioner' on PractitionerRole
+- from: Procedure
+  to: Encounter
+  type: belongs_to
+  via: encounter
+  evidence: CapabilityStatement search parameter 'encounter' on Procedure
+- from: Procedure
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Procedure
+- from: QuestionnaireResponse
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on QuestionnaireResponse
+- from: ServiceRequest
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on ServiceRequest
+- from: Specimen
+  to: Patient
+  type: belongs_to
+  via: patient
+  evidence: CapabilityStatement search parameter 'patient' on Specimen
+writeback_note: 'The CapabilityStatement declares create only on QuestionnaireResponse. The developer portal separately documents
+  a much larger writeback surface (Patient, AllergyIntolerance, Condition, Coverage, DocumentReference, Encounter, Immunization,
+  MedicationRequest, Observation, Procedure, ServiceRequest, ChargeItem, Communication, Task and more) whose availability
+  is gated per practice and per EHR build. The gap between the declared CapabilityStatement and the documented writeback catalogue
+  is itself a finding: an agent that trusts /metadata alone will under-estimate the write surface, and one that trusts the
+  docs alone will over-estimate it for a given tenant.'
+documented_writeback_resources:
+- AllergyIntolerance
+- ChargeItem
+- Communication
+- Condition (Encounter Diagnosis)
+- Condition (Problems)
+- Coverage (create/update/delete)
+- DocumentReference (C-CDA, Clinical Notes, Insurance Card & Govt ID, PDF)
+- Encounter (Telephone, Web)
+- Immunization
+- MedicationAdministration (Therapeutic Injection)
+- MedicationRequest
+- MedicationStatement
+- Observation (Vital Signs)
+- Organization (delete patient pharmacy)
+- Patient (create/update)
+- Procedure (Surgical History)
+- QuestionnaireResponse
+- ServiceRequest (Lab/DI/Procedure, Referrals)
+- Task

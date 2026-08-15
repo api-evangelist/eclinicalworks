@@ -1,0 +1,116 @@
+generated: '2026-08-14'
+method: searched
+source: https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}/metadata + https://fhir.eclinicalworks.com/ecwopendev/documentation
+  + https://www.eclinicalworks.com/resources/certified-ehr-technology/
+note: 'eClinicalWorks is a standards-implementing provider rather than an OpenAPI publisher: the machine-readable
+  contract is the FHIR R4 CapabilityStatement served live by the eCW FHIR Facade 1.6 at every tenant base URL, saved
+  verbatim alongside this file.'
+artifacts:
+- file: conformance/eclinicalworks-fhir-capabilitystatement.json
+  source: https://fhir4.eclinicalworks.com/fhir/r4/FEIGCD/metadata
+  fhir_version: 4.0.1
+  software: eCW FHIR Facade 1.6
+  resources: 36
+  interactions: 69
+- file: conformance/eclinicalworks-healow-fhir-capabilitystatement.json
+  source: https://fhir4.healow.com/fhir/r4/AACJCD/metadata
+  fhir_version: 4.0.1
+  note: Patient-facing healow facade; identical software build and resource surface.
+standards:
+- id: fhir-r4
+  conforms: true
+  evidence: CapabilityStatement.fhirVersion 4.0.1; 36 resource types with read/search-type interactions; format
+    [xml, json].
+- id: us-core-3.1.1
+  conforms: true
+  evidence: '"Read APIs (USCDI v1)" documentation table lists US Core 3.1.1 conformance for 29 resource profiles.'
+- id: us-core-6.1.0
+  conforms: true
+  evidence: '"Read APIs (USCDI v3)" documentation table lists US Core 6.1.0 conformance for the USCDI v3 resource
+    set.'
+- id: uscdi-v1
+  conforms: true
+  evidence: USCDI v1 to FHIR R4 mapping published at /ecwopendev/documentation/fhir-r4-mapping.
+- id: uscdi-v3
+  conforms: true
+  evidence: USCDI v3 to FHIR R4 mapping published at /ecwopendev/documentation/v3-fhir-r4-mapping; supported on
+    eCW 12.0.2(04000407)+ / 12.0.3(04009267)+.
+- id: onc-170.315-g10
+  conforms: true
+  evidence: '"Certified APIs" section: APIs certified to the Standardized API for Patient and Population Services
+    criterion at 45 CFR 170.315(g)(10) under the ONC Health IT Certification Program.'
+- id: smart-app-launch-2.0
+  conforms: true
+  evidence: /.well-known/smart-configuration advertises launch-ehr, launch-standalone, permission-v1, permission-v2,
+    sso-openid-connect, authorize-post; docs reference SMART App Launch STU2.
+- id: fhir-bulk-data-1.0.1
+  conforms: true
+  evidence: 'CapabilityStatement rest.operation includes $export; Bulk Patient Access Specification documents Group/{id}/$export
+    with Prefer: respond-async, _type, _since, _outputFormat, poll location and NDJSON output. References HL7 Bulk
+    Data IG STU1.0.1.'
+- id: oauth2
+  conforms: true
+  evidence: 'SMART configuration: authorization_code, client_credentials and refresh_token grants against oauthserver.eclinicalworks.com.'
+- id: oidc
+  conforms: true
+  evidence: sso-openid-connect capability; openid/profile/fhirUser scopes; jwks_uri published.
+- id: rfc7636-pkce
+  conforms: true
+  evidence: 'code_challenge_methods_supported: [S256]; docs reference RFC 7636.'
+- id: rfc7662-token-introspection
+  conforms: true
+  evidence: Token Introspection page documents the POST form request and the active/scope/client_id/exp response
+    per SMART App Launch STU2 token introspection.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: https://www.eclinicalworks.com/.well-known/oauth-authorization-server returns RFC 8414 metadata (for
+    the MCP surface). The FHIR authorization server itself does NOT serve RFC 8414 metadata (404) — its endpoints
+    come from the SMART configuration instead.
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: https://www.eclinicalworks.com/.well-known/oauth-protected-resource returns RFC 9728 metadata naming
+    an MCP resource.
+- id: cds-hooks
+  conforms: true
+  evidence: CDS Hooks documented as a supported provider-app integration pattern at /ecwopendev/documentation/getting-started/provider/cds-hooks.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: No /.well-known/security.txt on any eClinicalWorks or healow host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are returned as FHIR OperationOutcome and OAuth 2.0 error JSON, plus a proprietary numeric writeback
+    error-code set. No application/problem+json.
+- id: openapi
+  conforms: false
+  evidence: No OpenAPI/Swagger document published on any host; probes of /openapi.json, /openapi.yaml, /swagger.json
+    against the docs host, both FHIR facade hosts and the marketing host all missed.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document. A real callback/webhook surface exists on the healow RPM Vendor API — captured
+    in asyncapi/eclinicalworks-healow-rpm-webhooks.yml.
+- id: a2a
+  conforms: false
+  evidence: No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host.
+compliance_program:
+  published_at: https://www.eclinicalworks.com/products-services/the-eclinicalworks-cloud/
+  certifications:
+  - HITRUST
+  - ISO 27001
+  - PCI DSS
+  - DEA (EPCS)
+  note: Named on the eClinicalWorks Cloud page under "eClinicalWorks Security Certifications". The same page separately
+    credits the underlying Microsoft Azure platform with SOC 1 Type II, SOC 2 Type II, SOC 3 and HITRUST CSF — those
+    are Azure certifications, not eClinicalWorks certifications, and are recorded here as infrastructure context
+    only.
+  infrastructure_certifications:
+    provider: Microsoft Azure
+    certifications:
+    - SOC 1 Type II
+    - SOC 2 Type II
+    - SOC 3
+    - HITRUST CSF
+  regulatory:
+  - HIPAA
+  - ONC Health IT Certification Program (45 CFR 170.315)
+  - 21st Century Cures Act information blocking / Communications CoC
+  real_world_testing: https://www.eclinicalworks.com/resources/certified-ehr-technology/

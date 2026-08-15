@@ -1,0 +1,1077 @@
+{
+  "resourceType": "CapabilityStatement",
+  "id": "eCWFhirFacade",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">eClinicalWorks FHIR Facade Service</div>"
+  },
+  "url": "http://fhir4.healow.com/fhir/r4/EEIJDD/metadata",
+  "version": "2.0",
+  "name": "eCW FHIR Facade",
+  "status": "active",
+  "date": "2026-08-14T17:09:17.826-04:00",
+  "publisher": "eClinicalWorks",
+  "kind": "instance",
+  "instantiates": [ "http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data", "http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server" ],
+  "software": {
+    "name": "eCW FHIR Facade",
+    "version": "1.6"
+  },
+  "implementation": {
+    "description": "eClinicalWorks FHIR Facade Service",
+    "url": "https://fhir4.healow.com/fhir/r4"
+  },
+  "fhirVersion": "4.0.1",
+  "format": [ "xml", "json" ],
+  "rest": [ {
+    "mode": "server",
+    "security": {
+      "extension": [ {
+        "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris",
+        "extension": [ {
+          "url": "authorize",
+          "valueUri": "https://oauthserver.eclinicalworks.com/oauth/oauth2/authorize"
+        }, {
+          "url": "token",
+          "valueUri": "https://oauthserver.eclinicalworks.com/oauth/oauth2/token"
+        } ]
+      } ],
+      "cors": true,
+      "service": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/restful-security-service",
+          "code": "SMART-on-FHIR"
+        } ],
+        "text": "OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org)"
+      } ]
+    },
+    "resource": [ {
+      "type": "AllergyIntolerance",
+      "profile": "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "AllergyIntolerance:encounter", "AllergyIntolerance:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "clinical-status",
+        "type": "token",
+        "documentation": "active | inactive | resolved"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter when the allergy or intolerance was asserted"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who the sensitivity is for"
+      } ]
+    }, {
+      "type": "Basic",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Basic",
+      "supportedProfile": [ "http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Basic:patient" ],
+      "searchRevInclude": [ "*", "Basic:patient" ],
+      "searchParam": [ {
+        "name": "code",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "The resource identity"
+      } ]
+    }, {
+      "type": "Binary",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Binary",
+      "interaction": [ {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ]
+    }, {
+      "type": "CarePlan",
+      "profile": "http://hl7.org/fhir/StructureDefinition/CarePlan",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "CarePlan:encounter", "CarePlan:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "category",
+        "type": "token",
+        "documentation": "Type of plan"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter care plan was part of"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who the care plan is for"
+      } ]
+    }, {
+      "type": "CareTeam",
+      "profile": "http://hl7.org/fhir/StructureDefinition/CareTeam",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "CareTeam:participant" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The ID of the resource"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who care team is for"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "proposed | active | suspended | inactive | entered-in-error"
+      } ]
+    }, {
+      "type": "ChargeItem",
+      "profile": "http://hl7.org/fhir/StructureDefinition/ChargeItem",
+      "supportedProfile": [ "http://hl7.org/fhir/StructureDefinition/ChargeItem" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "ChargeItem:context", "ChargeItem:subject" ],
+      "searchRevInclude": [ "*", "ChargeItem:context", "ChargeItem:subject" ],
+      "searchParam": [ {
+        "name": "context",
+        "type": "reference",
+        "documentation": "Who the sensitivity is for"
+      }, {
+        "name": "subject",
+        "type": "reference",
+        "documentation": "Who the sensitivity is for"
+      } ]
+    }, {
+      "type": "Claim",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Claim",
+      "interaction": [ {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ]
+    }, {
+      "type": "Condition",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Condition",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Condition:encounter", "Condition:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "category",
+        "type": "token",
+        "documentation": "A category assigned to the condition"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter Condition was part of"
+      }, {
+        "name": "onset-date",
+        "type": "date",
+        "documentation": "The patient's date of birth"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Indicates the patient or group who the condition record is associated with"
+      } ]
+    }, {
+      "type": "Coverage",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Coverage",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Coverage:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Plan beneficiary"
+      } ]
+    }, {
+      "type": "Device",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Device",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Device:encounter", "Device:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter Device was part of"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Patient information, If the device is affixed to a person"
+      }, {
+        "name": "type",
+        "type": "token",
+        "documentation": "Technical endpoints providing access to services operated for the organization"
+      } ]
+    }, {
+      "type": "DiagnosticReport",
+      "profile": "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "DiagnosticReport:performer" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "category",
+        "type": "token",
+        "documentation": "This is used for searching, sorting and display purposes."
+      }, {
+        "name": "code",
+        "type": "token",
+        "documentation": "A code or name that describes this diagnostic report"
+      }, {
+        "name": "date",
+        "type": "date",
+        "documentation": "The time or time-period the observed values are related to"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter DiagnosticReport was part of"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "The subject of the report if a patient"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "The status of the diagnostic report"
+      } ]
+    }, {
+      "type": "DocumentReference",
+      "profile": "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "DocumentReference:custodian", "DocumentReference:author" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "category",
+        "type": "token",
+        "documentation": "Categorization of document"
+      }, {
+        "name": "contenttype",
+        "type": "token",
+        "documentation": "Mime type of the content, with charset etc."
+      }, {
+        "name": "date",
+        "type": "date",
+        "documentation": "When this document reference was created"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter DocumentReference was part of"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who/what is the subject of the document"
+      }, {
+        "name": "type",
+        "type": "token",
+        "documentation": "Kind of document (LOINC if possible)"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Encounter",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Encounter:location", "Encounter:patient", "Encounter:practitioner" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "date",
+        "type": "date",
+        "documentation": "A date within the period Encounter lasted"
+      }, {
+        "name": "location",
+        "type": "reference",
+        "documentation": "Location the encounter takes place"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "The patient or group present at the encounter"
+      }, {
+        "name": "practitioner",
+        "type": "reference",
+        "documentation": "Persons involved in the encounter other than the patient"
+      } ],
+      "operation": [ {
+        "name": "everything",
+        "definition": "https://fhir4.healow.com/fhir/r4/EEIJDD/OperationDefinition/EncounterPatient-i-everything"
+      } ]
+    }, {
+      "type": "FamilyMemberHistory",
+      "profile": "http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory",
+      "supportedProfile": [ "http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "FamilyMemberHistory:patient" ],
+      "searchRevInclude": [ "*", "FamilyMemberHistory:patient" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who the sensitivity is for"
+      } ]
+    }, {
+      "type": "Goal",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Goal",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Goal:encounter", "Goal:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter Goal was part of"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who this goal is intended for"
+      } ]
+    }, {
+      "type": "Group",
+      "interaction": [ {
+        "code": "search-type"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ],
+      "searchParam": [ {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      } ],
+      "operation": [ {
+        "name": "export",
+        "definition": "https://fhir4.healow.com/fhir/r4/EEIJDD/OperationDefinition/Global-i-export"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+          "valueCode": "SHOULD"
+        } ],
+        "name": "export",
+        "definition": "http://hl7.org/fhir/uv/bulkdata/OperationDefinition/Global-i-export",
+        "documentation": "FHIR Operation to obtain a detailed set of FHIR resources of diverse resource types pertaining to all patients in specified [Group](https://www.hl7.org/fhir/group.html).\\n\\nIf a FHIR server supports Group-level data export, it SHOULD support reading and searching for `Group` resource. This enables clients to discover available groups based on stable characteristics such as `Group.identifier`.\\n\\nThe [Patient Compartment](https://www.hl7.org/fhir/compartmentdefinition-patient.html) SHOULD be used as a point of reference for recommended resources to be returned and, where applicable, Patient resources SHOULD be returned. Other resources outside of the patient compartment that are helpful in interpreting the patient data (such as Organization and Practitioner) MAY also be returned."
+      } ]
+    }, {
+      "type": "Immunization",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Immunization",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Immunization:encounter", "Immunization:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "date",
+        "type": "date",
+        "documentation": "Vaccination (non)-Administration Date"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter immunization was part of"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "The patient for the vaccination record"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "Immunization event status"
+      } ]
+    }, {
+      "type": "Location",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Location",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "Location:organization" ],
+      "searchRevInclude": [ "Location:organization" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The ID of the resource"
+      }, {
+        "name": "address",
+        "type": "string",
+        "documentation": "A (part of the) address of the location"
+      }, {
+        "name": "name",
+        "type": "string",
+        "documentation": "A portion of the location's name or alias"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      } ]
+    }, {
+      "type": "Media",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Media",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      } ]
+    }, {
+      "type": "Medication",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Medication",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": "http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+      "supportedProfile": [ "http://hl7.org/fhir/R4/medicationadministration" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "MedicationAdministration:context", "MedicationAdministration:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The ID of the resource"
+      }, {
+        "name": "context",
+        "type": "reference",
+        "documentation": "The identity of a encounter to list administrations  for"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "The identity of a patient to list administrations  for"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "MedicationAdministration event status (for example one of active/paused/completed/nullified)"
+      } ]
+    }, {
+      "type": "MedicationDispense",
+      "profile": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "MedicationDispense:medication" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who the sensitivity is for"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "MedicationRequest:medication" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "authoredon",
+        "type": "date",
+        "documentation": "Return prescriptions written on this date"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Return prescriptions with this encounter or episode of care identifier"
+      }, {
+        "name": "intended-dispenser",
+        "type": "reference",
+        "documentation": "Returns  specific patient"
+      }, {
+        "name": "intent",
+        "type": "token",
+        "documentation": "Returns prescriptions with different intents"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Returns prescriptions for a specific patient"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "Status of the prescription"
+      } ]
+    }, {
+      "type": "Observation",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Observation",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age", "http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile", "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus", "http://hl7.org/fhir/StructureDefinition/bp", "http://hl7.org/fhir/StructureDefinition/bmi", "http://hl7.org/fhir/StructureDefinition/bodyweight", "http://hl7.org/fhir/StructureDefinition/bodyheight", "http://hl7.org/fhir/StructureDefinition/heartrate", "http://hl7.org/fhir/StructureDefinition/resprate", "http://hl7.org/fhir/StructureDefinition/bodytemp", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancystatus", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancyintent", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "Observation:performer", "Observation:specimen" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "_since",
+        "type": "date",
+        "documentation": "Obtained _since If the obtained element is a period, a date that falls in the period"
+      }, {
+        "name": "category",
+        "type": "token",
+        "documentation": "The classification of the type of observation"
+      }, {
+        "name": "code",
+        "type": "token",
+        "documentation": "The code of the observation type"
+      }, {
+        "name": "date",
+        "type": "date",
+        "documentation": "Obtained date/time. If the obtained element is a period, a date that falls in the period"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter observation was part of"
+      }, {
+        "name": "identifier",
+        "type": "token",
+        "documentation": "The unique id for a particular observation"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "The subject that the observation is about (if patient)"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "The status of the observation"
+      } ]
+    }, {
+      "type": "OperationDefinition",
+      "profile": "http://hl7.org/fhir/StructureDefinition/OperationDefinition",
+      "interaction": [ {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ]
+    }, {
+      "type": "Organization",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Organization",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Organization:organization-extension.reference" ],
+      "searchRevInclude": [ "*", "Organization:organization-extension.reference" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "address",
+        "type": "string",
+        "documentation": "Visiting or addresses for the contact"
+      }, {
+        "name": "address-postalcode",
+        "type": "string",
+        "documentation": "A postal code specified in an address"
+      }, {
+        "name": "name",
+        "type": "string",
+        "documentation": "An Organization  name"
+      }, {
+        "name": "organization-extension.reference",
+        "type": "reference",
+        "documentation": "The organization-extension.reference"
+      }, {
+        "name": "organization-extension.url",
+        "type": "string",
+        "documentation": "organization-extension.url"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "type",
+        "type": "token",
+        "documentation": "An Organization  type"
+      } ]
+    }, {
+      "type": "Patient",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Patient",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "birthdate",
+        "type": "date",
+        "documentation": "The patient's date of birth"
+      }, {
+        "name": "family",
+        "type": "string",
+        "documentation": "A portion of the family name of the patient"
+      }, {
+        "name": "gender",
+        "type": "token",
+        "documentation": "Gender of the patient"
+      }, {
+        "name": "given",
+        "type": "string",
+        "documentation": "The patient's given name"
+      }, {
+        "name": "identifier",
+        "type": "token",
+        "documentation": "A patient identifier"
+      }, {
+        "name": "name",
+        "type": "string",
+        "documentation": "A portion of either family or given name of the patient"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "phone",
+        "type": "token",
+        "documentation": "The patient's phone number"
+      } ],
+      "operation": [ {
+        "name": "everything",
+        "definition": "https://fhir4.healow.com/fhir/r4/EEIJDD/OperationDefinition/EncounterPatient-i-everything"
+      } ]
+    }, {
+      "type": "Practitioner",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "identifier",
+        "type": "token",
+        "documentation": "A Practitioner identifier"
+      }, {
+        "name": "name",
+        "type": "string",
+        "documentation": "A portion of either family or given name of the Practitioner"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      } ]
+    }, {
+      "type": "PractitionerRole",
+      "profile": "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "PractitionerRole:practitioner", "PractitionerRole:organization" ],
+      "searchRevInclude": [ "PractitionerRole:organization", "PractitionerRole:practitioner" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "location",
+        "type": "reference",
+        "documentation": "One of the locations at which this practitioner provides care"
+      }, {
+        "name": "name",
+        "type": "string",
+        "documentation": "A portion of either family or given name of the Practitioner"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "practitioner",
+        "type": "reference",
+        "documentation": "Practitioner that is able to provide the defined services for the organization"
+      }, {
+        "name": "role",
+        "type": "token",
+        "documentation": "The practitioner can perform this role at for the organization"
+      }, {
+        "name": "specialty",
+        "type": "token",
+        "documentation": "The practitioner has this specialty at an organization"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Procedure",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Procedure:encounter", "Procedure:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "code",
+        "type": "token",
+        "documentation": "A code to identify a  procedure"
+      }, {
+        "name": "date",
+        "type": "date",
+        "documentation": "When the procedure was performed"
+      }, {
+        "name": "encounter",
+        "type": "reference",
+        "documentation": "Encounter Procedure was part of"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Search by subject - a patient"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "preparation | in-progress | not-done | suspended | aborted | completed | entered-in-error | unknown"
+      } ]
+    }, {
+      "type": "Provenance",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Provenance",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      } ]
+    }, {
+      "type": "Questionnaire",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Questionnaire",
+      "supportedProfile": [ "https://hl7.org/fhir/R4/questionnaire.html" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "*" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "code",
+        "type": "token",
+        "documentation": "The resource identity"
+      } ]
+    }, {
+      "type": "QuestionnaireResponse",
+      "profile": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      }, {
+        "code": "create"
+      } ],
+      "searchInclude": [ "*", "QuestionnaireResponse:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "authored",
+        "type": "date",
+        "documentation": "Time period"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Who the sensitivity is for"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "draft | active | suspended | completed | entered-in-error | cancelled | unknown"
+      } ]
+    }, {
+      "type": "RelatedPerson",
+      "profile": "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": "http://hl7.org/fhir/StructureDefinition/ServiceRequest",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "ServiceRequest:patient" ],
+      "searchRevInclude": [ "*", "ServiceRequest:patient" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "authored",
+        "type": "date",
+        "documentation": "ServiceRequest date request signed"
+      }, {
+        "name": "category",
+        "type": "token",
+        "documentation": "A category assigned to the ServiceRequest"
+      }, {
+        "name": "code",
+        "type": "token",
+        "documentation": "What is being requested/ordered"
+      }, {
+        "name": "occurrence",
+        "type": "date",
+        "documentation": "When service should occur"
+      }, {
+        "name": "page",
+        "type": "string",
+        "documentation": "The pagination details"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Individual or Entity the service is ordered for"
+      }, {
+        "name": "status",
+        "type": "token",
+        "documentation": "The status of the observation"
+      } ]
+    }, {
+      "type": "Specimen",
+      "profile": "http://hl7.org/fhir/StructureDefinition/Specimen",
+      "supportedProfile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen" ],
+      "interaction": [ {
+        "code": "search-type"
+      }, {
+        "code": "read"
+      } ],
+      "searchInclude": [ "*", "Specimen:patient" ],
+      "searchRevInclude": [ "Provenance:target" ],
+      "searchParam": [ {
+        "name": "_id",
+        "type": "token",
+        "documentation": "The resource identity"
+      }, {
+        "name": "patient",
+        "type": "reference",
+        "documentation": "Returns prescriptions for a specific patient"
+      } ]
+    } ],
+    "operation": [ {
+      "extension": [ {
+        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+        "valueCode": "SHOULD"
+      } ],
+      "name": "export",
+      "definition": "http://hl7.org/fhir/uv/bulkdata/OperationDefinition/Global-i-export",
+      "documentation": "FHIR Operation to export data from a FHIR server, whether or not it is associated with a patient. This supports use cases like backing up a server, or exporting terminology data by restricting the resources returned using the `_type` parameter."
+    } ]
+  } ]
+}

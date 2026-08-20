@@ -68,6 +68,14 @@ apis:
   - Scheduling
   - Bulk Data
   - Provider
+  - BackendServices
+  tags_raw:
+  - FHIR
+  - EHR
+  - Clinical Data
+  - Scheduling
+  - Bulk Data
+  - Provider
   - Backend Services
   properties:
   - type: DeveloperPortal
@@ -141,6 +149,13 @@ apis:
   humanURL: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
   baseURL: https://connect4.healow.com/apps/api/v1/fhir/tracker
   tags:
+  - FHIR
+  - Remote Patient Monitoring
+  - Devices
+  - Webhook
+  - Observations
+  - healow
+  tags_raw:
   - FHIR
   - Remote Patient Monitoring
   - Devices

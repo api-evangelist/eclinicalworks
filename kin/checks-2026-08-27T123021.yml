@@ -1,0 +1,112 @@
+---
+kin_checks:
+  slug: eclinicalworks
+  schema_version: 0.15.1
+  scored_at: '2026-08-27'
+  run_ts: 2026-08-27T123021
+  note: Actionable checks only (missed + partial). earned/na are every other check
+    in rubric/scoring-0.15.1.yml; counts below let you verify that.
+  counts:
+    total: 130
+    earned: 52
+    partial: 6
+    missed: 37
+    na: 35
+  checks:
+  - id: llms_txt_published
+    status: missed
+  - id: apis_json_self_hosted
+    status: missed
+  - id: servers_resolvable
+    status: missed
+  - id: examples_present
+    status: missed
+  - id: json_schema_present
+    status: missed
+  - id: json_schema_per_resource
+    status: missed
+  - id: json_ld_property_depth
+    status: missed
+  - id: lifecycle_documented
+    status: missed
+  - id: domain_standard_conformance
+    status: missed
+  - id: rules_present
+    status: missed
+  - id: rules_substantial
+    status: missed
+  - id: balanced_severities
+    status: missed
+  - id: vocabulary_published
+    status: missed
+  - id: overlay_published
+    status: missed
+  - id: change_log_present
+    status: missed
+  - id: rate_limits_rich
+    status: missed
+  - id: deprecation_policy
+    status: missed
+  - id: github_org_present
+    status: missed
+  - id: roadmap_present
+    status: missed
+  - id: examples_published
+    status: missed
+  - id: sdk_count_1
+    status: missed
+  - id: sdk_count_3
+    status: missed
+  - id: cli_present
+    status: missed
+  - id: postman_present
+    status: missed
+  - id: trust_center
+    status: missed
+  - id: reg_certification_signal
+    status: missed
+  - id: reg_mandate_verified
+    status: missed
+  - id: agentic_access
+    status: missed
+  - id: reversibility_documented
+    status: missed
+  - id: idempotency
+    status: missed
+  - id: openapi_examples
+    status: missed
+  - id: well_known_catalog
+    status: missed
+  - id: consent_identity
+    status: missed
+  - id: agent_card
+    status: missed
+  - id: dry_run_mode
+    status: missed
+  - id: dynamic_client_registration
+    status: missed
+  - id: agentic_commerce
+    status: missed
+  - id: agent_skill_present
+    status: partial
+    earned: 0.75
+  - id: mcp_server
+    status: partial
+    earned: 4.8
+    detail: 'grade: documented'
+  - id: auth_clarity
+    status: partial
+    earned: 9.0
+    detail: 'grade: served'
+  - id: error_semantics
+    status: partial
+    earned: 4.0
+    detail: 'grade: documented'
+  - id: rate_limit_signal
+    status: partial
+    earned: 3.5
+    detail: 'grade: documented'
+  - id: agent_skills
+    status: partial
+    earned: 1.25
+    detail: 'authorship: derived'

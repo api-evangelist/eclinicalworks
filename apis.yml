@@ -11,6 +11,17 @@ description: 'eClinicalWorks is a cloud-based EHR and practice-management platfo
   and Scheduling APIs, and a bidirectional healow RPM Vendor (Tracker) API for remote-monitoring device
   orders and observations. APIs are certified to the ONC 45 CFR 170.315(g)(10) Standardized API for Patient
   and Population Services criterion.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown

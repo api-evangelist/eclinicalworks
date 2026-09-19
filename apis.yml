@@ -78,7 +78,7 @@ apis:
   - Clinical Data
   - Scheduling
   - Bulk Data
-  - Provider
+  - Providers
   - BackendServices
   tags_raw:
   - FHIR
@@ -123,6 +123,13 @@ apis:
   humanURL: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
   baseURL: https://fhir4.healow.com/fhir/r4/{practice_code}
   tags:
+  - FHIR
+  - Patients
+  - Scheduling
+  - Clinical
+  - Remote Patient Monitoring
+  - healow
+  tags_raw:
   - FHIR
   - Patient
   - Scheduling

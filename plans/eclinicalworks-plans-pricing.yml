@@ -98,3 +98,39 @@ plans:
     may also offer chargeable value-added services to application developers." Customers enable FHIR APIs through
     the On-Demand Activation feature in the eClinicalWorks application. Reports of a per-practice enablement fee
     are third-party and unverified against eClinicalWorks published material, so no figure is asserted here.'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: EHR Only
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods: []
+  - name: EHR with Practice Management
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods: []
+  - name: RCM as a Service
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods: []
+  - name: FHIR API Access (Developer)
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods: []

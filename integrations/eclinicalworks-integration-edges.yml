@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-13'
 method: searched
 source:
 - https://www.eclinicalworks.com/about-us/partners/
@@ -110,9 +110,9 @@ edges:
   category: back office
 - partner_name: Vyne Dental
   app: Vyne Dental
-  partner: null
-  partner_match: null
-  partner_candidate: simplifeye
+  partner: vynedental
+  partner_match: domain
+  partner_candidate: null
   type: marketplace
   marketplace: own
   channel: partner-built
@@ -120,9 +120,6 @@ edges:
   direction: partner-built
   evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
   category: back office
-  partner_note: vynedental.com/ecw is Vyne Dental's NEA FastAttach (claim attachments); the `simplifeye` repo holds
-    vynedental.com only because Simplifeye is a Vyne product page (vynedental.com/simplifeye). Different product,
-    and the `vyne` repo is PayVyne (payvyne.com). No Vyne Dental repo.
 - partner_name: Optum
   app: Optum
   partner: optum

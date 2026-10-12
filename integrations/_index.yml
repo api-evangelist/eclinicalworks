@@ -95,6 +95,7 @@
   arazzo: null
 - slug: eclinicalworks-vyne-dental
   label: Vyne Dental
+  partner: vynedental
   partner_name: Vyne Dental
   category: back office
   type: marketplace

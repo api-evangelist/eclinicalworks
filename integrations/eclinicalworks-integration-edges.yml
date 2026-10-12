@@ -1,16 +1,795 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
-- https://zapier.com/apps/eclinicalworks/integrations
-- https://n8n.io/integrations/eclinicalworks/
-- https://composio.dev/toolkits/eclinicalworks
-- https://monid.ai/tools/eclinicalworks
+- https://www.eclinicalworks.com/about-us/partners/
 checked:
 - https://composio.dev/toolkits/eclinicalworks
 - https://monid.ai/tools/eclinicalworks
 - https://n8n.io/integrations/eclinicalworks/
+- https://rce.sequoiaproject.org/wp-json/wp/v2/qhins
+- https://www.eclinicalworks.com/about-us/partners/
 - https://zapier.com/apps/eclinicalworks/integrations
 summary: null
-marketplace_apps: []
-edges: []
+marketplace_apps:
+- marketplace: own
+  channel: partner-built
+  app: eclinicalworks
+  url: https://www.eclinicalworks.com/about-us/partners/
+  app_count: 63
+  adapter: _store_eclinicalworks
+  listed: 63
+edges:
+- partner_name: TEFCA (RCE, The Sequoia Project)
+  partner: null
+  type: contract
+  channel: network-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://rce.sequoiaproject.org/wp-json/wp/v2/qhins
+  contract_reference:
+    network: TEFCA (RCE, The Sequoia Project)
+    spec_file: null
+    role: QHIN
+    listed_name: eClinicalWorks
+    listing_page: https://rce.sequoiaproject.org/qhins/eclinicalworks/
+    network_id: 2530
+    matched_domain: eclinicalworks.com
+    detected_by: sweep-health-networks.py
+    detected: '2026-10-12'
+- partner_name: IMO Health
+  app: IMO Health
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: FinThrive
+  app: FinThrive
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: BF
+  app: BF
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: ICSystem
+  app: ICSystem
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: TSI
+  app: TSI
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: Jopari
+  app: Jopari
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: Vyne Dental
+  app: Vyne Dental
+  partner: null
+  partner_match: null
+  partner_candidate: simplifeye
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
+  category: back office
+- partner_name: Optum
+  app: Optum
+  partner: optum
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/clearinghouses/
+  category: clearinghouses
+- partner_name: Trizetto
+  app: Trizetto
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/clearinghouses/
+  category: clearinghouses
+- partner_name: Waystar
+  app: Waystar
+  partner: waystar
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/clearinghouses/
+  category: clearinghouses
+- partner_name: FairWarning
+  app: FairWarning
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/compliancy-security-risk/
+  category: compliancy security risk
+- partner_name: SPHER
+  app: SPHER
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/compliancy-security-risk/
+  category: compliancy security risk
+- partner_name: CompliancyGroup
+  app: CompliancyGroup
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/compliancy-security-risk/
+  category: compliancy security risk
+- partner_name: ecfirst
+  app: ecfirst
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/compliancy-security-risk/
+  category: compliancy security risk
+- partner_name: GSG COMPLIANCE
+  app: GSG COMPLIANCE
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/compliancy-security-risk/
+  category: compliancy security risk
+- partner_name: healow Health and Online Wellness Genie
+  app: healow Health and Online Wellness Genie
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/contact-center-solutions/
+  category: contact center solutions
+- partner_name: Dell
+  app: Dell
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: dialogic
+  app: dialogic
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: mainpine
+  app: mainpine
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: LEDABOUR
+  app: LEDABOUR
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: vault
+  app: vault
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: Array
+  app: Array
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: '&#8211; Order Online'
+  app: '&#8211; Order Online'
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: ChartCapture
+  app: ChartCapture
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: epson
+  app: epson
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: Ricoh
+  app: Ricoh
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: Kodak Alaris 2
+  app: Kodak Alaris 2
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: acuant.com
+  app: acuant.com
+  partner: acuant
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: Scriptel
+  app: Scriptel
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: Topaz
+  app: Topaz
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: wbs
+  app: wbs
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/hardware-services/
+  category: hardware services
+- partner_name: Mortara
+  app: Mortara
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.eclinicalworks.com/about-us/partners/medical-devices/
+  category: medical devices
+- partner_name: midmark
+  app: midmark
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://www.eclinicalworks.com/about-us/partners/medical-devices/
+  category: medical devices
+- partner_name: Morgan Scalable on White crop
+  app: Morgan Scalable on White crop
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/medical-devices/
+  category: medical devices
+- partner_name: Relaymed
+  app: Relaymed
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/medical-devices/
+  category: medical devices
+- partner_name: welchallyn medical devices image
+  app: welchallyn medical devices image
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/medical-devices/
+  category: medical devices
+- partner_name: MD Revolution + eClinicalWorks Partnership Page.
+  app: MD Revolution + eClinicalWorks Partnership Page.
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-care-management-services/
+  category: care management services
+- partner_name: dynamed
+  app: dynamed
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-clinical-decision-support-cds/
+  category: clinical decision support cds
+- partner_name: Apple Health
+  app: Apple Health
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Dexcom
+  app: Dexcom
+  partner: dexcom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Fitbit
+  app: Fitbit
+  partner: fitbit
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Google Fit
+  app: Google Fit
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: iHealth
+  app: iHealth
+  partner: null
+  partner_match: null
+  partner_candidate: andon-health
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Omron Heatlhcare
+  app: Omron Heatlhcare
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Smart Meter
+  app: Smart Meter
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Qardio
+  app: Qardio
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Welch Allyn
+  app: Welch Allyn
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: Withings
+  app: Withings
+  partner: withings
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
+  category: health fitness trackers
+- partner_name: BH
+  app: BH
+  partner: null
+  partner_match: null
+  partner_candidate: bamboo-health
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-medications-prescriptions/
+  category: medications prescriptions
+- partner_name: LogiCoy
+  app: LogiCoy
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/partners-medications-prescriptions/
+  category: medications prescriptions
+- partner_name: ebix adam
+  app: ebix adam
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/patient-education/
+  category: patient education
+- partner_name: healthwise
+  app: healthwise
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/patient-education/
+  category: patient education
+- partner_name: staywell
+  app: staywell
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/patient-education/
+  category: patient education
+- partner_name: santovia
+  app: santovia
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/patient-education/
+  category: patient education
+- partner_name: healow
+  app: healow
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/payment-solutions/
+  category: payment solutions
+- partner_name: actx
+  app: actx
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/precision-medicine/
+  category: precision medicine
+- partner_name: PointClickCare
+  app: PointClickCare
+  partner: pointclickcare
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/specialty-software-integration/
+  category: specialty software integration
+- partner_name: ID
+  app: ID
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/specialty-software-integration/
+  category: specialty software integration
+- partner_name: chadis
+  app: chadis
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/specialty-software-integration/
+  category: specialty software integration
+- partner_name: NOAH
+  app: NOAH
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/specialty-software-integration/
+  category: specialty software integration
+- partner_name: Solventum
+  app: Solventum
+  partner: solventum
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/voice-recognition/
+  category: voice recognition
+- partner_name: ai medical scribe
+  app: ai medical scribe
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/voice-recognition/
+  category: voice recognition
+- partner_name: Stitch PEO
+  app: Stitch PEO
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/workforce-and-hr-management/
+  category: workforce and hr management
 templates: []

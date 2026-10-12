@@ -120,6 +120,9 @@ edges:
   direction: partner-built
   evidence: https://www.eclinicalworks.com/about-us/partners/back-office/
   category: back office
+  partner_note: vynedental.com/ecw is Vyne Dental's NEA FastAttach (claim attachments); the `simplifeye` repo holds
+    vynedental.com only because Simplifeye is a Vyne product page (vynedental.com/simplifeye). Different product,
+    and the `vyne` repo is PayVyne (payvyne.com). No Vyne Dental repo.
 - partner_name: Optum
   app: Optum
   partner: optum
@@ -542,9 +545,9 @@ edges:
   category: health fitness trackers
 - partner_name: iHealth
   app: iHealth
-  partner: null
-  partner_match: null
-  partner_candidate: andon-health
+  partner: andon-health
+  partner_match: domain+verified
+  partner_candidate: null
   type: marketplace
   marketplace: own
   channel: partner-built
@@ -552,6 +555,8 @@ edges:
   direction: partner-built
   evidence: https://www.eclinicalworks.com/about-us/partners/partners-health-fitness-trackers/
   category: health fitness trackers
+  partner_note: 'ihealthlabs.com.cn: ''iHealth ... 是九安医疗(Andon Health)旗下自主创新移动互联网品牌'' -- iHealth is Andon Health''s
+    brand'
 - partner_name: Omron Heatlhcare
   app: Omron Heatlhcare
   partner: null
@@ -614,9 +619,9 @@ edges:
   category: health fitness trackers
 - partner_name: BH
   app: BH
-  partner: null
-  partner_match: null
-  partner_candidate: bamboo-health
+  partner: bamboo-health
+  partner_match: domain+verified
+  partner_candidate: null
   type: marketplace
   marketplace: own
   channel: partner-built
@@ -624,6 +629,7 @@ edges:
   direction: partner-built
   evidence: https://www.eclinicalworks.com/about-us/partners/partners-medications-prescriptions/
   category: medications prescriptions
+  partner_note: eCW listing text names Bamboo Health (NarxCare, PMP Gateway) and links go.bamboohealth.com/ehrrequest
 - partner_name: LogiCoy
   app: LogiCoy
   partner: null

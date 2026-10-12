@@ -1,5 +1,5 @@
 ---
-name: eClinicalWorks SMART standalone patient read
+name: eclinicalworks-smart-standalone-patient-read
 description: Authorize a patient-facing app with SMART on FHIR Standalone Launch against an eClinicalWorks or healow tenant and read the patient's clinical record.
 api: conformance/eclinicalworks-fhir-capabilitystatement.json
 operations:

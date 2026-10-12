@@ -1,5 +1,5 @@
 ---
-name: healow RPM vendor integration
+name: eclinicalworks-healow-rpm-vendor-integration
 description: Integrate a remote-patient-monitoring device vendor with healow — receive signed device orders, acknowledge them, and push FHIR R4 observations back.
 api: asyncapi/eclinicalworks-healow-rpm-webhooks.yml
 operations:

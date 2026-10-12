@@ -1,5 +1,5 @@
 ---
-name: eClinicalWorks bulk Group $export
+name: eclinicalworks-bulk-group-export
 description: Run a SMART Backend Services population-health export against an eClinicalWorks tenant using Group/{id}/$export and consume the NDJSON output.
 api: conformance/eclinicalworks-fhir-capabilitystatement.json
 operations:

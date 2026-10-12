@@ -9,8 +9,8 @@ base_url:
   hosts:
     provider_facing: https://fhir4.eclinicalworks.com
     patient_facing_healow: https://fhir4.healow.com
-  note: Every base URL is tenant-scoped by a six-character practice code. There is no single global base URL; resolve the
-    tenant base from the published endpoint directory before calling.
+  note: Every base URL is tenant-scoped by a six-character practice code. There is no single global base URL; resolve
+    the tenant base from the published endpoint directory before calling.
 authentication:
   style: OAuth 2.0 bearer token (SMART on FHIR)
   header: 'Authorization: Bearer <access_token>'
@@ -73,15 +73,18 @@ idempotency:
   supported: false
   header: null
   note: 'No idempotency key is documented on any surface. The nearest published guarantee is narrow and operation-specific:
-    "Identical bulk operation requests received will be rejected if one is already in progress" (Bulk Patient Access Specification),
-    and writeback error 202 INVALID_PATIENT_ALREADY_EXIST instructs clients not to retry a patient create. Retries of create
-    writebacks are otherwise not deduplicated, so no Idempotency pointer is emitted for this provider.'
+    "Identical bulk operation requests received will be rejected if one is already in progress" (Bulk Patient Access
+    Specification), and writeback error 202 INVALID_PATIENT_ALREADY_EXIST instructs clients not to retry a patient
+    create. Retries of create writebacks are otherwise not deduplicated, so no Idempotency pointer is emitted for
+    this provider.'
+  coverage: none
 async_operations:
   pattern: FHIR Bulk Data kick-off / poll / download
   kickoff: 'GET {base}/Group/{group_id}/$export with Prefer: respond-async and Accept: application/fhir+json'
-  kickoff_response: '202 Accepted with content-location: {base}/$export-poll-location?job_id={id} and retry-after (example
-    120)'
-  poll: GET {base}/$export-poll-location?job_id={id} — 202 with x-progress while running, 200 with the manifest when complete
+  kickoff_response: '202 Accepted with content-location: {base}/$export-poll-location?job_id={id} and retry-after
+    (example 120)'
+  poll: GET {base}/$export-poll-location?job_id={id} — 202 with x-progress while running, 200 with the manifest
+    when complete
   cancel: DELETE {base}/$export-poll-location?job_id={id}
   output: 'NDJSON files listed in output[]; requiresAccessToken: true'
   params:
@@ -100,15 +103,15 @@ rate_limit_signalling:
   note: No rate-limit response headers and no Retry-After are documented. See rate-limits/eclinicalworks-rate-limits.yml.
 request_tracing:
   header: null
-  note: No request-id/correlation header is documented for the FHIR surface. The healow RPM Tracker surface does define an
-    identifier system https://healow.com/fhir/tracker/request-id carried inside the FHIR payload.
+  note: No request-id/correlation header is documented for the FHIR surface. The healow RPM Tracker surface does
+    define an identifier system https://healow.com/fhir/tracker/request-id carried inside the FHIR payload.
 versioning:
   artifact: lifecycle/eclinicalworks-lifecycle.yml
   style: FHIR release + tenant EHR build; no API version header or path segment beyond /fhir/r4
 multi_tenancy:
-  note: 'The single most important operational convention: everything is per practice. Rate limits, OAuth authorization, scope
-    enablement, available resource types and even USCDI version support are all resolved per practice code. An integration
-    serving N practices is N independent integrations sharing one client registration.'
+  note: 'The single most important operational convention: everything is per practice. Rate limits, OAuth authorization,
+    scope enablement, available resource types and even USCDI version support are all resolved per practice code.
+    An integration serving N practices is N independent integrations sharing one client registration.'
 cors:
   enabled: true
   source: CapabilityStatement.rest.security.cors = true
@@ -119,3 +122,9 @@ cross_links:
   rate_limits: rate-limits/eclinicalworks-rate-limits.yml
   lifecycle: lifecycle/eclinicalworks-lifecycle.yml
   conformance: conformance/eclinicalworks-conformance.yml
+reversibility:
+  coverage: none
+  note: Write surfaces are FHIR create on QuestionnaireResponse and the documented writeback catalogue; no cancel,
+    void, delete or undo operation and no reversal window is documented for them (re-checked 2026-10-12). Not asserting
+    any window.
+  surfaces: []

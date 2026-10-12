@@ -1,16 +1,15 @@
 aid: eclinicalworks
 name: eClinicalWorks
-description: 'eClinicalWorks is a cloud-based EHR and practice-management platform serving more than 180,000
-  physicians and 850,000 medical professionals. Its API surface is standards-based rather than proprietary:
-  FHIR R4 served by the eCW FHIR Facade behind SMART on FHIR and OAuth 2.0, split across a provider-facing
-  facade (fhir4.eclinicalworks.com) and a patient-facing healow facade (fhir4.healow.com), each tenant-scoped
-  by a six-character practice code. eClinicalWorks publishes no OpenAPI; the machine-readable contract
-  is the FHIR CapabilityStatement at each tenant''s /metadata plus the SMART configuration at /.well-known/smart-configuration,
-  which advertises 486 scopes. Capabilities include SMART EHR Launch and Standalone Launch, Backend Services
-  with Group/$export bulk data, CDS Hooks, a documented writeback catalogue, patient-facing healow Clinical
-  and Scheduling APIs, and a bidirectional healow RPM Vendor (Tracker) API for remote-monitoring device
-  orders and observations. APIs are certified to the ONC 45 CFR 170.315(g)(10) Standardized API for Patient
-  and Population Services criterion.'
+description: 'eClinicalWorks is a cloud-based EHR and practice-management platform serving more than 180,000 physicians
+  and 850,000 medical professionals. Its API surface is standards-based rather than proprietary: FHIR R4 served
+  by the eCW FHIR Facade behind SMART on FHIR and OAuth 2.0, split across a provider-facing facade (fhir4.eclinicalworks.com)
+  and a patient-facing healow facade (fhir4.healow.com), each tenant-scoped by a six-character practice code. eClinicalWorks
+  publishes no OpenAPI; the machine-readable contract is the FHIR CapabilityStatement at each tenant''s /metadata
+  plus the SMART configuration at /.well-known/smart-configuration, which advertises 486 scopes. Capabilities include
+  SMART EHR Launch and Standalone Launch, Backend Services with Group/$export bulk data, CDS Hooks, a documented
+  writeback catalogue, patient-facing healow Clinical and Scheduling APIs, and a bidirectional healow RPM Vendor
+  (Tracker) API for remote-monitoring device orders and observations. APIs are certified to the ONC 45 CFR 170.315(g)(10)
+  Standardized API for Patient and Population Services criterion.'
 deliveryModel:
   model: saas
   open_source: false
@@ -37,7 +36,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/eclinicalworks.png
 url: https://raw.githubusercontent.com/api-evangelist/eclinicalworks/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-08-14'
+modified: '2026-10-12'
 specificationVersion: '0.23'
 type: Index
 tags:
@@ -60,136 +59,14 @@ tags:
 - ONC Certified
 - CDS Hooks
 - healow
-apis:
-- aid: eclinicalworks:eclinicalworks-fhir-api
-  name: eClinicalWorks FHIR API
-  description: Provider-centric, backend and bulk FHIR R4 APIs for integrating with the eClinicalWorks
-    EHR. Supports SMART on FHIR EHR Launch, Standalone Launch, Backend Services (private_key_jwt, RS384)
-    and CDS Hooks. The live CapabilityStatement declares 36 resource types with read/search-type interactions,
-    create on QuestionnaireResponse, and the system-level $export operation for Group-scoped bulk data.
-    Base URLs are tenant-scoped by practice code; the ONC-required service base URL directory lists 17,229
-    activated endpoints.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://fhir.eclinicalworks.com/ecwopendev/
-  baseURL: https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}
-  tags:
-  - FHIR
-  - EHR
-  - Clinical Data
-  - Scheduling
-  - Bulk Data
-  - Providers
-  - BackendServices
-  tags_raw:
-  - FHIR
-  - EHR
-  - Clinical Data
-  - Scheduling
-  - Bulk Data
-  - Provider
-  - Backend Services
-  properties:
-  - type: DeveloperPortal
-    url: https://fhir.eclinicalworks.com/ecwopendev/
-  - type: Documentation
-    url: https://fhir.eclinicalworks.com/ecwopendev/documentation
-  - type: APIReference
-    url: https://fhir.eclinicalworks.com/ecwopendev/documentation
-  - type: GettingStarted
-    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
-  - type: Authentication
-    url: authentication/eclinicalworks-authentication.yml
-  - type: CapabilityStatement
-    url: conformance/eclinicalworks-fhir-capabilitystatement.json
-  - type: ServiceBaseURLs
-    url: https://fhir.eclinicalworks.com/ecwopendev/external/practiceList
-  - type: TermsOfService
-    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/terms-of-service
-  - type: Support
-    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/contact-us
-  - type: Login
-    url: https://fhir.eclinicalworks.com/ecwopendev/login-page
-  - type: Contact
-    url: mailto:fhirfighters@eclinicalworks.com
-- aid: eclinicalworks:healow-fhir-api
-  name: healow Patient-Centric FHIR API
-  description: Patient-facing FHIR R4 APIs accessible through the healow developer portal, letting third-party
-    applications connect to the healow network for clinical data and scheduling. Served by the same eCW
-    FHIR Facade build and the same authorization server as the provider-facing API, with 17,291 activated
-    practice endpoints published in the healow service base URL directory. Read scopes conform to US Core
-    3.1.1 (USCDI v1) and US Core 6.1.0 (USCDI v3). A published FHIR rate limit of 250 calls per minute
-    per practice-code base URL took effect 7 October 2025.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
-  baseURL: https://fhir4.healow.com/fhir/r4/{practice_code}
-  tags:
-  - FHIR
-  - Patients
-  - Scheduling
-  - Clinical
-  - Remote Patient Monitoring
-  - healow
-  tags_raw:
-  - FHIR
-  - Patient
-  - Scheduling
-  - Clinical
-  - Remote Patient Monitoring
-  - healow
-  properties:
-  - type: DeveloperPortal
-    url: https://connect4.healow.com/apps/jsp/dev/signIn.jsp
-  - type: Documentation
-    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
-  - type: APIReference
-    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
-  - type: Scheduling
-    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirSchedulingDocumentation.jsp
-  - type: CapabilityStatement
-    url: conformance/eclinicalworks-healow-fhir-capabilitystatement.json
-  - type: ServiceBaseURLs
-    url: https://connect4.healow.com/apps/api/v1/fhir/activated_clinical_endpoints
-  - type: SignUp
-    url: https://connect4.healow.com/apps/jsp/dev/signUp.jsp
-  - type: RateLimits
-    url: rate-limits/eclinicalworks-rate-limits.yml
-  - type: Contact
-    url: mailto:devsupport@healow.com
-- aid: eclinicalworks:healow-rpm-vendor-api
-  name: healow RPM Vendor (Tracker) API
-  description: Bidirectional FHIR R4 API for remote-patient-monitoring device vendors. healow sends signed
-    device orders to a vendor-hosted endpoint (POST create, DELETE cancel within a 60-minute window, authenticated
-    with X-Client-Id and an HMAC-SHA256 X-Server-Signature), and the vendor pushes observations and order-lifecycle
-    notifications back to healow using OAuth 2.0 client_credentials with private_key_jwt (RS384). Supported
-    reading types include blood pressure, blood glucose, weight/BMI, pulse oximetry, temperature, heart
-    rate, steps, distance, calories, sleep and continuous glucose monitoring.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
-  baseURL: https://connect4.healow.com/apps/api/v1/fhir/tracker
-  tags:
-  - FHIR
-  - Remote Patient Monitoring
-  - Devices
-  - Webhook
-  - Observations
-  - healow
-  tags_raw:
-  - FHIR
-  - Remote Patient Monitoring
-  - Devices
-  - Webhooks
-  - Observations
-  - healow
-  properties:
-  - type: Documentation
-    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
-  - type: Webhooks
-    url: asyncapi/eclinicalworks-healow-rpm-webhooks.yml
-  - type: Authentication
-    url: authentication/eclinicalworks-authentication.yml
-  - type: AgentSkill
-    url: skills/eclinicalworks-healow-rpm-vendor-integration.md
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
 common:
+- type: JSONLD
+  url: json-ld/eclinicalworks-context.jsonld
+- type: Hosts
+  url: hosts/eclinicalworks-hosts.yml
 - type: DomainSecurity
   url: security/eclinicalworks-domain-security.yml
 - type: Website
@@ -250,12 +127,8 @@ common:
   url: data-model/eclinicalworks-data-model.yml
 - type: Sandbox
   url: sandbox/eclinicalworks-sandbox.yml
-- type: Packages
-  url: packages/eclinicalworks-packages.yml
 - type: MCPServer
   url: mcp/eclinicalworks-mcp.yml
-- type: LLMsTxt
-  url: llms/eclinicalworks-llms.txt
 - type: VulnerabilityDisclosure
   url: security/eclinicalworks-vulnerability-disclosure.yml
 - type: Security
@@ -266,11 +139,136 @@ common:
   url: skills/_index.yml
 - type: CapabilityStatement
   url: conformance/eclinicalworks-fhir-capabilitystatement.json
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+apis:
+- aid: eclinicalworks:eclinicalworks-fhir-api
+  name: eClinicalWorks FHIR API
+  description: Provider-centric, backend and bulk FHIR R4 APIs for integrating with the eClinicalWorks EHR. Supports
+    SMART on FHIR EHR Launch, Standalone Launch, Backend Services (private_key_jwt, RS384) and CDS Hooks. The live
+    CapabilityStatement declares 36 resource types with read/search-type interactions, create on QuestionnaireResponse,
+    and the system-level $export operation for Group-scoped bulk data. Base URLs are tenant-scoped by practice code;
+    the ONC-required service base URL directory lists 17,229 activated endpoints.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://fhir.eclinicalworks.com/ecwopendev/
+  baseURL: https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}
+  tags:
+  - FHIR
+  - EHR
+  - Clinical Data
+  - Scheduling
+  - Bulk Data
+  - Providers
+  - BackendServices
+  tags_raw:
+  - FHIR
+  - EHR
+  - Clinical Data
+  - Scheduling
+  - Bulk Data
+  - Provider
+  - Backend Services
+  properties:
+  - type: DeveloperPortal
+    url: https://fhir.eclinicalworks.com/ecwopendev/
+  - type: Documentation
+    url: https://fhir.eclinicalworks.com/ecwopendev/documentation
+  - type: APIReference
+    url: https://fhir.eclinicalworks.com/ecwopendev/documentation
+  - type: GettingStarted
+    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started
+  - type: Authentication
+    url: authentication/eclinicalworks-authentication.yml
+  - type: CapabilityStatement
+    url: conformance/eclinicalworks-fhir-capabilitystatement.json
+  - type: ServiceBaseURLs
+    url: https://fhir.eclinicalworks.com/ecwopendev/external/practiceList
+  - type: TermsOfService
+    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/getting-started/terms-of-service
+  - type: Support
+    url: https://fhir.eclinicalworks.com/ecwopendev/documentation/contact-us
+  - type: Login
+    url: https://fhir.eclinicalworks.com/ecwopendev/login-page
+  - type: Contact
+    url: mailto:fhirfighters@eclinicalworks.com
+- aid: eclinicalworks:healow-fhir-api
+  name: healow Patient-Centric FHIR API
+  description: Patient-facing FHIR R4 APIs accessible through the healow developer portal, letting third-party applications
+    connect to the healow network for clinical data and scheduling. Served by the same eCW FHIR Facade build and
+    the same authorization server as the provider-facing API, with 17,291 activated practice endpoints published
+    in the healow service base URL directory. Read scopes conform to US Core 3.1.1 (USCDI v1) and US Core 6.1.0
+    (USCDI v3). A published FHIR rate limit of 250 calls per minute per practice-code base URL took effect 7 October
+    2025.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+  baseURL: https://fhir4.healow.com/fhir/r4/{practice_code}
+  tags:
+  - FHIR
+  - Patients
+  - Scheduling
+  - Clinical
+  - Remote Patient Monitoring
+  - healow
+  tags_raw:
+  - FHIR
+  - Patient
+  - Scheduling
+  - Clinical
+  - Remote Patient Monitoring
+  - healow
+  properties:
+  - type: DeveloperPortal
+    url: https://connect4.healow.com/apps/jsp/dev/signIn.jsp
+  - type: Documentation
+    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+  - type: APIReference
+    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirClinicalDocumentation.jsp
+  - type: Scheduling
+    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirSchedulingDocumentation.jsp
+  - type: CapabilityStatement
+    url: conformance/eclinicalworks-healow-fhir-capabilitystatement.json
+  - type: ServiceBaseURLs
+    url: https://connect4.healow.com/apps/api/v1/fhir/activated_clinical_endpoints
+  - type: SignUp
+    url: https://connect4.healow.com/apps/jsp/dev/signUp.jsp
+  - type: RateLimits
+    url: rate-limits/eclinicalworks-rate-limits.yml
+  - type: Contact
+    url: mailto:devsupport@healow.com
+- aid: eclinicalworks:healow-rpm-vendor-api
+  name: healow RPM Vendor (Tracker) API
+  description: Bidirectional FHIR R4 API for remote-patient-monitoring device vendors. healow sends signed device
+    orders to a vendor-hosted endpoint (POST create, DELETE cancel within a 60-minute window, authenticated with
+    X-Client-Id and an HMAC-SHA256 X-Server-Signature), and the vendor pushes observations and order-lifecycle notifications
+    back to healow using OAuth 2.0 client_credentials with private_key_jwt (RS384). Supported reading types include
+    blood pressure, blood glucose, weight/BMI, pulse oximetry, temperature, heart rate, steps, distance, calories,
+    sleep and continuous glucose monitoring.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
+  baseURL: https://connect4.healow.com/apps/api/v1/fhir/tracker
+  tags:
+  - FHIR
+  - Remote Patient Monitoring
+  - Devices
+  - Webhook
+  - Observations
+  - healow
+  tags_raw:
+  - FHIR
+  - Remote Patient Monitoring
+  - Devices
+  - Webhooks
+  - Observations
+  - healow
+  properties:
+  - type: Documentation
+    url: https://connect4.healow.com/apps/jsp/dev/r4/fhirRpmVendorDocumentation.jsp
+  - type: Webhooks
+    url: asyncapi/eclinicalworks-healow-rpm-webhooks.yml
+  - type: Authentication
+    url: authentication/eclinicalworks-authentication.yml
+  - type: AgentSkill
+    url: skills/eclinicalworks-healow-rpm-vendor-integration.md
 x-enrichment:
-  date: '2026-08-14'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 24
-  pass: local-v1
+  artifacts_added: 2
+  pass: local-v5

@@ -1,0 +1,114 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 9
+  own: 4
+  other_domain: 3
+  platform: 2
+  roles:
+  - identity
+  - marketing
+  - other
+  - portal
+  - status
+  - website
+hosts:
+- host: blog.eclinicalworks.com
+  found_by:
+  - pointer
+  types:
+  - Blog
+  - BlogTopic
+  serves: []
+  registrable_domain: eclinicalworks.com
+  role: marketing
+  relation: own
+- host: connect4.healow.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - SignUp
+  serves:
+  - docs
+  - api
+  registrable_domain: healow.com
+  role: identity
+  relation: other-domain
+- host: fhir.eclinicalworks.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Documentation
+  - DeveloperPortal
+  - APIReference
+  - GettingStarted
+  - Support
+  - Login
+  serves:
+  - docs
+  registrable_domain: eclinicalworks.com
+  role: portal
+  relation: own
+- host: fhir4.eclinicalworks.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: eclinicalworks.com
+  role: other
+  relation: own
+- host: fhir4.healow.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: healow.com
+  role: other
+  relation: other-domain
+- host: instatus.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: instatus.com
+  role: status
+  relation: other-domain
+- host: www.eclinicalworks.com
+  found_by:
+  - pointer
+  types:
+  - Website
+  - Pricing
+  - TermsOfService
+  - PrivacyPolicy
+  - Compliance
+  - Security
+  serves: []
+  registrable_domain: eclinicalworks.com
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: x.com
+  found_by:
+  - pointer
+  types:
+  - X
+  serves: []
+  registrable_domain: x.com
+  role: other
+  relation: platform

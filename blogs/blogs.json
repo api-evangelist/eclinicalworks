@@ -9,11 +9,11 @@
       "method": "discovered"
     },
     {
-      "source": "https://www.linkedin.com/company/eclinicalworks",
-      "feed_url": "https://www.linkedin.com/company/eclinicalworks",
+      "source": "https://blog.eclinicalworks.com/topic/apis",
+      "feed_url": "https://blog.eclinicalworks.com/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "discovered"
     },
     {
       "source": "https://blog.eclinicalworks.com/atom.xml",
@@ -23,6 +23,13 @@
       "method": "feed"
     },
     {
+      "source": "https://www.linkedin.com/company/eclinicalworks",
+      "feed_url": "https://www.linkedin.com/company/eclinicalworks",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://www.eclinicalworks.com/feed/",
       "feed_url": "https://www.eclinicalworks.com/feed/",
       "title": "",
@@ -30,7 +37,7 @@
       "method": "feed"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 31,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",

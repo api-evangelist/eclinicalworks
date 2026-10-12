@@ -21,7 +21,7 @@
     matched_domain: eclinicalworks.com
     detected_by: sweep-health-networks.py
     detected: '2026-10-12'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: eclinicalworks-imo-health
   label: IMO Health
@@ -372,7 +372,6 @@
   arazzo: null
 - slug: eclinicalworks-topaz
   label: Topaz
-  partner: topaz
   partner_name: Topaz
   category: hardware services
   type: marketplace
@@ -529,6 +528,7 @@
   arazzo: null
 - slug: eclinicalworks-ihealth
   label: iHealth
+  partner: andon-health
   partner_name: iHealth
   category: health fitness trackers
   type: marketplace
@@ -602,6 +602,7 @@
   arazzo: null
 - slug: eclinicalworks-bh
   label: BH
+  partner: bamboo-health
   partner_name: BH
   category: medications prescriptions
   type: marketplace

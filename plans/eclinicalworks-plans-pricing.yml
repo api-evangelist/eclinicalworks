@@ -102,8 +102,16 @@ plans:
     the On-Demand Activation feature in the eClinicalWorks application. Reports of a per-practice enablement fee
     are third-party and unverified against eClinicalWorks published material, so no figure is asserted here.'
   price_text: at no cost at this time
+audience: business-product
+pricing_basis: per-seat
+published: true
+delivery:
+  delivery: managed
+note: 'Re-read 2026-10-12: EHR Only now $499/mo per provider (was recorded as 449). FHIR API row quotes certified-ehr-technology
+  page: "Certified FHIR APIs are available to third-party application developers and eClinicalWorks customers at
+  no cost at this time."'
 x-canonical:
-  generated: '2026-10-08'
+  generated: '2026-10-18'
   vocabulary: all/0-working/economics/plans-canonical.yml
   models:
   - free
@@ -126,7 +134,7 @@ x-canonical:
     periods: []
   - name: RCM as a Service
     access: other
-    model: subscription
+    model: unstated
     model_how: derived
     units:
     - other
@@ -138,11 +146,3 @@ x-canonical:
     units:
     - other
     periods: []
-audience: business-product
-pricing_basis: per-seat
-published: true
-delivery:
-  delivery: managed
-note: 'Re-read 2026-10-12: EHR Only now $499/mo per provider (was recorded as 449). FHIR API row quotes certified-ehr-technology
-  page: "Certified FHIR APIs are available to third-party application developers and eClinicalWorks customers at
-  no cost at this time."'

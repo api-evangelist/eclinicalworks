@@ -40,6 +40,25 @@ modified: '2026-10-12'
 specificationVersion: '0.23'
 type: Index
 tags:
+- Electronic Health Records
+- FHIR
+- Healthcare
+- Practice Management
+- Clinical Data
+- Health Information Exchange
+- Patient Data
+- Appointments
+- Billing
+- SMART on FHIR
+- US Core
+- USCDI
+- Bulk Data
+- Remote Patient Monitoring
+- Interoperability
+- ONC Certified
+- CDS Hooks
+- healow
+tags_raw:
 - EHR
 - FHIR
 - Healthcare
@@ -152,7 +171,7 @@ apis:
   baseURL: https://fhir4.eclinicalworks.com/fhir/r4/{practice_code}
   tags:
   - FHIR
-  - EHR
+  - Electronic Health Records
   - Clinical Data
   - Scheduling
   - Bulk Data

@@ -814,3 +814,37 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: eclinicalworks-cloud-security-alliance-star-registry
+  label: Cloud Security Alliance STAR Registry
+  partner_name: Cloud Security Alliance STAR Registry
+  category: Cloud security assurance
+  type: register
+  channel: standard-directory
+  evidence: https://cloudsecurityalliance.org/star/registry/eclinicalworks-llc/services/eclinicalworks-emr-suite-of-products-and-services
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-2
+    registered_name: eClinicalWorks LLC
+    registry_id: eclinicalworks-llc
+    service_url: https://www.eclinicalworks.com/products
+    matched_domain: eclinicalworks.com
+    matched_by: domain
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    - STAR Level 2
+    certified_products:
+    - product: STAR Certification
+      lapsed: false
+      latest: '2024-07-25'
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null

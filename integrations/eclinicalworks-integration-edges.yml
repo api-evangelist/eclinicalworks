@@ -13,6 +13,8 @@ checked:
 - https://www.eclinicalworks.com/about-us/partners/
 - https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices
 - https://zapier.com/apps/eclinicalworks/integrations
+- https://connectathon-results.ihe.net/custom-search/
+- https://product-registry.ihe.net/
 summary: null
 marketplace_apps:
 - marketplace: own
@@ -863,5 +865,76 @@ edges:
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
+- partner_name: IHE International (Connectathon)
+  partner: null
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://connectathon-results.ihe.net/company-details?companykeyw=ECW
+  category: IHE Connectathon tested integration profiles
+  contract_reference:
+    register: IHE Connectathon Global Results (connectathon-results.ihe.net, custom search table)
+    standard: IHE integration profiles (IHE Technical Frameworks)
+    spec_file: null
+    role: ihe-connectathon-tested-vendor
+    registered_name: eClinicalWorks
+    register_id: ECW
+    matched_domain: null
+    matched_by: register-name
+    first_connectathon: 2010
+    latest_connectathon: 2023
+    editions_sample:
+    - North America 2023
+    - North America 2021
+    - North America 2020
+    - North America 2019
+    - North America 2018
+    certified_products:
+    - product: IHE Connectathon tested profiles (IT Infrastructure)
+      ihe_domain: IT Infrastructure
+      latest_connectathon: 2020
+      lapsed: true
+      profiles_sample:
+      - ATNA
+      - BPPC
+      - CT
+      - NAV
+      - PDQ
+      - PDQV3
+      - PIX
+      - PIXV3
+    - product: IHE Connectathon tested profiles (Pathology and Laboratory Medicine)
+      ihe_domain: Pathology and Laboratory Medicine
+      latest_connectathon: 2015
+      lapsed: true
+      profiles_sample:
+      - XD-LAB
+    - product: IHE Connectathon tested profiles (Patient Care Coordination)
+      ihe_domain: Patient Care Coordination
+      latest_connectathon: 2023
+      lapsed: false
+      profiles_sample:
+      - 360X
+      - XDS-MS
+      - XPHR
+    - product: IHE Connectathon tested profiles (Quality, Research and Public Health)
+      ihe_domain: Quality, Research and Public Health
+      latest_connectathon: 2015
+      lapsed: true
+      profiles_sample:
+      - IC
+    signal_note: certified_products = one entry per IHE DOMAIN with tested profiles, never per profile, actor or
+      year; lapsed when the domain's latest Connectathon is older than three years (< 2023). Profiles, actors and
+      editions are context, never counted
+    detected_by: sweep-medical-imaging-ihe.py
+    detected: '2026-10-20'
+    register_name_note: register-name 'eclinicalworks' = eclinicalworks; no wikidata P856
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-medical-imaging-ihe.py
   first_seen: '2026-10-20'
 templates: []

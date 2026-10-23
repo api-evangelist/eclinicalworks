@@ -23,6 +23,13 @@
       "method": "feed"
     },
     {
+      "source": "https://blog.eclinicalworks.com/rss.xml",
+      "feed_url": "https://blog.eclinicalworks.com/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.linkedin.com/company/eclinicalworks",
       "feed_url": "https://www.linkedin.com/company/eclinicalworks",
       "title": "",
@@ -37,7 +44,7 @@
       "method": "feed"
     }
   ],
-  "fetched": "2026-10-10T13:15:00Z",
+  "fetched": "2026-10-17T14:53:57Z",
   "post_count": 31,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
